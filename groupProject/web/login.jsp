@@ -15,9 +15,10 @@
     <body>
         <form method="POST" action="login">
             Name: <input type="text" name="name" />
-            PassWord: <input type="text" name="password" />
+            PassWord: <input type="password" name="password" />
                       <input type="submit" value="Add" />  
         </form>
+        <a href="register.jsp"> Register </a>
         <h1>Hello World!</h1>
     </body>
 </html>

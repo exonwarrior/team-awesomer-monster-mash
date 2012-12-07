@@ -6,6 +6,7 @@ package login;
  */
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,7 +48,7 @@ public class LoginServlet extends HttpServlet {
             response.setHeader("Location",  "http://localhost:8080/MonsterGame/home.jsp");
         }
         else{
-             response.setHeader("Location", "http://localhost:8080/MonsterGame/index.jsp");
+             response.setHeader("Location", "http://localhost:8080/MonsterGame/login.jsp");
         }
         
        
@@ -73,8 +74,8 @@ public class LoginServlet extends HttpServlet {
     
     public boolean check(String name, String password){
         boolean response = false;
-        
-        if(personDOA.doesExit(name) && personDOA.getPersonByName(name).getPassword() == password){
+        personDOA = new PersonDOA();
+        if(personDOA.doesExit(name) && personDOA.getPersonByName(name).getPassword().equals(password)){
             response = true;
         }
  

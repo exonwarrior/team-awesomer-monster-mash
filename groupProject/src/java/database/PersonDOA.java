@@ -22,7 +22,9 @@ import javax.persistence.TypedQuery;
 public class PersonDOA {
 
     EntityManagerFactory emf;
-    EntityManager em;
+   
+    @PersistenceContext(unitName = "MonsterGamePU" )
+     EntityManager em;
     
     public PersonDOA(){
 
@@ -31,6 +33,7 @@ public class PersonDOA {
     // Stores a new guest: 
     public void persist(Person person) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
+        
         em = emf.createEntityManager();
         try{
              em.getTransaction().begin();
@@ -39,22 +42,42 @@ public class PersonDOA {
         }
         finally{
              em.close();
-        }
-        
+        }   
     }
     
     private List<Person> getAllPeople(){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
         em = emf.createEntityManager();
-        TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);
-        return query.getResultList();
+        List<Person> list;
+        try{
+             em.getTransaction().begin();
+             TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);
+             list = query.getResultList();
+             em.getTransaction().commit();
+        }
+        finally{
+             em.close();
+        }
+        
+        
+        return list;
     }
     
     public boolean doesExit(String name){
         boolean answer = false;
         List<Person> list = this.getAllPeople();
         for(Person p: list){
-            if(p.getName() == name){
+            if(p.getName() == null ? name == null : p.getName().equals(name)){
+                answer = true;
+            }
+        }
+        return answer;
+    }
+    public boolean lookForEmail(String email){
+        boolean answer = false;
+        List<Person> list = this.getAllPeople();
+        for(Person p: list){
+            if(p.getEmail() == null ? email == null : p.getEmail().equals(email)){
                 answer = true;
             }
         }
