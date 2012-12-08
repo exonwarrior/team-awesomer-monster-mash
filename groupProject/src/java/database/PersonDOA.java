@@ -63,7 +63,7 @@ public class PersonDOA {
         return list;
     }
     
-    public boolean doesExit(String name){
+    public boolean doesExist(String name){
         boolean answer = false;
         List<Person> list = this.getAllPeople();
         for(Person p: list){

@@ -4,18 +4,18 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import java.util.*;
-import login.LoginServlet;
+import servlets.LoginServlet;
 
 public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
-  private static java.util.Vector _jspx_dependants;
+  private static java.util.List<String> _jspx_dependants;
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
-  public Object getDependants() {
+  public java.util.List<String> getDependants() {
     return _jspx_dependants;
   }
 
@@ -43,26 +43,26 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("<html>\n");
-      out.write("    <head>\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>JSP Page</title>\n");
-      out.write("    </head>\n");
-      out.write("    <body>\n");
-      out.write("        <form method=\"POST\" action=\"login\">\n");
-      out.write("            Name: <input type=\"text\" name=\"email\" />\n");
-      out.write("            PassWord: <input type=\"password\" name=\"password\" />\n");
-      out.write("                      <input type=\"submit\" value=\"Add\" />  \n");
-      out.write("        </form>\n");
-      out.write("        <a href=\"register.jsp\"> Register </a>\n");
-      out.write("        <h1>Hello World!</h1>\n");
-      out.write("    </body>\n");
-      out.write("</html>\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("<html>\r\n");
+      out.write("    <head>\r\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("        <title>JSP Page</title>\r\n");
+      out.write("    </head>\r\n");
+      out.write("    <body>\r\n");
+      out.write("        <form method=\"POST\" action=\"login\">\r\n");
+      out.write("            Name: <input type=\"text\" name=\"email\" />\r\n");
+      out.write("            PassWord: <input type=\"password\" name=\"password\" />\r\n");
+      out.write("                      <input type=\"submit\" value=\"Add\" />  \r\n");
+      out.write("        </form>\r\n");
+      out.write("        <a href=\"register.jsp\"> Register </a>\r\n");
+      out.write("        <h1>Hello World!</h1>\r\n");
+      out.write("    </body>\r\n");
+      out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
