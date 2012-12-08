@@ -6,6 +6,7 @@
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="$objectdb/db/person.odb"/>
+      <property name="javax.persistence.jdbc.url" value="$objectdb/db/monster.odb"/>
     </properties>
   </persistence-unit>
 </persistence>
