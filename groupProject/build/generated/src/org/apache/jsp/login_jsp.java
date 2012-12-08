@@ -11,11 +11,11 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
-  private static java.util.List<String> _jspx_dependants;
+  private static java.util.Vector _jspx_dependants;
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
-  public java.util.List<String> getDependants() {
+  public Object getDependants() {
     return _jspx_dependants;
   }
 
@@ -55,10 +55,11 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <form method=\"POST\" action=\"login\">\n");
-      out.write("            Name: <input type=\"text\" name=\"name\" />\n");
-      out.write("            PassWord: <input type=\"text\" name=\"password\" />\n");
+      out.write("            Name: <input type=\"text\" name=\"email\" />\n");
+      out.write("            PassWord: <input type=\"password\" name=\"password\" />\n");
       out.write("                      <input type=\"submit\" value=\"Add\" />  \n");
       out.write("        </form>\n");
+      out.write("        <a href=\"register.jsp\"> Register </a>\n");
       out.write("        <h1>Hello World!</h1>\n");
       out.write("    </body>\n");
       out.write("</html>\n");

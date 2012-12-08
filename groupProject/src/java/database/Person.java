@@ -5,6 +5,7 @@
 package database;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,18 +20,26 @@ public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-    String name, password, email;
-    int money;
+    private Long id;
+    private String name, password;
+    private String email;
+    private int money;
+    private ArrayList<String> friends;
     
     public Person(){
-    
     }
 
     public Person(String name, String password, String email) {
         this.name = name;
         this.password = password;
         this.email = email;
+        this.friends = new ArrayList<String>();
+    }
+    public void addFriend(String email){
+        this.friends.add(email);
+    }
+    public void removeFriend(String email){
+        this.friends.remove(email);
     }
 
     public void setEmail(String email) {

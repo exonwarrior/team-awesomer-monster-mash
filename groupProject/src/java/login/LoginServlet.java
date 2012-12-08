@@ -6,6 +6,7 @@ package login;
  */
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,18 +37,18 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(
         HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String tempName = request.getParameter("name");
+        String tempEmail = request.getParameter("email");
         String tempPassword = request.getParameter("password");
         
         response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
         
        
-        if(this.check(tempName, tempPassword)){
+        if(this.check(tempEmail, tempPassword)){
             
             response.setHeader("Location",  "http://localhost:8080/MonsterGame/home.jsp");
         }
         else{
-             response.setHeader("Location", "http://localhost:8080/MonsterGame/index.jsp");
+             response.setHeader("Location", "http://localhost:8080/MonsterGame/login.jsp");
         }
         
        
@@ -71,10 +72,10 @@ public class LoginServlet extends HttpServlet {
 //        request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
     
-    public boolean check(String name, String password){
+    public boolean check(String email, String password){
         boolean response = false;
-        
-        if(personDOA.doesExit(name) && personDOA.getPersonByName(name).getPassword() == password){
+        personDOA = new PersonDOA();
+        if(personDOA.lookForEmail(email) && personDOA.getPersonByEmail(email).getPassword().equals(password)){
             response = true;
         }
  
