@@ -86,6 +86,10 @@ public class Monster implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
+    
+    public String getStats(){
+        return this.name + this.health + this.strength + this.evade;
+    }
 
     @Override
     public boolean equals(Object object) {

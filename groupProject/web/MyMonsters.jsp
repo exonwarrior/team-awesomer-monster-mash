@@ -4,6 +4,8 @@
     Author     : thh21
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="database.Monster"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*, servlets.MyMonsterServlet"%>
 <!DOCTYPE html>
@@ -15,8 +17,12 @@
     <body>
         <h1>My Monsters</h1>
         <form method="post" action="myMonsters">
-	<textarea name="TextArea1" style="height: 231px; width: 196px">
-            <%= request.getAttribute("monsters") %>
+	<textarea name="monsterList" style="height: 231px; width: 196px"><ol>
+            <% ArrayList<Monster> monsters = (ArrayList<Monster>) request.getAttribute("monsters");
+                for(Monster monster:monsters){%>
+                <li><&=monster.getStats() %></li>
+                <% } %>
+                </ol> 
         </textarea><input name="breedMonsters" type="button" value="Breed Monsters" />
         <input name="buyMonster" onclick="location='newMonster.html'" type="button" value="+ Buy Monsters" />
         <input name="sellMonsters" type="button" value="Sell Monsters" />

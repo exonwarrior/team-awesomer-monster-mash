@@ -93,6 +93,25 @@ public class MonsterDOA {
         return m;
         //return me;
     }
+    public Monster getMonsterById(Long id){
+        emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb");
+        em = emf.createEntityManager();
+        Monster m = null;
+        try{
+            em.getTransaction().begin();
+            TypedQuery<Monster> query = em.createQuery(
+            "SELECT m FROM Monster AS m WHERE m.id = :id", Monster.class)
+                    .setParameter("id", id);
+            m = query.getSingleResult();
+            em.getTransaction().commit();
+            
+        }
+        finally{
+            em.close();
+        }
+        return m;
+        //return me;
+    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

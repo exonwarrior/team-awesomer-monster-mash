@@ -4,7 +4,9 @@
  */
 package database;
 
+import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -25,6 +27,8 @@ public class PersonDOA {
    
     @PersistenceContext(unitName = "MonsterGamePU" )
      EntityManager em;
+    
+    @EJB MonsterDOA monsterDOA;
     
     public PersonDOA(){
 
@@ -104,6 +108,15 @@ public class PersonDOA {
         //return me;
     }
     
+    public ArrayList<Monster> getPersonsMonsters(Person p){
+        ArrayList<Monster> list = new ArrayList<Monster>();
+        monsterDOA = new MonsterDOA();
+        for(Long monster: p.getAllMonsters()){
+           list.add(monsterDOA.getMonsterById(monster)); 
+        }
+        
+        return list;
+    }
      
 
     // Add business logic below. (Right-click in editor and choose

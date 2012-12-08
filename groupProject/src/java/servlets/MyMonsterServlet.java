@@ -4,8 +4,11 @@
  */
 package servlets;
 
+import database.Person;
+import database.PersonDOA;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +22,8 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "MyMonsters", urlPatterns = {"/myMonsters"})
 public class MyMonsterServlet extends HttpServlet {
-
+    
+    @EJB PersonDOA personDOA;
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -63,9 +67,13 @@ public class MyMonsterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        personDOA = new PersonDOA();
         processRequest(request, response);
         HttpSession session = request.getSession(false);
-        String user = (String) session.getAttribute("user");
+        String userEmail = (String) session.getAttribute("user");
+        Person user = personDOA.getPersonByEmail(userEmail);
+        request.setAttribute("monsters", personDOA.getPersonsMonsters(user) );
+        request.getRequestDispatcher("/MyMonsters.jsp").forward(request, response);
     
     }
 

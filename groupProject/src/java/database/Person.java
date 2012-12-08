@@ -25,6 +25,7 @@ public class Person implements Serializable {
     private String email;
     private int money;
     private ArrayList<String> friends;
+    private ArrayList<Long> monsters;
     
     public Person(){
     }
@@ -41,7 +42,9 @@ public class Person implements Serializable {
     public void removeFriend(String email){
         this.friends.remove(email);
     }
-
+    public ArrayList<Long> getAllMonsters(){
+        return monsters;
+    }
     public void setEmail(String email) {
         this.email = email;
     }
