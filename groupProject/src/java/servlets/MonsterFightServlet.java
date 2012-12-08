@@ -4,8 +4,11 @@
  */
 package servlets;
 
+import database.Monster;
+import database.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Dave
  */
 public class MonsterFightServlet extends HttpServlet {
-
+    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -42,6 +45,31 @@ public class MonsterFightServlet extends HttpServlet {
         } finally {            
             out.close();
         }
+    }
+    
+    protected void doPost() {
+        
+    }
+    protected void doGet(){
+        
+    }
+    
+    public void sendFightRequest(Person friend) {
+        
+    }
+    public void acceptFight(Person friend) {
+        
+    }
+    public void declineFight(Person friend) {
+        
+    }
+    public void fight(int myMonsterID, int friendMonsterID) {
+        
+    }
+    public List<Monster> getMonsterList(Person friend) {
+        List<Monster> list = null;
+        
+        return list;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
