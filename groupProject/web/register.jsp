@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.*, login.Register"%>
+<%@page import="java.util.*, servlets.Register"%>
 <!DOCTYPE html>
 <html>
     <head>
