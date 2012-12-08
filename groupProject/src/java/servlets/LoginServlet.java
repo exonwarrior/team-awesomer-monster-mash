@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import database.*;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -45,6 +46,9 @@ public class LoginServlet extends HttpServlet {
        
         if(this.check(tempEmail, tempPassword)){
             
+            personDOA = new PersonDOA();
+            HttpSession session = request.getSession(true);
+            session.setAttribute("user", personDOA.getPersonByEmail(tempEmail));
             response.setHeader("Location",  "http://localhost:8080/MonsterGame/home.jsp");
         }
         else{
