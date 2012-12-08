@@ -84,15 +84,15 @@ public class PersonDOA {
         return answer;
     }
     
-    public Person getPersonByName(String name){
+    public Person getPersonByEmail(String email){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
         em = emf.createEntityManager();
         Person p = null;
         try{
             em.getTransaction().begin();
             TypedQuery<Person> query = em.createQuery(
-            "SELECT p FROM Person AS p WHERE p.name = :name", Person.class)
-                    .setParameter("name", name);
+            "SELECT p FROM Person AS p WHERE p.email = :email", Person.class)
+                    .setParameter("email", email);
             p = query.getSingleResult();
             em.getTransaction().commit();
             

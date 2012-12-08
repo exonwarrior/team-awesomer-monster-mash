@@ -37,13 +37,13 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(
         HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String tempName = request.getParameter("name");
+        String tempEmail = request.getParameter("email");
         String tempPassword = request.getParameter("password");
         
         response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
         
        
-        if(this.check(tempName, tempPassword)){
+        if(this.check(tempEmail, tempPassword)){
             
             response.setHeader("Location",  "http://localhost:8080/MonsterGame/home.jsp");
         }
@@ -72,10 +72,10 @@ public class LoginServlet extends HttpServlet {
 //        request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
     
-    public boolean check(String name, String password){
+    public boolean check(String email, String password){
         boolean response = false;
         personDOA = new PersonDOA();
-        if(personDOA.doesExit(name) && personDOA.getPersonByName(name).getPassword().equals(password)){
+        if(personDOA.lookForEmail(email) && personDOA.getPersonByEmail(email).getPassword().equals(password)){
             response = true;
         }
  

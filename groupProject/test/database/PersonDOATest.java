@@ -50,7 +50,7 @@ public class PersonDOATest {
         Person p = new Person("tom", "123", "email");
         //poa.persist(p);
         
-        poa.getPersonByName("tom");
+        poa.getPersonByEmail("tom");
         
     }
 }
