@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import database.*;
+import java.util.List;
 
 /**
  *
@@ -46,6 +47,28 @@ public class MarketPlaceServlet extends HttpServlet {
         } finally {            
             out.close();
         }
+    }
+    
+    protected void doPost() {
+        
+    }
+    protected void doGet() {
+        
+    }
+    
+    public void sellMonster(Monster myMonser, int money) {
+        
+    }
+    public void buyMonster(Monster monster, int money) {
+        
+    }
+    public void buyMonsterToBreed(Monster monster, int money) {
+        
+    }
+    public List<Monster> getMonsterList(Person friend) {
+        List<Monster> list = null;
+        
+        return list;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
