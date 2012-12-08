@@ -93,6 +93,25 @@ public class MonsterDOA {
         return m;
         //return me;
     }
+    
+    public void remove(String name) {
+        emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb");
+        em = emf.createEntityManager();
+        Monster m = null;
+        try{
+            em.getTransaction().begin();
+            TypedQuery<Monster> query = em.createQuery(
+            "SELECT m FROM Monster AS m WHERE m.name = :name", Monster.class)
+                    .setParameter("name", name);
+            m = query.getSingleResult();
+            em.remove(m);
+            em.getTransaction().commit();
+            
+        }
+        finally{
+            em.close();
+        }
+    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
