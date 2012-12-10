@@ -105,4 +105,17 @@ public class Monster implements Serializable {
         return "database.Monster[ id=" + id + " ]";
     }
     
+    public Monster generateRandom(){
+        Monster m = new Monster();
+        Random random = new Random();
+        m.setStrength(random.nextInt(11));
+        m.setHealth(random.nextInt(11));
+        m.setEvade(random.nextInt(11));
+        m.setGenes(random.nextInt(11));
+        m.setPrice(m.getStrength()+m.getEvade()+m.getHealth()+m.getGenes());
+        m.setName(JOptionPane().showInputDialog(null, "How would you like to name your monster?"));
+        m.setOwner();
+        return m;
+    }
+    
 }
