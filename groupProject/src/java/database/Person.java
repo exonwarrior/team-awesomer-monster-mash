@@ -40,6 +40,7 @@ public class Person implements Serializable {
         this.password = password;
         this.email = email;
         this.friends = new ArrayList<String>();
+        giveFirstMonster();
     }
     public void addFriend(String email){
         this.friends.add(email);
@@ -108,6 +109,14 @@ public class Person implements Serializable {
             return false;
         }
         return true;
+    }
+    
+    public void giveFirstMonster(){
+        MonsterDOA md = new MonsterDOA();
+        Monster monster = new Monster();
+        monster = monster.generateRandom(this);
+        md.persist(monster);
+        this.monsters.add(monster.getId());
     }
 
     @Override
