@@ -5,10 +5,13 @@
 package servlets;
 
 import database.Monster;
+import database.MonsterDOA;
 import database.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Random;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Dave
  */
 public class MonsterFightServlet extends HttpServlet {
+    @EJB
+    private MonsterDOA monsterDOA;
     
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -63,8 +68,24 @@ public class MonsterFightServlet extends HttpServlet {
     public void declineFight(Person friend) {
         
     }
-    public void fight(int myMonsterID, int friendMonsterID) {
-        
+    public void fight(long myMonsterID, long friendMonsterID) {
+        Monster m1;
+        Monster m2;
+        m1 = MonsterDOA.getMonsterById(myMonsterID);
+        m2 = MonsterDOA.getMonsterById(friendMonsterID);
+		
+	while((m1.getHealth()!=0)&&(m2.getHealth()!=0)){
+            Random random = new Random();
+            int attack1 = random.nextInt(20)+1;
+            int attack2 = random.nextInt(20)+1;
+            
+            if((attack1+m1.getStrength())>m2.getDodge()){
+                
+            }
+            if((attack2+m2.getStrength())>m1.getDodge()){
+                
+            }
+	}
     }
     public List<Monster> getMonsterList(Person friend) {
         List<Monster> list = null;

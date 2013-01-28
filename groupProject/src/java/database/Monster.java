@@ -114,15 +114,20 @@ public class Monster implements Serializable {
          Date date = new Date();
          this.birthday = dateFormat.format(date);
          m.setStrength(random.nextInt(100)+1);
+         if(m.strength<50){
+             m.strength = m.strength+50;
+         }
          m.setDodge(random.nextInt(100)+1);
-         m.setHealth(1);
-         this.fertility = (random.nextInt(100)+1);
+         if(m.dodge<50){
+             m.dodge = m.dodge+50;
+         }
+         m.setHealth(100);
          gender = random.nextBoolean();
          m.setPrice(m.getStrength()+m.getDodge()+m.getHealth());
          String s = JOptionPane.showInputDialog("How would you like to name your monster?");
          m.setName(s);
          m.setOwner(user.getName());
-         System.out.println(this.id+"\n"+this.birthday+"\n"+this.strength+"\n"+this.dodge+"\n"+this.health+"\n"+this.fertility+"\n"+this.gender);
+         System.out.println(this.id+"\n"+this.birthday+"\n"+this.strength+"\n"+this.dodge+"\n"+this.health+"\n"+this.gender);
          return m;
      }
 
