@@ -25,7 +25,7 @@ public class Monster implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name, owner, birthday;
-    private float health, strength, dodge, price, fertility;
+    private int health, strength, dodge, price;
     private boolean gender;
 
     public Long getId() {
@@ -50,31 +50,31 @@ public class Monster implements Serializable {
         this.owner = owner;
     }
     
-    public float getHealth(){
+    public int getHealth(){
         return health;
     }
-    public void setHealth(float health){
+    public void setHealth(int health){
         this.health = health;
     }
     
-    public float getStrength(){
+    public int getStrength(){
         return strength;
     }
-    public void setStrength(float strength){
+    public void setStrength(int strength){
         this.strength = strength;
     }
     
-    public float getDodge(){
+    public int getDodge(){
         return dodge;
     }
-    public void setDodge(float dodge){
+    public void setDodge(int dodge){
         this.dodge = dodge;
     }
     
-    public float getPrice(){
+    public int getPrice(){
         return price;
     }
-    public void setPrice(float price){
+    public void setPrice(int price){
         this.price = price;
     }
 
@@ -113,10 +113,10 @@ public class Monster implements Serializable {
          DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
          Date date = new Date();
          this.birthday = dateFormat.format(date);
-         m.setStrength(random.nextFloat());
-         m.setDodge(random.nextFloat());
+         m.setStrength(random.nextInt(100)+1);
+         m.setDodge(random.nextInt(100)+1);
          m.setHealth(1);
-         this.fertility = (random.nextFloat());
+         this.fertility = (random.nextInt(100)+1);
          gender = random.nextBoolean();
          m.setPrice(m.getStrength()+m.getDodge()+m.getHealth());
          String s = JOptionPane.showInputDialog("How would you like to name your monster?");
