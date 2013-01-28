@@ -5,6 +5,7 @@
 package database;
 
 import java.io.Serializable;
+import java.util.Random;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -113,7 +114,7 @@ public class Monster implements Serializable {
         m.setEvade(random.nextInt(11));
         m.setGenes(random.nextInt(11));
         m.setPrice(m.getStrength()+m.getEvade()+m.getHealth()+m.getGenes());
-        m.setName(JOptionPane().showInputDialog(null, "How would you like to name your monster?"));
+//        m.setName(JOptionPane().showInputDialog(null, "How would you like to name your monster?"));
         m.setOwner(user.getName());
         return m;
     }
