@@ -17,16 +17,19 @@
     <body>
         <h1>My Monsters</h1>
         <form method="post" action="myMonsters">
-	<textarea name="monsterList" style="height: 231px; width: 196px"><ol>
-            <% ArrayList<Monster> monsters = (ArrayList<Monster>) request.getAttribute("monsters");
-                for(Monster monster:monsters){%>
-                <li><&=monster.getStats() %></li>
-                <% } %>
-                </ol> 
+	<textarea name="monsterList" style="height: 231px; width: 196px">
         </textarea><input name="breedMonsters" type="button" value="Breed Monsters" />
+        <ol>
+            <% ArrayList<Monster> monsters = (ArrayList<Monster>) request.getAttribute("monsters");
+                if(monsters != null){
+                    for(Monster monster:monsters){%>
+                        <li><&=monster.getStats() %></li>
+                    <% }} %>
+                </ol> 
         <input name="buyMonster" onclick="location='newMonster.html'" type="button" value="+ Buy Monsters" />
         <input name="sellMonsters" type="button" value="Sell Monsters" />
         <input name="home" onclick="location='home.html'" type="button" value="home" style="width: 66px" />
+        <input type="submit" value="get" />
         </form>
 
     </body>
