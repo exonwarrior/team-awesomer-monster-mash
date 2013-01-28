@@ -25,6 +25,7 @@ public class Person implements Serializable {
     private String email;
     private int money;
     private ArrayList<String> friends;
+    private ArrayList<Monster> monsters;
     
     public Person(){
     }
@@ -34,6 +35,8 @@ public class Person implements Serializable {
         this.password = password;
         this.email = email;
         this.friends = new ArrayList<String>();
+        this.monsters = new ArrayList<Monster>();
+        this.monsters.add(Monster.generateRandom(this));
     }
     public void addFriend(String email){
         this.friends.add(email);

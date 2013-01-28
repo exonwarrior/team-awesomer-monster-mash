@@ -5,10 +5,12 @@
 package database;
 
 import java.io.Serializable;
+import java.util.Random;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -105,7 +107,7 @@ public class Monster implements Serializable {
         return "database.Monster[ id=" + id + " ]";
     }
     
-    public Monster generateRandom(Person user){
+    public static Monster generateRandom(Person user){
         Monster m = new Monster();
         Random random = new Random();
         m.setStrength(random.nextInt(11));
@@ -113,7 +115,7 @@ public class Monster implements Serializable {
         m.setEvade(random.nextInt(11));
         m.setGenes(random.nextInt(11));
         m.setPrice(m.getStrength()+m.getEvade()+m.getHealth()+m.getGenes());
-        m.setName(JOptionPane().showInputDialog(null, "How would you like to name your monster?"));
+        m.setName(JOptionPane.showInputDialog(null, "How would you like to name your monster?"));
         m.setOwner(user.getName());
         return m;
     }
