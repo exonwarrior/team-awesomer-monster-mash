@@ -79,13 +79,24 @@ public class MonsterFightServlet extends HttpServlet {
             int attack1 = random.nextInt(20)+1;
             int attack2 = random.nextInt(20)+1;
             
+            if(attack1 == 20){
+                m2.setHealth(m2.getHealth()-(m1.getStrength()/2));
+                System.out.println("Friend monster took a critical hit! Its health is now "+m2.getHealth());
+            }
+            if(attack2 == 20){
+                m1.setHealth(m1.getHealth()-(m2.getStrength()/2));
+                System.out.println("Your monster took a critical hit! Its health is now "+m1.getHealth());
+            }
             if((attack1+m1.getStrength())>m2.getDodge()){
-                
+                m2.setHealth(m2.getHealth()-(m1.getStrength()/4));
+                System.out.println("Friend monster took a damage! Its health is now "+m2.getHealth());
             }
             if((attack2+m2.getStrength())>m1.getDodge()){
-                
+                m1.setHealth(m1.getHealth()-(m2.getStrength()/4));
+                System.out.println("Your monster took a damage! Its health is now "+m1.getHealth());
             }
 	}
+        
     }
     public List<Monster> getMonsterList(Person friend) {
         List<Monster> list = null;
