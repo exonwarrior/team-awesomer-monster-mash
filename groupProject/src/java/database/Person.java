@@ -11,6 +11,7 @@ package database;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.ejb.EJB;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,6 +33,7 @@ public class Person implements Serializable {
     private ArrayList<String> friends;
     private ArrayList<Long> monsters;
     
+    
     public Person(){
     }
 
@@ -40,7 +42,6 @@ public class Person implements Serializable {
         this.password = password;
         this.email = email;
         this.friends = new ArrayList<String>();
-        giveFirstMonster();
     }
     public void addFriend(String email){
         this.friends.add(email);
@@ -51,6 +52,11 @@ public class Person implements Serializable {
     public ArrayList<Long> getAllMonsters(){
         return monsters;
     }
+    
+    public void addMonster(Long id ){
+        this.monsters.add(id);
+    }
+    
     public void setEmail(String email) {
         this.email = email;
     }
@@ -111,13 +117,6 @@ public class Person implements Serializable {
         return true;
     }
     
-    public void giveFirstMonster(){
-        MonsterDOA md = new MonsterDOA();
-        Monster monster = new Monster();
-        monster = monster.generateRandom(this);
-        md.persist(monster);
-        this.monsters.add(monster.getId());
-    }
 
     @Override
     public String toString() {

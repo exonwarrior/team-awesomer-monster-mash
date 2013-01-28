@@ -42,6 +42,7 @@ public class PersonDOA {
         try{
              em.getTransaction().begin();
              em.persist(person);
+             giveFirstMonster(person);             
              em.getTransaction().commit();
         }
         finally{
@@ -116,6 +117,13 @@ public class PersonDOA {
         }
         
         return list;
+    }
+    
+    public void giveFirstMonster(Person p){
+        Monster m = new Monster();
+        m = m.generateRandom(p);
+        this.monsterDOA.persist(m);
+        p.addMonster(m.getId());
     }
      
 
