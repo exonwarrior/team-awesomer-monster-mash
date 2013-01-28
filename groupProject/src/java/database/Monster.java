@@ -119,8 +119,8 @@ public class Monster implements Serializable {
          this.fertility = (random.nextFloat());
          gender = random.nextBoolean();
          m.setPrice(m.getStrength()+m.getDodge()+m.getHealth());
-         //String s = JOptionPane.showInputDialog("How would you like to name your monster?");
-         //m.setName(s);
+         String s = JOptionPane.showInputDialog("How would you like to name your monster?");
+         m.setName(s);
          m.setOwner(user.getName());
          System.out.println(this.id+"\n"+this.birthday+"\n"+this.strength+"\n"+this.dodge+"\n"+this.health+"\n"+this.fertility+"\n"+this.gender);
          return m;
