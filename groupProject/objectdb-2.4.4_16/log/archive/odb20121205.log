@@ -1,0 +1,63 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2012-12-05 15:42:34 #1 store] 
+Database 'C:\Users\thomas\Documents\NetBeansProject\MonsterGame\build\web\WEB-INF\db\person.odb' has been recovered (tr. 1-4)
+
+[2012-12-05 15:42:35 #2 store] 
+Database 'C:\Users\thomas\Documents\NetBeansProject\MonsterGame\build\web\WEB-INF\db\person.odb' is opened by 4168@billybob2
+
+[2012-12-05 15:44:32 #3 explorer] 
+[ObjectDB 2.4.4_16] java.lang.IllegalArgumentException
+Attempt to lock a new (non stored yet) entity object (error 635)
+	at java.awt.event.InvocationEvent.dispatch(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$200(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+
+[2012-12-05 15:44:50 #4 explorer] 
+[ObjectDB 2.4.4_16] java.lang.IllegalArgumentException
+Attempt to lock a new (non stored yet) entity object (error 635)
+	at java.awt.event.InvocationEvent.dispatch(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$200(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+
+[2012-12-05 15:44:57 #5 store] 
+Database 'C:\Users\thomas\Documents\NetBeansProject\MonsterGame\build\web\WEB-INF\db\person.odb' is closed by 4168@billybob2
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2012-12-05 15:45:23 #1 store] 
+Database 'C:\Users\thomas\Documents\NetBeansProject\MonsterGame\build\web\WEB-INF\db\person.odb' is opened by 4444@billybob2
+
+[2012-12-05 15:45:43 #2 store] 
+Database 'C:\Users\thomas\Documents\NetBeansProject\MonsterGame\build\web\WEB-INF\db\person.odb' is closed by 4444@billybob2
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2012-12-05 21:57:18 #1 store] 
+Database 'C:\Users\thomas\Documents\NetBeansProject\MonsterGame\build\web\WEB-INF\db\person.odb' is opened by 4324@billybob2
+
+[2012-12-05 21:59:56 #2 store] 
+Database 'C:\Users\thomas\Documents\NetBeansProject\MonsterGame\build\web\WEB-INF\db\person.odb' is closed by 4324@billybob2
+
