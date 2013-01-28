@@ -71,8 +71,8 @@ public class MonsterFightServlet extends HttpServlet {
     public void fight(long myMonsterID, long friendMonsterID) {
         Monster m1;
         Monster m2;
-        m1 = MonsterDOA.getMonsterById(myMonsterID);
-        m2 = MonsterDOA.getMonsterById(friendMonsterID);
+        m1 = monsterDOA.getMonsterById(myMonsterID);
+        m2 = monsterDOA.getMonsterById(friendMonsterID);
 		
 	while((m1.getHealth()!=0)&&(m2.getHealth()!=0)){
             Random random = new Random();
