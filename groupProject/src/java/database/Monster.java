@@ -25,7 +25,7 @@ public class Monster implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name, owner, birthday;
-    private int health, strength, dodge, price;
+    private int health, strength, dodge, price, fertility;
     private boolean gender;
 
     public Long getId() {
