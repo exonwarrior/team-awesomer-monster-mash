@@ -54,7 +54,7 @@ public class FriendsServlet extends HttpServlet {
             String userEmail = request.getParameter("useremail");
             response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
             if(this.check(userEmail)){
-                personDOA.addFriendRequest((Person)session.getAttribute("user"), personDOA.getPersonByEmail(userEmail));
+                //personDOA.addFriendRequest((Person)session.getAttribute("user"), personDOA.getPersonByEmail(userEmail));
                 request.setAttribute("message", "Friend request sent.");
                 request.getRequestDispatcher("/friends.jsp").forward(request, response);
             }else{
@@ -68,7 +68,8 @@ public class FriendsServlet extends HttpServlet {
     }
     
     private boolean check(String userEmail){
-        return !personDOA.doesExist(userEmail);
+        //return !personDOA.doesExist(userEmail);
+        return false;
     }
 
     /**

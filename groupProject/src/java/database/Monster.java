@@ -9,6 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.*;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,8 +25,9 @@ public class Monster implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name, owner;
-    private int health, strength, evade, price, genes;
+    private String name, owner, birthday;
+    private float health, strength, dodge, price, fertility;
+    private boolean gender;
 
     public Long getId() {
         return id;
@@ -45,39 +51,32 @@ public class Monster implements Serializable {
         this.owner = owner;
     }
     
-    public int getHealth(){
+    public float getHealth(){
         return health;
     }
-    public void setHealth(int health){
+    public void setHealth(float health){
         this.health = health;
     }
     
-    public int getStrength(){
+    public float getStrength(){
         return strength;
     }
-    public void setStrength(int strength){
+    public void setStrength(float strength){
         this.strength = strength;
     }
     
-    public int getEvade(){
-        return evade;
+    public float getDodge(){
+        return dodge;
     }
-    public void setEvade(int evade){
-        this.evade = evade;
+    public void setDodge(float dodge){
+        this.dodge = dodge;
     }
     
-    public int getPrice(){
+    public float getPrice(){
         return price;
     }
-    public void setPrice(int price){
+    public void setPrice(float price){
         this.price = price;
-    }
-    
-    public int getGenes(){
-        return genes;
-    }
-    public void setGenes(int genes){
-        this.genes = genes;
     }
 
     @Override
@@ -88,7 +87,7 @@ public class Monster implements Serializable {
     }
     
     public String getStats(){
-        return this.name + this.health + this.strength + this.evade;
+        return this.name + this.health + this.strength + this.dodge;
     }
 
     @Override
@@ -109,17 +108,22 @@ public class Monster implements Serializable {
         return "database.Monster[ id=" + id + " ]";
     }
     
-    +    public Monster generateRandom(Person user){
+    public Monster generateRandom(Person user){
          Monster m = new Monster();
          Random random = new Random();
-         m.setStrength(random.nextInt(11));
-         m.setGenes(random.nextInt(11));
-         m.setEvade(random.nextInt(11));
-         m.setHealth(random.nextInt(11));
-         m.setPrice(m.getStrength()+m.getEvade()+m.getHealth()+m.getGenes());
-         m.setName(JOptionPane().showInputDialog(null, "How would you like to name your monster?"));
--        m.setOwner();
-+        m.setOwner(user.getName());
+         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+         Date date = new Date();
+         this.birthday = dateFormat.format(date);
+         m.setStrength(random.nextFloat());
+         m.setDodge(random.nextFloat());
+         m.setHealth(1);
+         this.fertility = (random.nextFloat());
+         gender = random.nextBoolean();
+         m.setPrice(m.getStrength()+m.getDodge()+m.getHealth());
+         String s = JOptionPane.showInputDialog("How would you like to name your monster?");
+         m.setName(s);
+         m.setOwner(user.getName());
+         System.out.println(this.id+"\n"+this.birthday+"\n"+this.strength+"\n"+this.dodge+"\n"+this.health+"\n"+this.fertility+"\n"+this.gender);
          return m;
      }
 
