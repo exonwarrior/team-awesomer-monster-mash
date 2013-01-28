@@ -20,10 +20,11 @@
 	<textarea name="monsterList" style="height: 231px; width: 196px">
         </textarea><input name="breedMonsters" type="button" value="Breed Monsters" />
         <ol>
-            <% ArrayList<Monster> monsters = (ArrayList<Monster>) request.getAttribute("monsters");
+            <% ArrayList<Monster> monsters = (ArrayList<Monster>)request.getAttribute("monsters");
                 if(monsters != null){
-                    for(Monster monster:monsters){%>
-                        <li><&=monster.getStats() %></li>
+                    for(Monster monster : monsters){
+                         String s = monster.getStats();%>
+                        <li><&= s %></li>
                     <% }} %>
                 </ol> 
         <input name="buyMonster" onclick="location='newMonster.html'" type="button" value="+ Buy Monsters" />
