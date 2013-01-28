@@ -68,7 +68,7 @@ public class MonsterFightServlet extends HttpServlet {
     public void declineFight(Person friend) {
         
     }
-    public void fight(long myMonsterID, long friendMonsterID) {
+   /* public void fight(long myMonsterID, long friendMonsterID) {
         Monster m1;
         Monster m2;
         m1 = MonsterDOA.getMonsterById(myMonsterID);
@@ -97,7 +97,7 @@ public class MonsterFightServlet extends HttpServlet {
             }
 	}
         
-    }
+    }*/
     public List<Monster> getMonsterList(Person friend) {
         List<Monster> list = null;
         

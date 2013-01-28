@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
             
             personDOA = new PersonDOA();
             HttpSession session = request.getSession(true);
-            session.setAttribute("user", personDOA.getPersonByEmail(tempEmail));
+            session.setAttribute("user", tempEmail);
             response.setHeader("Location",  "http://localhost:8080/MonsterGame/MyMonsters.jsp");
         }
         else{

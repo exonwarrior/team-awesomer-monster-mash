@@ -43,6 +43,8 @@ public class Person implements Serializable {
         this.friends = new ArrayList<String>();
         this.monsters = new ArrayList<Long>();
     }
+    
+    
     public void addFriend(String email){
         this.friends.add(email);
     }
