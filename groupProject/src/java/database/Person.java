@@ -2,11 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-/*
- * just some random comment to test 
- * GitHub and NetBeans....
- * 
- */
 package database;
 
 import java.io.Serializable;
@@ -48,13 +43,13 @@ public class Person implements Serializable {
     
     
     public ArrayList<String> getAllFriendRequests(){
-        return friends;
+        return friendRequests;
     }
     public void addFriendRequest(String email){
-        this.friends.add(email);
+        this.friendRequests.add(email);
     }
     public void removeFriendRequest(String email){
-        this.friends.remove(email);
+        this.friendRequests.remove(email);
     }
     public ArrayList<String> getAllFriends(){
         return friends;
