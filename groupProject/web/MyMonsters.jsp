@@ -13,20 +13,45 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>My Monsters</title>
+        <script type="text/javascript"><!--
+                function breed(id){
+                document.getElementById("Breed").value = id;
+                document.getElementById("Sell").value = null;
+                document.forms["monster form"].submit();
+                }
+                
+                function sell(id){
+                    document.getElementById("Breed").value = null;
+                    document.getElementById("Sell").value = id;
+                    ducment.forms["monster form"].submit();
+                }
+                
+                -->
+            </script>
     </head>
     <body>
         <h1>My Monsters</h1>
-        
-        <table name="monster">
-            <% ArrayList<Monster> monsters = (ArrayList<Monster>)request.getAttribute("monsters"); %>
+        <form method="post" action="myMonsters" id="monster form">
+        <table name="monster" border="1">
+            <% ArrayList<Monster> monsters = (ArrayList<Monster>)session.getAttribute("monsters"); %>
             <tr>
                 <th>Monster Name</th>
+                <th>Health</th>
+                <th>Strength</th>
+                <th>Dodge</th>
+                <th>Price</th> 
                 
             </tr>
             <% if(monsters != null){ 
                 for(Monster monster : monsters){ %>
                     <tr>
                         <td><%=monster.getName()%></td>
+                        <td><%=monster.getHealth()%></td>
+                        <td><%=monster.getStrength()%></td>
+                        <td><%=monster.getDodge()%></td>
+                        <td><%=monster.getPrice()%></td>
+                        <td><input type="submit" name="breed" onclick="breed(<%=monster.getId()%>);" value="breed" /></td>
+                        <td><input type="submit" name="sell"  onclick="sell(<%=monster.getId()%>);" value="sell" /></td>
                     </tr>
                 <%}
               }%>
@@ -36,7 +61,7 @@
                       
         </textarea><input name="breedMonsters" type="button" value="Breed Monsters" />
        
-        <form method="post" action="myMonsters">
+        
         <input name="buyMonster" onclick="location='newMonster.html'" type="button" value="+ Buy Monsters" />
         <input name="sellMonsters" type="button" value="Sell Monsters" />
         <input name="home" onclick="location='home.html'" type="button" value="home" style="width: 66px" />
