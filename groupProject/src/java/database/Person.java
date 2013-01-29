@@ -30,6 +30,7 @@ public class Person implements Serializable {
     private String email;
     private int money;
     private ArrayList<String> friends;
+    private ArrayList<String> friendRequests;
     private ArrayList<Long> monsters;
     
     
@@ -41,11 +42,21 @@ public class Person implements Serializable {
         this.password = password;
         this.email = email;
         this.friends = new ArrayList<String>();
+        this.friendRequests = new ArrayList<String>();
         this.monsters = new ArrayList<Long>();
     }
     
     
-      public ArrayList<String> getAllFriends(){
+    public ArrayList<String> getAllFriendRequests(){
+        return friends;
+    }
+    public void addFriendRequest(String email){
+        this.friends.add(email);
+    }
+    public void removeFriendRequest(String email){
+        this.friends.remove(email);
+    }
+    public ArrayList<String> getAllFriends(){
         return friends;
     }
     public void addFriend(String email){

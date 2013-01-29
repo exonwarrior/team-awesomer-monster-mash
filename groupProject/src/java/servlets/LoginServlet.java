@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
         
        
         if(this.check(tempEmail, tempPassword)){
-            
+                   
             personDOA = new PersonDOA();
             HttpSession session = request.getSession(true);
             Person p = personDOA.getPersonByEmail(tempEmail);
