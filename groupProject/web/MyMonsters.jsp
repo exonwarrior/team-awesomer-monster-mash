@@ -25,11 +25,14 @@
                     
                     session.setAttribute("sell") = id;
                     session.setAttribute("breed") = null;
-                    ducument.forms["monster form"].submit();
+                    document.forms["monster form"].submit();
                 }
                 function monster(monsterID){
-                    session.setAttribute("current monster id") = monsterID;
-                    ducument.forms["monster form"].submit();
+                    var ele = document.getElementById("current monster id").value;
+                    var elem = document.getElementById("current monster id");
+                    document.getElementById("current monster id").value =  monsterID;
+                    ele = document.getElementById("current monster id").value;
+                    document.forms["monster form"].submit();
                 }
                 
                 -->
@@ -52,7 +55,8 @@
                 for(Monster monster : monsters){ %>
                     <tr>
                         <td>
-                            <input type="button" onclick="display(<%=monster.getId()%>)" value="<%=monster.getName()%>"
+                            <input type="submit" onclick="monster(<%=monster.getId()%>);" value="<%=monster.getName()%>" />
+                            <input type="hidden" id="current monster id" />
                         </td>
                         
                         <td><input type="submit" name="breed" onclick="breed(<%=monster.getId()%>);" value="breed" /></td>

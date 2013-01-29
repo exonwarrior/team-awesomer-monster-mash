@@ -75,9 +75,12 @@ public class MyMonsterServlet extends HttpServlet {
         processRequest(request, response);
         HttpSession session = request.getSession(false);
         Person user = (Person) session.getAttribute("user");
+        String st  = request.getParameter("current monster id");
         
-        if(session.getAttribute("current monster id") != null){
-            setCurrentMonster(session);
+        if(request.getParameter("current monster id") != null){
+            String s = request.getParameter("current monster id");
+            Long id = Long.parseLong(s);
+            setCurrentMonster(session, id );
         }
         if((session.getAttribute("sell") == null) && (session.getAttribute("breed") != null)){
             setBreedMonster(session);
@@ -111,9 +114,8 @@ public class MyMonsterServlet extends HttpServlet {
         
     }
     
-    public void setCurrentMonster(HttpSession session){
+    public void setCurrentMonster(HttpSession session, Long id){
         monsterDOA = new MonsterDOA();
-        Long id = (Long) session.getAttribute("current mosnter id");
         session.setAttribute("current monster", monsterDOA.getMonsterById(id));
     }
 }

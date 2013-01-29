@@ -6,10 +6,14 @@ package database;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -101,6 +105,21 @@ public class Monster implements Serializable {
                 + "\nDefence: " + this.baseDefence + "\nHealth: " +this.baseHealth;
     }
 
+    public JSONObject getJSONMonster(){
+        JSONObject jMonster = new JSONObject();
+        try {
+            jMonster.put("name", this.name);
+            jMonster.put("baseStrength", this.baseStrength);
+            jMonster.put("baseHealth", this.baseHealth);
+            jMonster.put("baseDefence", this.baseDefence);
+        } catch (JSONException ex) {
+            Logger.getLogger(Monster.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return jMonster;
+    }
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
