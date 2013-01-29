@@ -17,13 +17,23 @@
     <body>
         <h1>My Monsters</h1>
         
+        <table name="monster">
+            <% ArrayList<Monster> monsters = (ArrayList<Monster>)request.getAttribute("monsters"); %>
+            <tr>
+                <th>Monster Name</th>
+                
+            </tr>
+            <% if(monsters != null){ 
+                for(Monster monster : monsters){ %>
+                    <tr>
+                        <td><%=monster.getName()%></td>
+                    </tr>
+                <%}
+              }%>
+        </table>
 	<textarea name="monsterList" style="height: 231px; width: 196px">
-        <% ArrayList<Monster> monsters = (ArrayList<Monster>)request.getAttribute("monsters");
-                if(monsters != null){
-                    for(Monster monster : monsters){
-                         monster.getStats();
-                    }
-                }%>
+                
+                      
         </textarea><input name="breedMonsters" type="button" value="Breed Monsters" />
        
         <form method="post" action="myMonsters">
