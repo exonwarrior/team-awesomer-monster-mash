@@ -74,6 +74,10 @@ public class FriendsServlet extends HttpServlet {
         Person user = (Person) session.getAttribute("user");
         session.setAttribute("friends", personDOA.getPersonsFriends(user) );
         request.getRequestDispatcher("/friends.jsp").forward(request, response);
+    
+        if(session.getAttribute("sendFriendRequest") != null){
+            setCurrentMonster(session);
+        }
     }
     
                 //  response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
