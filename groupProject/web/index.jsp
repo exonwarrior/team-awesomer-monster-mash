@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <p>Click <a href="login.jsp">here</a> to go to login page</p>
     </body>
 </html>
