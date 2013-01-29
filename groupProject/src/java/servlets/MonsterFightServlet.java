@@ -68,36 +68,36 @@ public class MonsterFightServlet extends HttpServlet {
     public void declineFight(Person friend) {
         
     }
-   /*public void fight(long myMonsterID, long friendMonsterID) {
+   public void fight(long myMonsterID, long friendMonsterID) {
         Monster m1;
         Monster m2;
         m1 = monsterDOA.getMonsterById(myMonsterID);
         m2 = monsterDOA.getMonsterById(friendMonsterID);
 		
-	while((m1.getHealth()!=0)&&(m2.getHealth()!=0)){
+	while((m1.getCurrentHealth()!=0)&&(m2.getCurrentHealth()!=0)){
             Random random = new Random();
             int attack1 = random.nextInt(20)+1;
             int attack2 = random.nextInt(20)+1;
             
             if(attack1 == 20){
-                m2.setHealth(m2.getHealth()-(m1.getStrength()/2));
-                System.out.println("Friend monster took a critical hit! Its health is now "+m2.getHealth());
+                m2.setCurrentHealth(m2.getCurrentHealth()-(m1.getCurrentStrength()/2));
+                System.out.println("Friend monster took a critical hit! Its health is now "+m2.getCurrentHealth());
             }
             if(attack2 == 20){
-                m1.setHealth(m1.getHealth()-(m2.getStrength()/2));
-                System.out.println("Your monster took a critical hit! Its health is now "+m1.getHealth());
+                m1.setCurrentHealth(m1.getCurrentHealth()-(m2.getCurrentStrength()/2));
+                System.out.println("Your monster took a critical hit! Its health is now "+m1.getCurrentHealth());
             }
-            if((attack1+m1.getStrength())>m2.getDodge()){
-                m2.setHealth(m2.getHealth()-(m1.getStrength()/4));
-                System.out.println("Friend monster took a damage! Its health is now "+m2.getHealth());
+            if((attack1+m1.getCurrentStrength())>m2.getCurrentDefence()){
+                m2.setCurrentHealth(m2.getCurrentHealth()-(m1.getCurrentStrength()/4));
+                System.out.println("Friend monster took a damage! Its health is now "+m2.getCurrentHealth());
             }
-            if((attack2+m2.getStrength())>m1.getDodge()){
-                m1.setHealth(m1.getHealth()-(m2.getStrength()/4));
-                System.out.println("Your monster took a damage! Its health is now "+m1.getHealth());
+            if((attack2+m2.getCurrentStrength())>m1.getCurrentDefence()){
+                m1.setCurrentHealth(m1.getCurrentHealth()-(m2.getCurrentStrength()/4));
+                System.out.println("Your monster took a damage! Its health is now "+m1.getCurrentHealth());
             }
 	}
         
-    }*/
+    }
     public List<Monster> getMonsterList(Person friend) {
         List<Monster> list = null;
         

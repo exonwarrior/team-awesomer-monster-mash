@@ -117,7 +117,7 @@ public class MonsterDOA {
     public ArrayList<Monster> getMonsterByUser(Person user){
         ArrayList<Monster> list = new ArrayList<Monster>();
         for(Monster monster : getAllMonsters()){
-            if(monster.getOwner().equals(user.getEmail())){
+            if(monster.getOwnerID().equals(user.getEmail())){
                 list.add(monster);
             }
         }

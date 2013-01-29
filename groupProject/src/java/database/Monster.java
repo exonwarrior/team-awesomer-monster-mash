@@ -5,8 +5,6 @@
 package database;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,57 +21,71 @@ public class Monster implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name, owner, birthday;
-    private float health, strength, dodge, price;
-    private boolean gender;
-
+    private String name, ownerID, monsterID;
+    private int birthDate, lifespan, breedOffer, saleOffer;
+    private double baseStrength, currentStrength, 
+            baseDefence, currentDefence, baseHealth, 
+            currentHealth, price;
+    
+    public String getName() {
+        return name;
+    }
+    
+    public String getOwnerID() {
+        return ownerID;
+    }
+    
+    public String getMonsterID() {
+        return monsterID;
+    }
+    
     public Long getId() {
         return id;
     }
-
-    public void setId(Long id) {
-        this.id = id;
+    
+    public double getBaseHealth(){
+        return baseHealth;
+    }
+    public void setBaseHealth(double health){
+        this.baseHealth = health;
+    }
+    public double getCurrentHealth(){
+        return currentHealth;
+    }
+    public void setCurrentHealth(double health){
+        this.currentHealth = health;
     }
     
-    public String getName(){
-        return name;
+    public double getBaseStrength(){
+        return baseStrength;
     }
-    public void setName(String name){
-        this.name = name;
+    public void setBaseStrength(double strength){
+        this.baseStrength = strength;
     }
-    
-    public String getOwner(){
-        return owner;
+    public double getCurrentStrength(){
+        return currentStrength;
     }
-    public void setOwner(String owner){
-        this.owner = owner;
-    }
-    
-    public float getHealth(){
-        return health;
-    }
-    public void setHealth(float health){
-        this.health = health;
+    public void setCurrentStrength(double strength){
+        this.currentStrength = strength;
     }
     
-    public float getStrength(){
-        return strength;
+    public double getBaseDefence(){
+        return baseDefence;
     }
-    public void setStrength(float strength){
-        this.strength = strength;
+    public void setBaseDefence(double defence){
+        this.baseDefence = defence;
+    }
+    public double getCurrentDefence(){
+        return currentDefence;
+    }
+    public void setCurrentDefence(double defence){
+        this.currentDefence = defence;
     }
     
-    public float getDodge(){
-        return dodge;
-    }
-    public void setDodge(float dodge){
-        this.dodge = dodge;
-    }
-    
-    public float getPrice(){
+    public double getPrice(){
         return price;
     }
-    public void setPrice(float price){
+    public void setPrice(double price){
         this.price = price;
     }
 
@@ -85,7 +97,8 @@ public class Monster implements Serializable {
     }
     
     public String getStats(){
-        return this.name + this.health + this.strength + this.dodge;
+        return "Monster name: "+ this.name + "\nStrength: " + this.baseStrength 
+                + "\nDefence: " + this.baseDefence + "\nHealth: " +this.baseHealth;
     }
 
     @Override
@@ -109,26 +122,16 @@ public class Monster implements Serializable {
     public Monster generateRandom(Person user){
          Monster m = new Monster();
          Random random = new Random();
-         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-         Date date = new Date();
-         this.birthday = dateFormat.format(date);
-         m.setStrength(random.nextInt(100)+1);
-         if(m.strength<50){
-             m.strength = m.strength+50;
-         }
-         m.setDodge(random.nextInt(100)+1);
-         if(m.dodge<50){
-             m.dodge = m.dodge+50;
-         }
-         m.setHealth(100);
-         gender = random.nextBoolean();
-         m.setPrice(m.getStrength()+m.getDodge()+m.getHealth());
-         //String s = JOptionPane.showInputDialog("How would you like to name your monster?");
-         m.setName("git");
-         m.setOwner(user.getEmail());
-         System.out.println(this.id+"\n"+this.birthday+"\n"+this.strength+"\n"+this.dodge+"\n"+this.health+"\n"+this.gender);
+         this.birthDate = (int) (System.currentTimeMillis() / 1000L);
+         this.baseStrength = random.nextInt(100)+1;
+         this.baseDefence = random.nextInt(100)+1;
+         this.baseHealth = random.nextInt(100)+1;
+         this.price = this.baseStrength+this.baseDefence+this.baseHealth;
+         this.name = "" + user.getName() + "'s Monster";
+         this.ownerID = user.getEmail();
+         System.out.println(this.id+"\n"+this.baseStrength+"\n"
+                 +this.baseDefence+"\n"+this.baseHealth);
          return m;
      }
-
     
 }
