@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import database.*;
+import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -49,7 +50,10 @@ public class LoginServlet extends HttpServlet {
             
             personDOA = new PersonDOA();
             HttpSession session = request.getSession(true);
-            session.setAttribute("user", tempEmail);
+            Person p = personDOA.getPersonByEmail(tempEmail);
+ 
+            session.setAttribute("user", p);
+            session.setAttribute("monsters", personDOA.getPersonsMonsters(p));
             response.setHeader("Location",  "http://localhost:8080/MonsterGame/MyMonsters.jsp");
         }
         else{

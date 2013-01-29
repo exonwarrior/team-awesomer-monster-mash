@@ -47,10 +47,11 @@ public class PersonDOATest {
     public void testGetPersonByName() throws Exception {
         System.out.println("getPersonByName");
         poa = new PersonDOA();
-        Person p = new Person("tom", "123", "email");
+        //Person p = new Person("tom", "123", "email");
         //poa.persist(p);
         
-        poa.getPersonByEmail("tom");
-        
+        Person p = poa.getPersonByEmail("thom@bla.com");
+        System.out.print(p.getAllMonsters().get(0).toString());
     }
+
 }

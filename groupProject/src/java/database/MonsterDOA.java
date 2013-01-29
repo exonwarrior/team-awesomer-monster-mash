@@ -4,6 +4,7 @@
  */
 package database;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -51,7 +52,7 @@ public class MonsterDOA {
         List<Monster> list;
         try{
              em.getTransaction().begin();
-             TypedQuery<Monster> query = em.createQuery("SELECT m FROM Monster", Monster.class);
+             TypedQuery<Monster> query = em.createQuery("SELECT m FROM Monster m", Monster.class);
              list = query.getResultList();
              em.getTransaction().commit();
         }
@@ -93,7 +94,7 @@ public class MonsterDOA {
         return m;
         //return me;
     }
-    public Monster getMonsterById(Long id){
+    public Monster getMonsterById(long id){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb");
         em = emf.createEntityManager();
         Monster m = null;
@@ -110,7 +111,17 @@ public class MonsterDOA {
             em.close();
         }
         return m;
-        //return me;
+        
+    }
+    
+    public ArrayList<Monster> getMonsterByUser(Person user){
+        ArrayList<Monster> list = new ArrayList<Monster>();
+        for(Monster monster : getAllMonsters()){
+            if(monster.getOwner() == user.getEmail() ){
+                list.add(monster);
+            }
+        }
+        return list;
     }
 
     // Add business logic below. (Right-click in editor and choose

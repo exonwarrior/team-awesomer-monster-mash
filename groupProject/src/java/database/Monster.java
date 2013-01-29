@@ -20,12 +20,12 @@ import javax.swing.JOptionPane;
  */
 @Entity
 public class Monster implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final Long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name, owner, birthday;
-    private int health, strength, dodge, price, fertility;
+    private int health, strength, dodge, price;
     private boolean gender;
 
     public Long getId() {
@@ -126,7 +126,7 @@ public class Monster implements Serializable {
          m.setPrice(m.getStrength()+m.getDodge()+m.getHealth());
          //String s = JOptionPane.showInputDialog("How would you like to name your monster?");
          m.setName("git");
-         m.setOwner(user.getName());
+         m.setOwner(user.getEmail());
          System.out.println(this.id+"\n"+this.birthday+"\n"+this.strength+"\n"+this.dodge+"\n"+this.health+"\n"+this.gender);
          return m;
      }
