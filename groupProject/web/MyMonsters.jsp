@@ -27,7 +27,11 @@
                     //document.getElementById("sell").value = id;
                     session.setAttribute("sell") = id;
                     session.setAttribute("breed") = null;
-                    ducment.forms["monster form"].submit();
+                    ducument.forms["monster form"].submit();
+                }
+                function monster(monster){
+                    session.setAttribute("current monster") = monster;
+                    ducument.forms["monster form"].submit();
                 }
                 
                 -->
@@ -49,6 +53,9 @@
             <% if(monsters != null){ 
                 for(Monster monster : monsters){ %>
                     <tr>
+                        <td>
+                            <input onclick="display(<%=monster%>)" value="<%=monster.getStats()%>"
+                        </td>
                         <td><%=monster.getName()%></td>
                         <td><%=monster.getHealth()%></td>
                         <td><%=monster.getStrength()%></td>
@@ -60,16 +67,9 @@
                 <%}
               }%>
         </table>
-	<textarea name="monsterList" style="height: 231px; width: 196px">
-                
-                      
-        </textarea><input name="breedMonsters" type="button" value="Breed Monsters" />
-       
-        
         <input name="buyMonster" onclick="location='newMonster.html'" type="button" value="+ Buy Monsters" />
         <input name="sellMonsters" type="button" value="Sell Monsters" />
-        <input name="home" onclick="location='home.html'" type="button" value="home" style="width: 66px" />
-        <input type="submit" value="get" />
+        <input name="home" onclick="location='home.jsp'" type="button" value="home" style="width: 66px" />
         </form>
 
     </body>
