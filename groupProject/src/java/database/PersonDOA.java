@@ -110,13 +110,9 @@ public class PersonDOA {
     }
     
     public ArrayList<Monster> getPersonsMonsters(Person p){
-        ArrayList<Monster> list = new ArrayList<Monster>();
         monsterDOA = new MonsterDOA();
-        for(Long monster: p.getAllMonsters()){
-           list.add(monsterDOA.getMonsterById(monster)); 
-        }
-        
-        return list;
+ 
+        return monsterDOA.getMonsterByUser(p);
     }
     
     public void giveFirstMonster(Person p){

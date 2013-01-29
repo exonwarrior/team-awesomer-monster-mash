@@ -70,8 +70,8 @@ public class MyMonsterServlet extends HttpServlet {
         personDOA = new PersonDOA();
         processRequest(request, response);
         HttpSession session = request.getSession(false);
-        String userEmail = (String) session.getAttribute("user");
-        Person user = personDOA.getPersonByEmail(userEmail);
+        //String userEmail = (String) session.getAttribute("user");
+        Person user = (Person) session.getAttribute("user");
         request.setAttribute("monsters", personDOA.getPersonsMonsters(user) );
         request.getRequestDispatcher("/MyMonsters.jsp").forward(request, response);
     
