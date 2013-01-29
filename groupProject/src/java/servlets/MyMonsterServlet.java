@@ -4,6 +4,7 @@
  */
 package servlets;
 
+import database.MonsterDOA;
 import database.Person;
 import database.PersonDOA;
 import java.io.IOException;
@@ -24,6 +25,7 @@ import javax.servlet.http.HttpSession;
 public class MyMonsterServlet extends HttpServlet {
     
     @EJB PersonDOA personDOA;
+    @EJB MonsterDOA monsterDOA;
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -68,12 +70,17 @@ public class MyMonsterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         personDOA = new PersonDOA();
+        monsterDOA = new MonsterDOA();
+        
         processRequest(request, response);
         HttpSession session = request.getSession(false);
         Person user = (Person) session.getAttribute("user");
         
-        if(request.getParameter("Sell") == null){
-            
+        if((session.getAttribute("sell") == null) && (session.getAttribute("breed") != null)){
+            breedMonster(session);
+        }
+        else if((session.getAttribute("sell") != null) && (session.getAttribute("breed") == null)){
+            sellMonster(session);
         }
         
         session.setAttribute("monsters", personDOA.getPersonsMonsters(user) );
@@ -90,4 +97,14 @@ public class MyMonsterServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    public void breedMonster(HttpSession session){
+        monsterDOA = new MonsterDOA();
+        Long id =(Long) session.getAttribute("breed");
+        monsterDOA.getMonsterById(id);
+    }
+    
+    public void sellMonster(HttpSession session){
+        
+    }
 }

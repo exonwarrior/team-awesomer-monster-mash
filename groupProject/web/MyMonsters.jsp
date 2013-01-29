@@ -15,14 +15,18 @@
         <title>My Monsters</title>
         <script type="text/javascript"><!--
                 function breed(id){
-                document.getElementById("Breed").value = id;
-                document.getElementById("Sell").value = null;
+                //document.getElementById("breed").value = id;
+                //document.getElementById("sell").value = null;
+                session.setAttribute("sell")  = null;
+                session.setAttribute("breed") = id;
                 document.forms["monster form"].submit();
                 }
                 
                 function sell(id){
-                    document.getElementById("Breed").value = null;
-                    document.getElementById("Sell").value = id;
+                    //document.getElementById("breed").value = null;
+                    //document.getElementById("sell").value = id;
+                    session.setAttribute("sell") = id;
+                    session.setAttribute("breed") = null;
                     ducment.forms["monster form"].submit();
                 }
                 
