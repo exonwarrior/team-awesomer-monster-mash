@@ -15,22 +15,20 @@
         <title>My Monsters</title>
         <script type="text/javascript"><!--
                 function breed(id){
-                //document.getElementById("breed").value = id;
-                //document.getElementById("sell").value = null;
+                
                 session.setAttribute("sell")  = null;
                 session.setAttribute("breed") = id;
                 document.forms["monster form"].submit();
                 }
                 
                 function sell(id){
-                    //document.getElementById("breed").value = null;
-                    //document.getElementById("sell").value = id;
+                    
                     session.setAttribute("sell") = id;
                     session.setAttribute("breed") = null;
                     ducument.forms["monster form"].submit();
                 }
-                function monster(monster){
-                    session.setAttribute("current monster") = monster;
+                function monster(monsterID){
+                    session.setAttribute("current monster id") = monsterID;
                     ducument.forms["monster form"].submit();
                 }
                 
@@ -54,19 +52,22 @@
                 for(Monster monster : monsters){ %>
                     <tr>
                         <td>
-                            <input onclick="display(<%=monster%>)" value="<%=monster.getStats()%>"
+                            <input type="button" onclick="display(<%=monster.getId()%>)" value="<%=monster.getName()%>"
                         </td>
-                        <td><%=monster.getName()%></td>
-                        <td><%=monster.getHealth()%></td>
-                        <td><%=monster.getStrength()%></td>
-                        <td><%=monster.getDodge()%></td>
-                        <td><%=monster.getPrice()%></td>
+                        
                         <td><input type="submit" name="breed" onclick="breed(<%=monster.getId()%>);" value="breed" /></td>
                         <td><input type="submit" name="sell"  onclick="sell(<%=monster.getId()%>);" value="sell" /></td>
                     </tr>
                 <%}
               }%>
         </table>
+              <textarea name="monster display"><%
+              if(session.getAttribute("current monster") != null){
+                  Monster currentMonster = (Monster) session.getAttribute("current monster");%>
+              <%=currentMonster.getStats()%>
+              <%}
+%>
+        </textarea>
         <input name="buyMonster" onclick="location='newMonster.html'" type="button" value="+ Buy Monsters" />
         <input name="sellMonsters" type="button" value="Sell Monsters" />
         <input name="home" onclick="location='home.jsp'" type="button" value="home" style="width: 66px" />
