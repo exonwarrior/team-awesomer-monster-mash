@@ -17,11 +17,11 @@
 </a>
 <ul id="list-nav">
   
-<li><a href="./marketplace.html">Marketplace</a></li>
-<li><a href="./myMonsters.html">My Monsters</a></li>
-<li><a href="./friends.html">Friends</a></li>
-<li><a href="./monsterFights.html">Monster Fights</a></li>
-<li><a href="./login.html">Log Out</a></li>
+<li><a href="./marketplace.jsp">Marketplace</a></li>
+<li><a href="./myMonsters.jsp">My Monsters</a></li>
+<li><a href="./friends.jsp">Friends</a></li>
+<li><a href="./monsterFights.jsp">Monster Fights</a></li>
+<li><a href="./login.jsp">Log Out</a></li>
 </div>
 </ul>
 

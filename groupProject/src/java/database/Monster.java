@@ -138,4 +138,10 @@ public class Monster implements Serializable {
          return this;
      }
     
+    /*public Monster breed(Monster myMonster, Monster friendMonster){
+        Monster baby = new Monster();
+        
+        return baby;
+    }*/
+    
 }

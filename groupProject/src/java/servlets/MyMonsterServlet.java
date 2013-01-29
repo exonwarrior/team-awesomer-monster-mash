@@ -80,7 +80,7 @@ public class MyMonsterServlet extends HttpServlet {
             setCurrentMonster(session);
         }
         if((session.getAttribute("sell") == null) && (session.getAttribute("breed") != null)){
-            breedMonster(session);
+            setBreedMonster(session);
         }
         else if((session.getAttribute("sell") != null) && (session.getAttribute("breed") == null)){
             sellMonster(session);
@@ -101,10 +101,10 @@ public class MyMonsterServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     
-    public void breedMonster(HttpSession session){
+    public void setBreedMonster(HttpSession session){
         monsterDOA = new MonsterDOA();
         Long id =(Long) session.getAttribute("breed");
-        monsterDOA.getMonsterById(id);
+        monsterDOA.getMonsterById(id).setPrice(9000);
     }
     
     public void sellMonster(HttpSession session){
