@@ -9,6 +9,7 @@ import database.Person;
 import database.PersonDOA;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -75,18 +76,21 @@ public class MyMonsterServlet extends HttpServlet {
         processRequest(request, response);
         HttpSession session = request.getSession(false);
         Person user = (Person) session.getAttribute("user");
-        String st  = request.getParameter("current monster id");
-        
-        if(request.getParameter("current monster id") != null){
+        Long id;
+       
+        if(request.getParameter("current_action").equals("changeMonster")){ 
             String s = request.getParameter("current monster id");
-            Long id = Long.parseLong(s);
+            id = Long.parseLong(s );
             setCurrentMonster(session, id );
         }
-        if((session.getAttribute("sell") == null) && (session.getAttribute("breed") != null)){
-            setBreedMonster(session);
+        else if(request.getParameter("current_action").equals("breed")){
+            String s = request.getParameter("breed");
+            id = Long.parseLong(s );
+            setBreedMonster(session, id);
         }
-        else if((session.getAttribute("sell") != null) && (session.getAttribute("breed") == null)){
-            sellMonster(session);
+        else if(request.getParameter("current_action").equals("sell")){
+            id = Long.parseLong(request.getParameter("sell"));
+            sellMonster(session, id);
         }
         
         session.setAttribute("monsters", personDOA.getPersonsMonsters(user) );
@@ -104,13 +108,12 @@ public class MyMonsterServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     
-    public void setBreedMonster(HttpSession session){
+    public void setBreedMonster(HttpSession session, Long id){
         monsterDOA = new MonsterDOA();
-        Long id =(Long) session.getAttribute("breed");
         monsterDOA.getMonsterById(id).setPrice(9000);
     }
     
-    public void sellMonster(HttpSession session){
+    public void sellMonster(HttpSession session, Long ID){
         
     }
     

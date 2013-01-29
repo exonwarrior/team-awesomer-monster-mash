@@ -140,7 +140,6 @@ public class Monster implements Serializable {
     
     public Monster generateRandom(Person user){
          Random random = new Random();
-         this.id = random.nextLong();
          this.birthDate = (int) (System.currentTimeMillis() / 1000L);
          this.baseStrength = random.nextDouble();
          this.baseDefence = random.nextDouble();
