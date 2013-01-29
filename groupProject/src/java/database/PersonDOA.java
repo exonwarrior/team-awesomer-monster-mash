@@ -109,6 +109,22 @@ public class PersonDOA {
         //return me;
     }
     
+    public ArrayList<Person> getPersonsFriends(Person p) {
+        ArrayList<Person> list = new ArrayList<Person>();
+        if (!p.getAllFriends().equals(null)) {
+            for (Person friend : getAllPeople()) {
+                for (String person : p.getAllFriends()) {
+                    if (friend.getEmail().equals(person)) {
+                        list.add(friend);
+                    }
+                }
+            }
+            return list;
+        } else {
+            return null;
+        }
+    }
+    
     public ArrayList<Monster> getPersonsMonsters(Person p){
         monsterDOA = new MonsterDOA();
  

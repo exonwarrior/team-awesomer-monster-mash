@@ -45,6 +45,9 @@ public class Person implements Serializable {
     }
     
     
+      public ArrayList<String> getAllFriends(){
+        return friends;
+    }
     public void addFriend(String email){
         this.friends.add(email);
     }

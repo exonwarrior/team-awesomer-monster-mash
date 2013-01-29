@@ -1,12 +1,13 @@
 <%-- 
     Document   : friends
     Created on : Dec 9, 2012, 9:13:31 PM
-    Author     : szymus <3
+    Author     : 
 --%>
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="database.Person"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.*, servlets.FriendsServlet"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,21 +15,22 @@
         <title>Friends</title>
     </head>
     <body>
-        <form action="FriendsServlet" method="post">
-            <p>Enter user email:</p>
-            <p><input type="text" name="useremail" /></p>
-            <p><input type="submit" name="friendrequest" value="Submit" /></p>
-            <p><%= request.getAttribute("message")%></p>
-        </form>
-        <form action="FriendsServelet" method="post">
-            <p>Friends request list:</p>
-            <textarea name="monsterList" style="height: 231px; width: 196px"><ol>
-                    <% ArrayList<String> friendsreq = (ArrayList<String>) request.getAttribute("firendsreq");
-                        for (String s : friendsreq) {%>
-                            <li><%  %></li>
-                    <% }%>
-            </ol> 
-            </textarea>
-        </form>
-    </body>
+        <h1>My Friends</h1>
+        <form method="post" action="myFriends" id="friends form">
+            <table name="friend" border="1">	
+                <% ArrayList<Person> friends = (ArrayList<Person>) request.getAttribute("firends");%>
+                <tr>
+                    <th>Friend Name</th>
+                    <th>Email</th>
+                </tr>
+                <% if (friends != null) {
+                    for (Person friend : friends) {%>
+                <tr>
+                    <td><%=friend.getName()%></td>
+                    <td><%=friend.getEmail()%></td>
+                </tr>
+                <%}
+                    }%>
+            </table>	
+    </body>		
 </html>
