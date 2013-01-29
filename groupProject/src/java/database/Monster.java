@@ -120,18 +120,22 @@ public class Monster implements Serializable {
     }
     
     public Monster generateRandom(Person user){
-         Monster m = new Monster();
          Random random = new Random();
+         this.id = random.nextLong();
          this.birthDate = (int) (System.currentTimeMillis() / 1000L);
-         this.baseStrength = random.nextInt(100)+1;
-         this.baseDefence = random.nextInt(100)+1;
-         this.baseHealth = random.nextInt(100)+1;
+         this.baseStrength = random.nextDouble();
+         this.baseDefence = random.nextDouble();
+         this.baseHealth = random.nextDouble();
+         this.currentStrength = this.baseStrength;
+         this.currentDefence = this.baseDefence;
+         this.currentHealth = this.baseHealth;
          this.price = this.baseStrength+this.baseDefence+this.baseHealth;
          this.name = "" + user.getName() + "'s Monster";
          this.ownerID = user.getEmail();
-         System.out.println(this.id+"\n"+this.baseStrength+"\n"
+         
+         System.out.println(this.id+"\n"+ this.ownerID +"\n"+this.baseStrength+"\n"
                  +this.baseDefence+"\n"+this.baseHealth);
-         return m;
+         return this;
      }
     
 }
