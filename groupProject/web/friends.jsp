@@ -32,5 +32,6 @@
                 <%}
                     }%>
             </table>	
+        </form>
     </body>		
 </html>
