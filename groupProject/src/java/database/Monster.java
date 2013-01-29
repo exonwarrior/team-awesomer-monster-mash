@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,7 +24,7 @@ public class Monster implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name, owner, birthday;
-    private int health, strength, dodge, price;
+    private float health, strength, dodge, price;
     private boolean gender;
 
     public Long getId() {
@@ -50,31 +49,31 @@ public class Monster implements Serializable {
         this.owner = owner;
     }
     
-    public int getHealth(){
+    public float getHealth(){
         return health;
     }
-    public void setHealth(int health){
+    public void setHealth(float health){
         this.health = health;
     }
     
-    public int getStrength(){
+    public float getStrength(){
         return strength;
     }
-    public void setStrength(int strength){
+    public void setStrength(float strength){
         this.strength = strength;
     }
     
-    public int getDodge(){
+    public float getDodge(){
         return dodge;
     }
-    public void setDodge(int dodge){
+    public void setDodge(float dodge){
         this.dodge = dodge;
     }
     
-    public int getPrice(){
+    public float getPrice(){
         return price;
     }
-    public void setPrice(int price){
+    public void setPrice(float price){
         this.price = price;
     }
 
