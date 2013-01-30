@@ -81,6 +81,7 @@
             <tr>
                 <td><input type="submit" onclick="personStats(<%=fight.getPerson().getId()%>);" value="<%=fight.getPerson().getName()%>" /></td>
                 <td><input type="submit" onclick="MonsterStats(<%=fight.getMonster().getId()%>);" value="<%=fight.getMonster().getName()%>" /></td>
+                <td><input type="submit" onclick="MonsterStats(<%=fight.getMonster().getId()%>);" value="<%=fight.getMonster().getName()%>" /></td>
             </tr>
             <%}
         }%>
@@ -98,8 +99,9 @@
         <% if(challenges != null){
             for(Fight fight: challenges){%>
             <tr>
-                <td><input type="submit" onclick="personStats(<%=fight.getPerson().getId()%>);" value="<%=fight.getPerson().getName()%>" /></td>
+                <td><input type="submit" "onclick="personStats(<%=fight.getPerson().getId()%>);" value="<%=fight.getPerson().getName()%>" /></td>
                 <td><input type="submit" onclick="MonsterStats(<%=fight.getMonster().getId()%>);" value="<%=fight.getMonster().getName()%>" /></td>
+                
             </tr>
             <%}
         }%>

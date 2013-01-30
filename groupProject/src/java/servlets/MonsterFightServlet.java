@@ -138,7 +138,7 @@ public class MonsterFightServlet extends HttpServlet {
         }
         
         request.setAttribute("offers", user.getFightOffers() );
-        request.setAttribute("challenges", personDOA.getPersonsFightChallenges(user) );
+        request.setAttribute("challenges", user.getFightChallenges() );
     }
 
     /** 

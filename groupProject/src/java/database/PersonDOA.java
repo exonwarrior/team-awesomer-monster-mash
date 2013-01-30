@@ -175,17 +175,4 @@ public class PersonDOA {
         return person;
     }
     
-    public ArrayList<Fight> getPersonsFightChallenges(Person p){
-        ArrayList<Fight> offers = new ArrayList<Fight>();
-        Fight tempFight;
-        for(Person person: getAllPeople()){
-            for(Fight fight: person.getFightOffers()){
-                if(fight.getPerson().getId().equals(p.getId())){
-                    tempFight = new Fight(person, fight.getMonster());
-                }
-            }
-        }
-        
-        return offers;
-    }
 }

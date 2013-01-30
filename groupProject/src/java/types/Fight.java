@@ -12,28 +12,46 @@ import database.Person;
  * @author thomas
  */
 public class Fight {
-    private Person person;
-    private Monster monster; 
+    private Person challenger, opponent;
+    private Monster challMonster, OppMonster; 
 
-    public Fight(Person person, Monster monster) {
-        this.person = person;
-        this.monster = monster;
+    public Fight(Person challenger, Person opponent, Monster challMonster, Monster OppMonster) {
+        this.challenger = challenger;
+        this.opponent = opponent;
+        this.challMonster = challMonster;
+        this.OppMonster = OppMonster;
     }
 
-    public Person getPerson() {
-        return person;
+    public Person getChallenger() {
+        return challenger;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setChallenger(Person challenger) {
+        this.challenger = challenger;
     }
 
-    public Monster getMonster() {
-        return monster;
+    public Monster getChallMonster() {
+        return challMonster;
     }
 
-    public void setMonster(Monster monster) {
-        this.monster = monster;
+    public void setChallMonster(Monster challMonster) {
+        this.challMonster = challMonster;
+    }
+
+    public Person getOpponent() {
+        return opponent;
+    }
+
+    public void setOpponent(Person person) {
+        this.opponent = person;
+    }
+
+    public Monster getOppMonster() {
+        return OppMonster;
+    }
+
+    public void setOppMonster(Monster monster) {
+        this.OppMonster = monster;
     }
     
     

@@ -27,30 +27,53 @@ public class Person implements Serializable {
     private int money;
     private ArrayList<String> friends;
     private ArrayList<String> friendRequests;
-    private ArrayList<Fight> fightOffers;
-
-    public ArrayList<Fight> getFightOffers() {
-        return fightOffers;
+    private ArrayList<Fight> fights;
+    private ArrayList<String> monsters;
+    
+    
+    public ArrayList<Fight> getFightChallenges(){
+        ArrayList<Fight> challenges = new ArrayList<Fight>();
+        
+        for(Fight fight: fights){
+            if(fight.getChallenger().getId().equals(this.id)){
+                challenges.add(fight);
+            }
+        }
+        
+        return challenges;
     }
     
-    public void addFightOffer(Person person, Monster monster){
-        this.fightOffers.add(new Fight(person, monster));
+    public ArrayList<Fight> getFightOffers(){
+        ArrayList<Fight> offers = new ArrayList<Fight>();
+        
+        for(Fight fight: fights){
+            if(fight.getOpponent().getId().equals(this.id)){
+                offers.add(fight);
+            }
+        }
+        
+        return offers;
+    }
+    
+    
+    public void addFightOffer(Person opponent, Monster oppMonster, Monster challMonster){
+        this.fights.add(new Fight(this,opponent, challMonster,oppMonster));
     }
     
     public void removeFightOffer(Fight fight){
-        this.fightOffers.remove(fight);
+        this.fights.remove(fight);
     }
     
-    public void removeFightOffer(Person person, Monster monster){
-        for(Fight fight: this.fightOffers){
-            if(fight.getMonster().getId().equals(monster.getId()) 
-                    && fight.getPerson().getId().equals(person.getId())){
-                this.fightOffers.remove(fight);
+    public void removeFightOffer(Person opponent, Monster oppMonster){
+        for(Fight fight: this.fights){
+            if(fight.getOppMonster().getId().equals(oppMonster.getId()) 
+                    && fight.getOpponent().getId().equals(opponent.getId())){
+                this.fights.remove(fight);
             }
         }
     }
     
-    private ArrayList<String> monsters;
+
     
     
     public Person(){
