@@ -1,5 +1,0 @@
-1. User sets price for monster they are willing to sell; default is 0 (not for sale)
-2. Friend looks at monster list, sees flagged monster(s)
-3. Selects monster, monsterID is sent
-4. User1's money increases, user2's decreases
-5. monster stats sent over to user2, new monster created.
