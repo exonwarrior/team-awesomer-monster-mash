@@ -132,6 +132,7 @@ public class PersonDOA {
     }
     
     public void giveFirstMonster(Person p){
+        monsterDOA = new MonsterDOA();
         Monster m = new Monster();
         m = m.generateRandom(p);
         this.monsterDOA.persist(m);

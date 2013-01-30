@@ -25,7 +25,9 @@ public class Monster implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name, ownerID, monsterID;
+
+    private String monsterID;
+    private String name, ownerID;
     private int birthDate, lifespan, breedOffer, saleOffer;
 
     public void setBreedOffer(int breedOffer) {

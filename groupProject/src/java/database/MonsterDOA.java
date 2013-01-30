@@ -39,7 +39,6 @@ public class MonsterDOA {
         try{
              em.getTransaction().begin();
              em.persist(monster);
-             monster.setMonsterID(monster.getId().toString());
              em.getTransaction().commit();
         }
         finally{
@@ -95,15 +94,15 @@ public class MonsterDOA {
         return m;
         //return me;
     }
-    public Monster getMonsterById(String monsterID){
+    public Monster getMonsterById(Long id){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb");
         em = emf.createEntityManager();
         Monster m = null;
         try{
             em.getTransaction().begin();
             TypedQuery<Monster> query = em.createQuery(
-            "SELECT m FROM Monster AS m WHERE m.monsterID = :monsterID", Monster.class)
-                    .setParameter("monsterID", monsterID);
+            "SELECT m FROM Monster AS m WHERE m.id = :id", Monster.class)
+                    .setParameter("id", id);
             m = query.getSingleResult();
             em.getTransaction().commit();
             
@@ -114,7 +113,7 @@ public class MonsterDOA {
         return m;
         
     }
-    
+ 
     public ArrayList<Monster> getMonsterByUser(Person user){
         ArrayList<Monster> list = new ArrayList<Monster>();
         for(Monster monster : getAllMonsters()){

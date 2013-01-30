@@ -51,7 +51,7 @@
                 for(Monster monster : monsters){ %>
                     <tr>
                         <td>
-                            <input type="submit" onclick="changeMonster(<%=monster.getMonsterID()%>);" value="<%=monster.getName()%>"  />                           
+                            <input type="submit" onclick="changeMonster(<%=monster.getId()%>);" value="<%=monster.getName()%>"  />                           
                         </td>
 
                     </tr>
@@ -69,9 +69,9 @@
                 
                 
                 <input type="text" placeholder="breeding price" name="breed price" />
-                <input type="submit" name="breed" onclick="breed(<%=currentMonster.getMonsterID()%>);" value="breed" />
+                <input type="submit" name="breed" onclick="breed(<%=currentMonster.getId()%>);" value="breed" />
                 <input type="text" placeholder="selling price" name="sell price" />
-                <input type="submit" name="sell"  onclick="sell(<%=currentMonster.getMonsterID()%>);" value="sell" />
+                <input type="submit" name="sell"  onclick="sell(<%=currentMonster.getId()%>);" value="sell" />
 
             <%}%>
         </p>
