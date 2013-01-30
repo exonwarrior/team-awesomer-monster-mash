@@ -76,12 +76,21 @@ public class FriendsServlet extends HttpServlet {
             
         if(request.getParameter("current_action").equals("send_request")){
             String friendEmail = request.getParameter("sendFriendRequest");
-            addFriendRequest(session, friendEmail);
+           
+            if(checkIfExist(friendEmail) && !(user.getEmail().equals(friendEmail))){
+                Person friend = personDOA.getPersonByEmail(friendEmail);
+                friend.addFriendRequest(user.getEmail());
+                personDOA.updatePersonsInfo(friend);
+            
+            }else{
+                request.setAttribute("message", "Friend doesn't exist.");
+                request.getRequestDispatcher("/friends.jsp").forward(request, response);
+            }
+            
         }
         
         session.setAttribute("friends", personDOA.getPersonsFriends(user) );
         request.getRequestDispatcher("/friends.jsp").forward(request, response);
-
     }
     
                 //  response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
@@ -98,9 +107,8 @@ public class FriendsServlet extends HttpServlet {
         
     }
     
-    private boolean check(String userEmail){
-        //return !personDOA.doesExist(userEmail);
-        return false;
+    private boolean checkIfExist(String userEmail){
+        return personDOA.lookForEmail(userEmail);
     }
 
     /**

@@ -40,7 +40,22 @@
                 </tr>
                 <%}
                     }%>
-            </table>	
+            </table>
+            <table name="friendRequestList" border="1">	
+                <% ArrayList<Person> friendRequests = (ArrayList<Person>) request.getAttribute("requestList");%>
+                <tr>
+                    <th>Friend Name</th>
+                    <th>Email</th>
+                </tr>
+                <% if (friendRequests != null) {
+                        for (Person req : friendRequests) {%>
+                <tr>
+                    <td><%=req.getName()%></td>
+                    <td><%=req.getEmail()%></td>
+                </tr>
+                <%}
+                    }%>
+            </table>
             Friends Email: <input type="text" id="sendrequest" name="email" />
             <input type="submit" name="sendreq" onclick="sendreq(document.getElementById('sendrequest').value);" value="Send friend request" />
         </form>

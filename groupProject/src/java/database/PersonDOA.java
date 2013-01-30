@@ -50,6 +50,20 @@ public class PersonDOA {
         }   
     }
     
+    public void updatePersonsInfo(Person person) {
+        emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
+        
+        em = emf.createEntityManager();
+        try{
+             em.getTransaction().begin();
+             em.persist(person);          
+             em.getTransaction().commit();
+        }
+        finally{
+             em.close();
+        }   
+    }
+    
     private List<Person> getAllPeople(){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
         em = emf.createEntityManager();
@@ -62,22 +76,21 @@ public class PersonDOA {
         }
         finally{
              em.close();
-        }
-        
-        
+        }     
         return list;
     }
     
-    public boolean doesExit(String name){
-        boolean answer = false;
-        List<Person> list = this.getAllPeople();
-        for(Person p: list){
-            if(p.getName() == null ? name == null : p.getName().equals(name)){
-                answer = true;
-            }
-        }
-        return answer;
-    }
+//    public boolean doesExist(String email){
+//        boolean answer = false;
+//        List<Person> list = this.getAllPeople();
+//        for(Person p: list){
+//            if(p.getEmail() == null ? email == null : p.getEmail().equals(email)){
+//                answer = true;
+//            }
+//        }
+//        return answer;
+//    }
+   
     public boolean lookForEmail(String email){
         boolean answer = false;
         List<Person> list = this.getAllPeople();
