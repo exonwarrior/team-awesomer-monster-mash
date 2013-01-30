@@ -10,15 +10,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Login</title>
     </head>
     <body>
         <form method="POST" action="login">
             Name: <input type="text" name="email" />
             PassWord: <input type="password" name="password" />
-                      <input type="submit" value="Add" />  
+                      <input type="submit" value="Login" />  
         </form>
-        <a href="register.jsp"> Register </a>
-        <h1>Hello World!</h1>
+        <p><a href="register.jsp"> Register </a> if you haven't created an account yet</p>
     </body>
 </html>
