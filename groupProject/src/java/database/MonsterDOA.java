@@ -94,15 +94,15 @@ public class MonsterDOA {
         return m;
         //return me;
     }
-    public Monster getMonsterById(long id){
+    public Monster getMonsterById(String monsterID){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb");
         em = emf.createEntityManager();
         Monster m = null;
         try{
             em.getTransaction().begin();
             TypedQuery<Monster> query = em.createQuery(
-            "SELECT m FROM Monster AS m WHERE m.id = :id", Monster.class)
-                    .setParameter("id", id);
+            "SELECT m FROM Monster AS m WHERE m.monsterID = :monsterID", Monster.class)
+                    .setParameter("monsterID", monsterID);
             m = query.getSingleResult();
             em.getTransaction().commit();
             

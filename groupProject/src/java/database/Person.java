@@ -26,7 +26,7 @@ public class Person implements Serializable {
     private int money;
     private ArrayList<String> friends;
     private ArrayList<String> friendRequests;
-    private ArrayList<Long> monsters;
+    private ArrayList<String> monsters;
     
     
     public Person(){
@@ -38,7 +38,7 @@ public class Person implements Serializable {
         this.email = email;
         this.friends = new ArrayList<String>();
         this.friendRequests = new ArrayList<String>();
-        this.monsters = new ArrayList<Long>();
+        this.monsters = new ArrayList<String>();
     }
     
     
@@ -60,11 +60,11 @@ public class Person implements Serializable {
     public void removeFriend(String email){
         this.friends.remove(email);
     }
-    public ArrayList<Long> getAllMonsters(){
+    public ArrayList<String> getAllMonsters(){
         return monsters;
     }
     
-    public void addMonster(Long id ){
+    public void addMonster(String id ){
         this.monsters.add(id);
     }
     

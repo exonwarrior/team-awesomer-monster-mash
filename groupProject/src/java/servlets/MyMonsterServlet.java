@@ -76,21 +76,20 @@ public class MyMonsterServlet extends HttpServlet {
         processRequest(request, response);
         HttpSession session = request.getSession(false);
         Person user = (Person) session.getAttribute("user");
-        Long id;
+        String monsterID;
        
         if(request.getParameter("current_action").equals("changeMonster")){ 
-            String s = request.getParameter("current monster id");
-            id = Long.parseLong(s );
-            setCurrentMonster(session, id );
+            monsterID = request.getParameter("current monster id");
+            
+            setCurrentMonster(session, monsterID );
         }
         else if(request.getParameter("current_action").equals("breed")){
-            String s = request.getParameter("breed");
-            id = Long.parseLong(s );
-            setBreedMonster(session, id);
+            monsterID = request.getParameter("breed");
+            setBreedMonster(session, monsterID);
         }
         else if(request.getParameter("current_action").equals("sell")){
-            id = Long.parseLong(request.getParameter("sell"));
-            sellMonster(session, id);
+            monsterID = request.getParameter("sell");
+            sellMonster(session, monsterID);
         }
         
         session.setAttribute("monsters", personDOA.getPersonsMonsters(user) );
@@ -108,16 +107,16 @@ public class MyMonsterServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     
-    public void setBreedMonster(HttpSession session, Long id){
+    public void setBreedMonster(HttpSession session, String id){
         monsterDOA = new MonsterDOA();
         monsterDOA.getMonsterById(id).setPrice(9000);
     }
     
-    public void sellMonster(HttpSession session, Long ID){
+    public void sellMonster(HttpSession session, String ID){
         
     }
     
-    public void setCurrentMonster(HttpSession session, Long id){
+    public void setCurrentMonster(HttpSession session, String id){
         monsterDOA = new MonsterDOA();
         session.setAttribute("current monster", monsterDOA.getMonsterById(id));
     }

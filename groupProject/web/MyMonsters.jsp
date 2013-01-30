@@ -51,7 +51,7 @@
                 for(Monster monster : monsters){ %>
                     <tr>
                         <td>
-                            <input type="submit" onclick="changeMonster(<%=monster.getId()%>);" value="<%=monster.getName()%>"  />                           
+                            <input type="submit" onclick="changeMonster(<%=monster.getMonsterID()%>);" value="<%=monster.getName()%>"  />                           
                         </td>
 
                     </tr>
@@ -62,9 +62,16 @@
         <p name="display monster"><%
             if(session.getAttribute("current monster") != null){
                 Monster currentMonster = (Monster) session.getAttribute("current monster");%>
-                <%=currentMonster.getStats()%>
-                <input type="submit" name="breed" onclick="breed(<%=currentMonster.getId()%>);" value="breed" />
-                <input type="submit" name="sell"  onclick="sell(<%=currentMonster.getId()%>);" value="sell" />
+                Monster Name:   <%=currentMonster.getName()%> <br />
+                Strength:       <%=currentMonster.getCurrentStrength()%>/<%=currentMonster.getBaseStrength()%> <br />
+                Defence:        <%=currentMonster.getCurrentDefence()%>/<%=currentMonster.getBaseDefence()%> <br />
+                Health:         <%=currentMonster.getCurrentHealth()%>/<%=currentMonster.getBaseHealth()%> <br />
+                
+                
+                <input type="text" placeholder="breeding price" name="breed price" />
+                <input type="submit" name="breed" onclick="breed(<%=currentMonster.getMonsterID()%>);" value="breed" />
+                <input type="text" placeholder="selling price" name="sell price" />
+                <input type="submit" name="sell"  onclick="sell(<%=currentMonster.getMonsterID()%>);" value="sell" />
 
             <%}%>
         </p>

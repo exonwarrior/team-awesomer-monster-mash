@@ -27,6 +27,22 @@ public class Monster implements Serializable {
     private Long id;
     private String name, ownerID, monsterID;
     private int birthDate, lifespan, breedOffer, saleOffer;
+
+    public void setBreedOffer(int breedOffer) {
+        this.breedOffer = breedOffer;
+    }
+
+    public void setSaleOffer(int saleOffer) {
+        this.saleOffer = saleOffer;
+    }
+
+    public int getBreedOffer() {
+        return breedOffer;
+    }
+
+    public int getSaleOffer() {
+        return saleOffer;
+    }
     private double baseStrength, currentStrength, 
             baseDefence, currentDefence, baseHealth, 
             currentHealth, price;
@@ -140,6 +156,7 @@ public class Monster implements Serializable {
     
     public Monster generateRandom(Person user){
          Random random = new Random();
+         this.monsterID = this.id.toString();
          this.birthDate = (int) (System.currentTimeMillis() / 1000L);
          this.baseStrength = random.nextDouble();
          this.baseDefence = random.nextDouble();
