@@ -42,6 +42,10 @@ public class Person implements Serializable {
     }
     
     
+    public ArrayList<String> setFriendRequests(ArrayList<String> updatedRequests){
+        this.friendRequests = new ArrayList<String>(updatedRequests);
+        return friendRequests;
+    }
     public ArrayList<String> getAllFriendRequests(){
         return friendRequests;
     }
@@ -50,6 +54,10 @@ public class Person implements Serializable {
     }
     public void removeFriendRequest(String email){
         this.friendRequests.remove(email);
+    }
+   public ArrayList<String> setFriends(ArrayList<String> updatedFriends){
+        this.friends = new ArrayList<String>(updatedFriends);
+        return friends;
     }
     public ArrayList<String> getAllFriends(){
         return friends;
