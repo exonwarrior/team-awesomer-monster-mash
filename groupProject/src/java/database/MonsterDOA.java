@@ -6,6 +6,7 @@ package database;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -136,6 +137,49 @@ public class MonsterDOA {
             }
         }
         return list;
+    }
+    
+    public Monster breedMonsters(Monster monster, Monster monster2){
+        Monster baby = new Monster();
+        Random random = new Random();
+        int r = random.nextInt(3);
+        if(2 == 0){
+            baby.setBaseStrength(monster.getBaseStrength());
+            baby.setCurrentStrength(baby.getBaseStrength());
+            baby.setBaseDefence(monster2.getBaseDefence());
+            baby.setCurrentDefence(baby.getBaseDefence());
+            baby.setBaseHealth((monster.getBaseHealth()+
+                    +monster2.getBaseHealth())/2);
+            baby.setCurrentHealth(baby.getBaseHealth());
+        } else if(r == 1){
+            baby.setBaseDefence(monster.getBaseDefence());
+            baby.setCurrentDefence(baby.getBaseDefence());
+            baby.setBaseHealth(monster2.getBaseHealth());
+            baby.setCurrentHealth(baby.getBaseHealth());
+            baby.setBaseStrength((monster.getBaseStrength()+
+                    +monster2.getBaseStrength())/2);
+            baby.setCurrentStrength(baby.getBaseStrength());
+        } else {
+            baby.setBaseHealth(monster.getBaseHealth());
+            baby.setCurrentHealth(baby.getBaseHealth());
+            baby.setBaseStrength(monster2.getBaseStrength());
+            baby.setCurrentStrength(baby.getBaseStrength());
+            baby.setBaseDefence((monster.getBaseDefence()+
+                    +monster2.getBaseDefence())/2);
+            baby.setCurrentDefence(baby.getBaseDefence());
+        }
+        int m = random.nextInt(20)+1;
+        if(m==1){
+            int w = random.nextInt(3);
+            if(w==0){
+                baby.setBaseStrength(baby.getBaseStrength()+(baby.getBaseStrength()/4));
+            } else if (w==1){
+                baby.setBaseDefence(baby.getBaseDefence()+(baby.getBaseDefence()/4));
+            } else {
+                baby.setBaseHealth(baby.getBaseDefence()+(baby.getBaseDefence()/4));
+            }
+        }
+        return baby;
     }
 
     // Add business logic below. (Right-click in editor and choose
