@@ -113,6 +113,10 @@ public class MonsterDOA {
         return m;
         
     }
+    
+    public void updateMonster(Monster monster){
+        
+    }
  
     public ArrayList<Monster> getMonsterByUser(Person user){
         ArrayList<Monster> list = new ArrayList<Monster>();
