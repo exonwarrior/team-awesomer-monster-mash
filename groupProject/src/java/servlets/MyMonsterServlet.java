@@ -28,6 +28,7 @@ public class MyMonsterServlet extends HttpServlet {
     
     @EJB PersonDOA personDOA;
     @EJB MonsterDOA monsterDOA;
+    String currentAction;
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -78,20 +79,28 @@ public class MyMonsterServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         Person user = (Person) session.getAttribute("user");
         Long monsterID;
-        String currentAction = request.getParameter("current_action");
+        currentAction = request.getParameter("current_action");
        
-        if(request.getParameter("current_action").equals("changeMonster")){ 
+        /*
+         * Update the breed price
+         */
+        if(currentAction.equals("breed")){
+            setBreedOffer(session, request);
+            //request.setParameter("current monster id", )
+        }
+        /*
+         * update the selling price
+         */
+        else if(currentAction.equals("sale")){
+            setSaleOffer(session, request);
+        }
+        /*
+         * Update the current monster
+         */
+        if(currentAction.equals("changeMonster")){ 
             monsterID = Long.parseLong(request.getParameter("current monster id"));
             
             setCurrentMonster(session, monsterID );
-        }
-        else if(request.getParameter("current_action").equals("breed")){
-            //monsterID = Long.parseLong(request.getParameter("breed"));
-            setBreedOffer(session, request);
-        }
-        else if(request.getParameter("current_action").equals("sell")){
-            monsterID = Long.parseLong(request.getParameter("sell"));
-            sellMonster(session, monsterID);
         }
         
         session.setAttribute("monsters", personDOA.getPersonsMonsters(user) );
@@ -116,11 +125,17 @@ public class MyMonsterServlet extends HttpServlet {
         int price = Integer.parseInt(request.getParameter("breed price"));
         monster.setBreedOffer(price);
         monsterDOA.updateMonstersInfo(monster);
-        session.setAttribute("current monster", monsterDOA.getMonsterById(monsterID));
+        currentAction = "changeMonster";
     }
     
-    public void sellMonster(HttpSession session, Long id){
-        
+    public void setSaleOffer(HttpSession session, HttpServletRequest request){
+        monsterDOA = new MonsterDOA();
+        Long monsterID = Long.parseLong(request.getParameter("sale id"));
+        Monster monster = monsterDOA.getMonsterById(monsterID);
+        int price = Integer.parseInt(request.getParameter("sale price"));
+        monster.setSaleOffer(price);
+        monsterDOA.updateMonstersInfo(monster);
+        currentAction = "changeMonster";
     }
     
     public void setCurrentMonster(HttpSession session, Long id){

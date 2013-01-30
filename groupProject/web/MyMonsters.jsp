@@ -19,13 +19,15 @@
                 
                     document.getElementById("current_action").value = "breed";
                     document.getElementById("breed id").value = id;
+                    document.getElementById("current monster id").value =  id;
                     document.forms["monster form"].submit();
                 }
                 
-                function sell(id){
+                function saleOffer(id){
                     
-                    document.getElementById("sell id").value= id;
-                    document.getElementById("current_action").value = "sell";
+                    document.getElementById("sale id").value= id;
+                    document.getElementById("current_action").value = "sale";
+                    document.getElementById("current monster id").value =  id;
                     document.forms["monster form"].submit();
                 }
                 function changeMonster(id){
@@ -42,7 +44,7 @@
         <form method="post" action="myMonsters" id="change_monster">
         <input type="hidden" id="current monster id" name="current monster id" />
         <input type="hidden" id="breed id" name="breed id" />
-        <input type="hidden" id="sell id" name="sell id" />
+        <input type="hidden" id="sale id" name="sale id" />
         <input type="hidden" id="current_action" name="current_action" />
         <table name="monster" border="1">
             <% ArrayList<Monster> monsters = (ArrayList<Monster>)session.getAttribute("monsters"); %>
@@ -70,12 +72,14 @@
                 Strength:       <%=df.format(currentMonster.getCurrentStrength())%>/<%=df.format(currentMonster.getBaseStrength())%> <br />
                 Defence:        <%=df.format(currentMonster.getCurrentDefence())%>/<%=df.format(currentMonster.getBaseDefence())%> <br />
                 Health:         <%=df.format(currentMonster.getCurrentHealth())%>/<%=df.format(currentMonster.getBaseHealth())%> <br />
-                Breed Offer:    <%=currentMonster.getBreedOffer()%>
                 
+                Breed Offer:    <%=currentMonster.getBreedOffer()%> 
                 <input type="text" placeholder="breeding price" name="breed price" />
-                <input type="submit" name="breed" onclick="breedOffer(<%=currentMonster.getId()%>);" value="breed" />
-                <input type="text" placeholder="selling price" name="sell price" />
-                <input type="submit" name="sell"  onclick="sell(<%=currentMonster.getId()%>);" value="sell" />
+                <input type="submit" name="breed" onclick="breedOffer(<%=currentMonster.getId()%>);" value="breed" /> <br />
+                
+                Sale Offer:     <%=currentMonster.getSaleOffer()%>
+                <input type="text" placeholder="selling price" name="sale price" />
+                <input type="submit" name="sale"  onclick="saleOffer(<%=currentMonster.getId()%>);" value="sale" />
 
             <%}%>
         </p>
