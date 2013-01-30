@@ -29,6 +29,7 @@ public class Person implements Serializable {
     private ArrayList<String> friendRequests;
     private ArrayList<Fight> fights;
     private ArrayList<String> monsters;
+    private ArrayList<String> activity;
     
     
     public ArrayList<Fight> getFightChallenges(){
@@ -95,6 +96,12 @@ public class Person implements Serializable {
     }
     public ArrayList<String> getAllFriendRequests(){
         return friendRequests;
+    }
+    public ArrayList<String> getActivity(){
+        return activity;
+    }
+    public void addActivity(String active){
+        this.activity.add(active);
     }
     public void addFriendRequest(String email){
         System.out.println(email);
