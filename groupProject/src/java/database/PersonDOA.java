@@ -42,7 +42,12 @@ public class PersonDOA {
         try{
              em.getTransaction().begin();
              em.persist(person);
-             giveFirstMonster(person);             
+             giveFirstMonster(person);
+             giveFirstMonster(person);
+             giveFirstMonster(person);
+             giveFirstMonster(person);
+             giveFirstMonster(person);
+             giveFirstMonster(person);
              em.getTransaction().commit();
         }
         finally{
