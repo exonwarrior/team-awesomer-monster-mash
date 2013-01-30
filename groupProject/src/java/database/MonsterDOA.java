@@ -187,8 +187,12 @@ public class MonsterDOA {
     
     public void checkLife(Monster m){
         m.setLifeSpan((int)(m.getLifeSpan()-((System.currentTimeMillis() / 1000L)+m.getBirthDate())));
+        
         if(m.getLifeSpan()<0){
-            
+            m = em.find(Monster.class, m.getId());
+            em.getTransaction().begin();
+            em.remove(m);
+            em.getTransaction().commit();
         }
     }
 
