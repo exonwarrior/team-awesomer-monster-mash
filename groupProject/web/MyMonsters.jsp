@@ -15,22 +15,22 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>My Monsters</title>
         <script type="text/javascript"><!--
-                function breed(id){
+                function breedOffer(id){
                 
-                document.getElementById("current_action").value = "breed";
-                document.getElementById("breed").value = id;
-                document.forms["monster form"].submit();
+                    document.getElementById("current_action").value = "breed";
+                    document.getElementById("breed id").value = id;
+                    document.forms["monster form"].submit();
                 }
                 
                 function sell(id){
                     
-                    document.getElementById("sell").value= id;
+                    document.getElementById("sell id").value= id;
                     document.getElementById("current_action").value = "sell";
                     document.forms["monster form"].submit();
                 }
-                function changeMonster(monsterID){
+                function changeMonster(id){
                     document.getElementById("current_action").value = "changeMonster";
-                    document.getElementById("current monster id").value =  monsterID;                   
+                    document.getElementById("current monster id").value =  id;                   
                     document.forms["monster form"].submit();
                 }
                 
@@ -41,6 +41,8 @@
         <h1>My Monsters</h1>
         <form method="post" action="myMonsters" id="change_monster">
         <input type="hidden" id="current monster id" name="current monster id" />
+        <input type="hidden" id="breed id" name="breed id" />
+        <input type="hidden" id="sell id" name="sell id" />
         <input type="hidden" id="current_action" name="current_action" />
         <table name="monster" border="1">
             <% ArrayList<Monster> monsters = (ArrayList<Monster>)session.getAttribute("monsters"); %>
@@ -71,7 +73,7 @@
                 Breed Offer:    <%=currentMonster.getBreedOffer()%>
                 
                 <input type="text" placeholder="breeding price" name="breed price" />
-                <input type="submit" name="breed" onclick="breed(<%=currentMonster.getId()%>);" value="breed" />
+                <input type="submit" name="breed" onclick="breedOffer(<%=currentMonster.getId()%>);" value="breed" />
                 <input type="text" placeholder="selling price" name="sell price" />
                 <input type="submit" name="sell"  onclick="sell(<%=currentMonster.getId()%>);" value="sell" />
 

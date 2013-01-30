@@ -116,12 +116,14 @@ public class MonsterDOA {
     }
     
     public void updateMonstersInfo(Monster monster){
-        emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb");
-        
+        emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb"); 
         em = emf.createEntityManager();
+        
+        Monster dbMonster = em.find(Monster.class, monster.getId());
+        
         try{
              em.getTransaction().begin();
-             em.persist(monster);          
+             dbMonster.setBreedOffer(monster.getBreedOffer());          
              em.getTransaction().commit();
         }
         finally{
