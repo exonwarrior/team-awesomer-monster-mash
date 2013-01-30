@@ -59,6 +59,10 @@ public class Monster implements Serializable {
         return monsterID;
     }
     
+    public void setMonsterID(String id){
+        this.monsterID = id;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -156,7 +160,7 @@ public class Monster implements Serializable {
     
     public Monster generateRandom(Person user){
          Random random = new Random();
-         this.monsterID = this.id.toString();
+         //this.monsterID = this.id.toString();
          this.birthDate = (int) (System.currentTimeMillis() / 1000L);
          this.baseStrength = random.nextDouble();
          this.baseDefence = random.nextDouble();

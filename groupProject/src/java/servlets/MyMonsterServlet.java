@@ -4,6 +4,7 @@
  */
 package servlets;
 
+import database.Monster;
 import database.MonsterDOA;
 import database.Person;
 import database.PersonDOA;
@@ -85,7 +86,7 @@ public class MyMonsterServlet extends HttpServlet {
         }
         else if(request.getParameter("current_action").equals("breed")){
             monsterID = request.getParameter("breed");
-            setBreedMonster(session, monsterID);
+            setBreedMonster(session, request);
         }
         else if(request.getParameter("current_action").equals("sell")){
             monsterID = request.getParameter("sell");
@@ -107,9 +108,11 @@ public class MyMonsterServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     
-    public void setBreedMonster(HttpSession session, String id){
+    public void setBreedMonster(HttpSession session, HttpServletRequest request){
         monsterDOA = new MonsterDOA();
-        monsterDOA.getMonsterById(id).setPrice(9000);
+        String monster = request.getParameter("breed");
+        int price = Integer.parseInt(request.getParameter("breed price"));
+        monsterDOA.getMonsterById(monster).setPrice(price);
     }
     
     public void sellMonster(HttpSession session, String ID){

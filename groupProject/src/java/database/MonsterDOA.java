@@ -39,6 +39,7 @@ public class MonsterDOA {
         try{
              em.getTransaction().begin();
              em.persist(monster);
+             monster.setMonsterID(monster.getId().toString());
              em.getTransaction().commit();
         }
         finally{

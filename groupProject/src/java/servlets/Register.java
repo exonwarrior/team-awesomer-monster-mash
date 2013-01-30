@@ -66,6 +66,7 @@ public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        personDOA = new PersonDOA();
          String temp_name = request.getParameter("first_name") + " " + request.getParameter("last_name");
          String temp_email = request.getParameter("email");
          String temp_password = request.getParameter("password");

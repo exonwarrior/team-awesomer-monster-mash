@@ -76,7 +76,7 @@ public class FriendsServlet extends HttpServlet {
         request.getRequestDispatcher("/friends.jsp").forward(request, response);
     
         if(session.getAttribute("sendFriendRequest") != null){
-            setCurrentMonster(session);
+            //setCurrentMonster(session);
         }
     }
     
