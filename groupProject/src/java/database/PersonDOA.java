@@ -60,7 +60,7 @@ public class PersonDOA {
         }
     }
 
-    public void updatePersonsInfo(Person person) {
+    public void updatePersonsFriendRequests(Person person) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
 
         em = emf.createEntityManager();
@@ -74,6 +74,19 @@ public class PersonDOA {
         }
     }
 
+    public void updatePersonsFriendList(Person person) {
+        emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
+
+        em = emf.createEntityManager();
+        Person dbPerson = em.find(Person.class, person.getId());
+        try {
+            em.getTransaction().begin();
+            dbPerson.setFriends(person.getAllFriends());
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
     private List<Person> getAllPeople() {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
         em = emf.createEntityManager();
