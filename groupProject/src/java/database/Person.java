@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import types.Fight;
 
 /**
  *
@@ -26,6 +27,29 @@ public class Person implements Serializable {
     private int money;
     private ArrayList<String> friends;
     private ArrayList<String> friendRequests;
+    private ArrayList<Fight> fightOffers;
+
+    public ArrayList<Fight> getFightOffers() {
+        return fightOffers;
+    }
+    
+    public void addFightOffer(Person person, Monster monster){
+        this.fightOffers.add(new Fight(person, monster));
+    }
+    
+    public void removeFightOffer(Fight fight){
+        this.fightOffers.remove(fight);
+    }
+    
+    public void removeFightOffer(Person person, Monster monster){
+        for(Fight fight: this.fightOffers){
+            if(fight.getMonster().getId().equals(monster.getId()) 
+                    && fight.getPerson().getId().equals(person.getId())){
+                this.fightOffers.remove(fight);
+            }
+        }
+    }
+    
     private ArrayList<String> monsters;
     
     
