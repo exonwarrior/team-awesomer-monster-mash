@@ -87,7 +87,9 @@
         <input name="buyMonster" onclick="location='newMonster.html'" type="button" value="+ Buy Monsters" />
         <input name="sellMonsters" type="button" value="Sell Monsters" />
         <input name="home" onclick="location='home.jsp'" type="button" value="home" style="width: 66px" />
-         </form>
+        </form>
+        
+        <textarea rows="10" cols="50"></textarea>
 
     </body>
 </html>
