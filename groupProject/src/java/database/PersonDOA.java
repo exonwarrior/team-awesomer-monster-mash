@@ -24,68 +24,63 @@ import javax.persistence.TypedQuery;
 public class PersonDOA {
 
     EntityManagerFactory emf;
-   
-    @PersistenceContext(unitName = "MonsterGamePU" )
-     EntityManager em;
-    
-    @EJB MonsterDOA monsterDOA;
-    
-    public PersonDOA(){
+    @PersistenceContext(unitName = "MonsterGamePU")
+    EntityManager em;
+    @EJB
+    MonsterDOA monsterDOA;
 
+    public PersonDOA() {
     }
- 
+
     // Stores a new guest: 
     public void persist(Person person) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
-        
+
         em = emf.createEntityManager();
-        try{
-             em.getTransaction().begin();
-             em.persist(person);
-             giveFirstMonster(person);
-             giveFirstMonster(person);
-             giveFirstMonster(person);
-             giveFirstMonster(person);
-             giveFirstMonster(person);
-             giveFirstMonster(person);
-             em.getTransaction().commit();
+        try {
+            em.getTransaction().begin();
+            em.persist(person);
+            giveFirstMonster(person);
+            giveFirstMonster(person);
+            giveFirstMonster(person);
+            giveFirstMonster(person);
+            giveFirstMonster(person);
+            giveFirstMonster(person);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
         }
-        finally{
-             em.close();
-        }   
     }
-    
+
     public void updatePersonsInfo(Person person) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
-        
+
         em = emf.createEntityManager();
         Person dbPerson = em.find(Person.class, person.getId());
-        try{
-             em.getTransaction().begin();
-             dbPerson.setFriendRequests(person.getAllFriendRequests());     
-             em.getTransaction().commit();
+        try {
+            em.getTransaction().begin();
+            dbPerson.setFriendRequests(person.getAllFriendRequests());
+            em.getTransaction().commit();
+        } finally {
+            em.close();
         }
-        finally{
-             em.close();
-        }   
     }
-    
-    private List<Person> getAllPeople(){
+
+    private List<Person> getAllPeople() {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
         em = emf.createEntityManager();
         List<Person> list;
-        try{
-             em.getTransaction().begin();
-             TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);
-             list = query.getResultList();
-             em.getTransaction().commit();
+        try {
+            em.getTransaction().begin();
+            TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);
+            list = query.getResultList();
+            em.getTransaction().commit();
+        } finally {
+            em.close();
         }
-        finally{
-             em.close();
-        }     
         return list;
     }
-    
+
 //    public boolean doesExist(String email){
 //        boolean answer = false;
 //        List<Person> list = this.getAllPeople();
@@ -96,41 +91,52 @@ public class PersonDOA {
 //        }
 //        return answer;
 //    }
-   
-    public boolean lookForEmail(String email){
+    public boolean lookForEmail(String email) {
         boolean answer = false;
         List<Person> list = this.getAllPeople();
-        for(Person p: list){
-            if(p.getEmail() == null ? email == null : p.getEmail().equals(email)){
+        for (Person p : list) {
+            if (p.getEmail() == null ? email == null : p.getEmail().equals(email)) {
                 answer = true;
             }
         }
         return answer;
     }
-    
-    public Person getPersonByEmail(String email){
+
+    public Person getPersonByEmail(String email) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
         em = emf.createEntityManager();
         Person p = null;
-        try{
+        try {
             em.getTransaction().begin();
             TypedQuery<Person> query = em.createQuery(
-            "SELECT p FROM Person AS p WHERE p.email = :email", Person.class)
+                    "SELECT p FROM Person AS p WHERE p.email = :email", Person.class)
                     .setParameter("email", email);
             p = query.getSingleResult();
             em.getTransaction().commit();
-            
-        }
-        finally{
+
+        } finally {
             em.close();
         }
         return p;
         //return me;
     }
-    
+
+    public boolean checkFriendRequestList(Person p, String email) {
+        boolean answer = false;
+        if (!p.getAllFriendRequests().isEmpty()) {
+            for (String person : p.getAllFriendRequests()) {
+                if (person.equals(email)) {
+                    answer = true;
+                }
+            }
+        }
+        return answer;
+    }
+
+    //TODO 
     public ArrayList<Person> getPersonsFriends(Person p) {
         ArrayList<Person> list = new ArrayList<Person>();
-        if (!p.getAllFriends().equals(null)) {
+        if (!p.getAllFriends().isEmpty()) {
             for (Person friend : getAllPeople()) {
                 for (String person : p.getAllFriends()) {
                     if (friend.getEmail().equals(person)) {
@@ -143,23 +149,20 @@ public class PersonDOA {
             return null;
         }
     }
-    
-    public ArrayList<Monster> getPersonsMonsters(Person p){
+
+    public ArrayList<Monster> getPersonsMonsters(Person p) {
         monsterDOA = new MonsterDOA();
- 
+
         return monsterDOA.getMonsterByUser(p);
     }
-    
-    public void giveFirstMonster(Person p){
+
+    public void giveFirstMonster(Person p) {
         monsterDOA = new MonsterDOA();
         Monster m = new Monster();
         m = m.generateRandom(p);
         this.monsterDOA.persist(m);
         p.addMonster(m.getMonsterID());
     }
-     
-
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    
 }

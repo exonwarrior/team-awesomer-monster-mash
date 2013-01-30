@@ -43,7 +43,7 @@
         <input type="hidden" id="acceptFriendRequest" name="acceptFriendRequest" />
         <input type="hidden" id="declineFriendRequest" name="declineFriendRequest" />
             <table name="friend" border="1">	
-                <% ArrayList<Person> friends = (ArrayList<Person>) request.getAttribute("firends");%>
+                <% ArrayList<Person> friends = (ArrayList<Person>) request.getAttribute("friends");%>
                 <tr>
                     <th>Friend Name</th>
                     <th>Email</th>

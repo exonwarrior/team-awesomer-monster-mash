@@ -76,9 +76,9 @@ public class FriendsServlet extends HttpServlet {
         currentAction = request.getParameter("current_action");
         
         if(currentAction.equals("send_request")){
-            String friendEmail = request.getParameter("sendFriendRequest");
-            if(checkIfExist(friendEmail) && !(user.getEmail().equals(friendEmail))){
-                Person friend = personDOA.getPersonByEmail(friendEmail);
+            String friendsEmail = request.getParameter("sendFriendRequest");
+            if(checkIfExist(friendsEmail) && !(user.getEmail().equals(friendsEmail))){
+                Person friend = personDOA.getPersonByEmail(friendsEmail);
                 friend.addFriendRequest(user.getEmail());
                 personDOA.updatePersonsInfo(friend);
             
@@ -87,12 +87,10 @@ public class FriendsServlet extends HttpServlet {
             }
             
         } else if(currentAction.equals("accept_request")){
-            String friendEmail = request.getParameter("acceptFriendRequest");
-            if(checkIfExist(friendEmail) && !(user.getEmail().equals(friendEmail))){
-                Person friend = personDOA.getPersonByEmail(friendEmail);
-                friend.addFriendRequest(user.getEmail());
-                personDOA.updatePersonsInfo(friend);
-            
+            String friendsEmail = request.getParameter("acceptFriendRequest");
+            Person currentUser = personDOA.getPersonByEmail(user.getEmail());
+            if(personDOA.checkFriendRequestList(currentUser, friendsEmail)){
+                
             }else{
                 request.setAttribute("message", "Friend doesn't exist.");               
             }
