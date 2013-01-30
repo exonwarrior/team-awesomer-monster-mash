@@ -80,8 +80,8 @@ public class FriendsServlet extends HttpServlet {
             if(checkIfExist(friendsEmail) && !(user.getEmail().equals(friendsEmail))){
                 Person friend = personDOA.getPersonByEmail(friendsEmail);
                 System.out.println(user.getEmail());
-                friend.addFriendRequest(user.getEmail());
-                personDOA.updatePersonsFriendRequests(friend);
+                //friend.addFriendRequest(user.getEmail());
+                personDOA.updatePersonsFriendRequests(friend, user.getEmail());
                 Person friend2 = personDOA.getPersonByEmail(friendsEmail);
             
             }else{
@@ -94,7 +94,7 @@ public class FriendsServlet extends HttpServlet {
             if(personDOA.checkFriendRequestList(currentUser, friendsEmail)){
                 currentUser.addFriend(friendsEmail);
                 currentUser.removeFriendRequest(friendsEmail);
-                personDOA.updatePersonsFriendRequests(currentUser);
+                //personDOA.updatePersonsFriendRequests(currentUser);
                 personDOA.updatePersonsFriendList(currentUser);
                 
             }else{

@@ -60,14 +60,14 @@ public class PersonDOA {
         }
     }
 
-    public void updatePersonsFriendRequests(Person person) {
+    public void updatePersonsFriendRequests(Person person, String email) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
 
         em = emf.createEntityManager();
         Person dbPerson = em.find(Person.class, person.getId());
         try {
             em.getTransaction().begin();
-            dbPerson.setFriendRequests(person.getAllFriendRequests());
+            dbPerson.addFriendRequest(email);
             em.getTransaction().commit();
         } finally {
             em.close();
