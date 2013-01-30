@@ -13,17 +13,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Friends</title>
+        <script type="text/javascript"><!--
+            function sendreq(email){              
+                document.getElementById("current_action").value = "send_request";
+                session.setAttribute("sendFriendRequest") = email;
+                document.forms["friends form"].submit();
+            }           
+            -->
+        </script>
     </head>
     <body>
         <h1>My Friends</h1>
         <form method="post" action="myFriends" id="friends form">
-           <script type="text/javascript"><!--
-                function sendreq(id){              
-                session.setAttribute("sendFriendRequest") = id;
-                document.forms["friends form"].submit();
-                }           
-                -->
-            </script>
+        <input type="hidden" id="current_action" name="current_action" />    
             <table name="friend" border="1">	
                 <% ArrayList<Person> friends = (ArrayList<Person>) request.getAttribute("firends");%>
                 <tr>
@@ -31,7 +33,7 @@
                     <th>Email</th>
                 </tr>
                 <% if (friends != null) {
-                    for (Person friend : friends) {%>
+                        for (Person friend : friends) {%>
                 <tr>
                     <td><%=friend.getName()%></td>
                     <td><%=friend.getEmail()%></td>
@@ -40,7 +42,7 @@
                     }%>
             </table>	
             Friends Email: <input type="text" id="sendrequest" name="email" />
-             <input type="submit" name="sendreq" onclick="sendreq(document.getElementById('sendrequest').value);" value="Send friend request" />
+            <input type="submit" name="sendreq" onclick="sendreq(document.getElementById('sendrequest').value);" value="Send friend request" />
         </form>
     </body>		
 </html>
