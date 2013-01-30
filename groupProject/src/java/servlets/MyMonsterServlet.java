@@ -110,9 +110,12 @@ public class MyMonsterServlet extends HttpServlet {
     
     public void setBreedMonster(HttpSession session, HttpServletRequest request){
         monsterDOA = new MonsterDOA();
-        Long monster = Long.parseLong(request.getParameter("breed"));
+        Long monsterID = Long.parseLong(request.getParameter("breed"));
+        Monster monster = monsterDOA.getMonsterById(monsterID);
         int price = Integer.parseInt(request.getParameter("breed price"));
-        monsterDOA.getMonsterById(monster).setPrice(price);
+        monster.setBreedOffer(price);
+        monsterDOA.updateMonstersInfo(monster);
+        session.setAttribute("current monster", monsterDOA.getMonsterById(monsterID));
     }
     
     public void sellMonster(HttpSession session, Long id){
