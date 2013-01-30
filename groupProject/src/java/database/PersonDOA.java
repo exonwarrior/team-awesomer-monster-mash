@@ -54,6 +54,7 @@ public class PersonDOA {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
         
         em = emf.createEntityManager();
+        //Person toUpdate = em.find(Person.class, person.getId());
         try{
              em.getTransaction().begin();
              em.persist(person);          

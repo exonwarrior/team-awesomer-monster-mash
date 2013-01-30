@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  * @author szs1
  */
 
-@WebServlet(name = "friends", urlPatterns = {"/myfriends"})
+@WebServlet(name = "friends", urlPatterns = {"/myFriends"})
 public class FriendsServlet extends HttpServlet {
     @EJB PersonDOA personDOA;
    
