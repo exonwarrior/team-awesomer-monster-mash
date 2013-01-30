@@ -19,7 +19,19 @@
                 document.getElementById("current_action").value = "send_request";
                 document.getElementById("sendFriendRequest").value = email;
                 document.forms["friends form"].submit();
-            }           
+            }
+            function acceptreq(){
+                var email = document.getElementById('accept_decline').value;
+                document.getElementById("current_action").value = "accept_request";
+                document.getElementById("acceptFriendRequest").value = email;
+                document.forms["friends form"].submit();
+            } 
+            function declinereq(){
+                var email = document.getElementById('accept_decline').value;
+                document.getElementById("current_action").value = "decline_request";
+                document.getElementById("declineFriendRequest").value = email;
+                document.forms["friends form"].submit();
+            }
             -->
         </script>
     </head>
@@ -28,6 +40,8 @@
         <form method="post" action="myFriends" id="friends form">
         <input type="hidden" id="current_action" name="current_action" />
         <input type="hidden" id="sendFriendRequest" name="sendFriendRequest" />
+        <input type="hidden" id="acceptFriendRequest" name="acceptFriendRequest" />
+        <input type="hidden" id="declineFriendRequest" name="declineFriendRequest" />
             <table name="friend" border="1">	
                 <% ArrayList<Person> friends = (ArrayList<Person>) request.getAttribute("firends");%>
                 <tr>
@@ -58,8 +72,13 @@
                 <%}
                     }%>
             </table>
+            <p>Send Friend request:</p>
             Friends Email: <input type="text" id="sendrequest" name="email" />
-            <input type="submit" name="sendreq" onclick="sendreq();" value="Send friend request" />
+            <input type="submit" name="reqButton" onclick="sendreq();" value="Send friend request" />
+            <p>Accept/Decline Friends:</p>
+            Friends Email: <input type="text" id="accept_decline" name="emailToAccOrDel" />
+            <input type="submit" name="acceptFriend" onclick="acceptreq();" value="Accept friend request" />
+            <input type="submit" name="declineFriend" onclick="declinereq();" value="Decline friend request" />
         </form>
     </body>		
 </html>

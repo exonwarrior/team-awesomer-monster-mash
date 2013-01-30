@@ -24,6 +24,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "friends", urlPatterns = {"/myFriends"})
 public class FriendsServlet extends HttpServlet {
     @EJB PersonDOA personDOA;
+    String currentAction;
    
     /**
      * Processes requests for both HTTP
@@ -72,20 +73,31 @@ public class FriendsServlet extends HttpServlet {
         processRequest(request, response);
         HttpSession session = request.getSession(false);
         Person user = (Person) session.getAttribute("user");
+        currentAction = request.getParameter("current_action");
         
-            
-        if(request.getParameter("current_action").equals("send_request")){
+        if(currentAction.equals("send_request")){
             String friendEmail = request.getParameter("sendFriendRequest");
-           
             if(checkIfExist(friendEmail) && !(user.getEmail().equals(friendEmail))){
                 Person friend = personDOA.getPersonByEmail(friendEmail);
                 friend.addFriendRequest(user.getEmail());
                 personDOA.updatePersonsInfo(friend);
             
             }else{
-                request.setAttribute("message", "Friend doesn't exist.");
-                request.getRequestDispatcher("/friends.jsp").forward(request, response);
+                request.setAttribute("message", "Friend doesn't exist.");               
             }
+            
+        } else if(currentAction.equals("accept_request")){
+            String friendEmail = request.getParameter("acceptFriendRequest");
+            if(checkIfExist(friendEmail) && !(user.getEmail().equals(friendEmail))){
+                Person friend = personDOA.getPersonByEmail(friendEmail);
+                friend.addFriendRequest(user.getEmail());
+                personDOA.updatePersonsInfo(friend);
+            
+            }else{
+                request.setAttribute("message", "Friend doesn't exist.");               
+            }
+            
+        }else if(currentAction.equals("decline_request")){
             
         }
         
