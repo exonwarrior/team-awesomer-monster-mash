@@ -4,6 +4,7 @@
     Author     : thh21
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="database.Monster"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -43,6 +44,7 @@
         <input type="hidden" id="current_action" name="current_action" />
         <table name="monster" border="1">
             <% ArrayList<Monster> monsters = (ArrayList<Monster>)session.getAttribute("monsters"); %>
+            <%DecimalFormat df = new DecimalFormat("#.##");%>
             <tr>
                 <th>Monster Name</th>
                 
@@ -63,9 +65,9 @@
             if(session.getAttribute("current monster") != null){
                 Monster currentMonster = (Monster) session.getAttribute("current monster");%>
                 Monster Name:   <%=currentMonster.getName()%> <br />
-                Strength:       <%=currentMonster.getCurrentStrength()%>/<%=currentMonster.getBaseStrength()%> <br />
-                Defence:        <%=currentMonster.getCurrentDefence()%>/<%=currentMonster.getBaseDefence()%> <br />
-                Health:         <%=currentMonster.getCurrentHealth()%>/<%=currentMonster.getBaseHealth()%> <br />
+                Strength:       <%=df.format(currentMonster.getCurrentStrength())%>/<%=df.format(currentMonster.getBaseStrength())%> <br />
+                Defence:        <%=df.format(currentMonster.getCurrentDefence())%>/<%=df.format(currentMonster.getBaseDefence())%> <br />
+                Health:         <%=df.format(currentMonster.getCurrentHealth())%>/<%=df.format(currentMonster.getBaseHealth())%> <br />
                 
                 
                 <input type="text" placeholder="breeding price" name="breed price" />
