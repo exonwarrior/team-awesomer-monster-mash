@@ -26,6 +26,16 @@
         document.getElementById("current person id").value =  null; 
         document.forms["monsterFights"].submit();
     }
+    function acceptFight(id){
+        document.getElementById("current action").value = "fight";
+        document.getElementById("current fight id").value = id;
+        document.forms["monsterFights"].submit();
+    }
+    function declineFight(id){
+        document.getElementById("current action").value = "deleteFight";
+        document.getElementById("current fight id").value = id;
+        document.forms["monsterFights"].submit();
+    }
     
     
     -->
@@ -65,23 +75,27 @@
     <input type="hidden" id="current monster id" name="current monster id" />
     <input type="hidden" id="current person id" name="current person id" />
     <input type="hidden" id="current action" name="current action" />
+    <input type="hidden" id="current fight id" name="current fight id" />
     <%DecimalFormat df = new DecimalFormat("#.##");%>
 
     <table name="offers" border="1">
         <% ArrayList<Fight> offers = (ArrayList<Fight>) request.getAttribute("offers");%>
         <tr>
-            <th name="tableTitle">Offers from other players</th>
+            <th name="tableTitle">Challenges from other players</th>
         </tr>
         <tr>
-            <th>Player</th>
-            <th>Monster</th>
+            <th>Challenger</th>
+            <th>Challenger's Monster</th>
+            <th>Your Monster</th>
         </tr>
         <% if(offers != null){
-            for(Fight fight: offers){%>
+            for(Fight fight: offers){
+                %>
             <tr>
-                <td><input type="submit" onclick="personStats(<%=fight.getPerson().getId()%>);" value="<%=fight.getPerson().getName()%>" /></td>
-                <td><input type="submit" onclick="MonsterStats(<%=fight.getMonster().getId()%>);" value="<%=fight.getMonster().getName()%>" /></td>
-                <td><input type="submit" onclick="MonsterStats(<%=fight.getMonster().getId()%>);" value="<%=fight.getMonster().getName()%>" /></td>
+                <td><input type="submit" onclick="personStats(<%=fight.getChallenger().getId()%>);" value="<%=fight.getChallenger().getName()%>" /></td>
+                <td><input type="submit" onclick="MonsterStats(<%=fight.getChallMonster().getId()%>);" value="<%=fight.getChallMonster().getName()%>" /></td>
+                <td><input type="submit" onclick="acceptFight(<%=fight.getId()%>);" value="Accept" /></td>
+                <td><input type="submit" onclick="declineFight(<%=fight.getId()%>);" value="Decline" /></td>
             </tr>
             <%}
         }%>
@@ -90,18 +104,20 @@
     <table name="challenges" border="1">
         <% ArrayList<Fight> challenges = (ArrayList<Fight>) request.getAttribute("challenges");%>
         <tr>
-            <th name="tableTitle">Challenges sent to other players</th>
+            <th name="tableTitle">Challenges you have issued</th>
         </tr>
         <tr>
-            <th>Player</th>
-            <th>Monster you selected</th>
+            <th>Opponent</th>
+            <th>Opponent's Monster</th>
+            <th>Your Monster</th>
+            
         </tr>
         <% if(challenges != null){
             for(Fight fight: challenges){%>
             <tr>
-                <td><input type="submit" "onclick="personStats(<%=fight.getPerson().getId()%>);" value="<%=fight.getPerson().getName()%>" /></td>
-                <td><input type="submit" onclick="MonsterStats(<%=fight.getMonster().getId()%>);" value="<%=fight.getMonster().getName()%>" /></td>
-                
+                <td><input type="submit" onclick="personStats(<%=fight.getOpponent().getId()%>);" value="<%=fight.getOpponent().getName()%>" /></td>
+                <td><input type="submit" onclick="MonsterStats(<%=fight.getOppMonster().getId()%>);" value="<%=fight.getOppMonster().getName()%>" /></td>
+                <td><input type="submit" onclick="declineFight(<%=fight.getId()%>);" value="Cancel" /></td>
             </tr>
             <%}
         }%>

@@ -59,7 +59,7 @@ public class MonsterFightServlet extends HttpServlet {
     public void declineFight(Person friend) {
         
     }
-   /*public void fight(long myMonsterID, long friendMonsterID) {
+    public void fight(long myMonsterID, long friendMonsterID) {
         Monster m1;
         Monster m2;
         m1 = monsterDOA.getMonsterById(myMonsterID);
@@ -88,7 +88,8 @@ public class MonsterFightServlet extends HttpServlet {
             }
 	}
         
-    }*/
+    }
+    
     public List<Monster> getMonsterList(Person friend) {
         List<Monster> list = null;
         
@@ -135,6 +136,9 @@ public class MonsterFightServlet extends HttpServlet {
         else if(currentAction.equals("monsterStats")){
             id = Long.parseLong(request.getParameter("current monster id"));
             session.setAttribute("current monster", monsterDOA.getMonsterById(id));
+        }
+        else if(currentAction.equals("fight")){
+            //personDOA
         }
         
         request.setAttribute("offers", user.getFightOffers() );
