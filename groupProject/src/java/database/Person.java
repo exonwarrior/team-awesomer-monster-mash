@@ -74,6 +74,7 @@ public class Person implements Serializable {
         return friendRequests;
     }
     public void addFriendRequest(String email){
+        System.out.println(email);
         this.friendRequests.add(email);
     }
     public void removeFriendRequest(String email){

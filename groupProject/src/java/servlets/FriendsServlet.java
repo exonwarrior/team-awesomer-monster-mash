@@ -79,6 +79,7 @@ public class FriendsServlet extends HttpServlet {
             String friendsEmail = request.getParameter("sendFriendRequest");
             if(checkIfExist(friendsEmail) && !(user.getEmail().equals(friendsEmail))){
                 Person friend = personDOA.getPersonByEmail(friendsEmail);
+                System.out.println(user.getEmail());
                 friend.addFriendRequest(user.getEmail());
                 personDOA.updatePersonsInfo(friend);
             

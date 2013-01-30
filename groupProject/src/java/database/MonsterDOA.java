@@ -182,6 +182,7 @@ public class MonsterDOA {
                 baby.setBaseHealth(baby.getBaseDefence()+(baby.getBaseDefence()/4));
             }
         }
+        System.out.println("NOW RETURN THE BABY");
         return baby;
     }
     

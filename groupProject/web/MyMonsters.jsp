@@ -40,7 +40,7 @@
             </script>
     </head>
     <body>
-        <h1>My Monsters</h1>
+        <h1>Monsters</h1>
         <form method="post" action="myMonsters" id="change_monster">
         <input type="hidden" id="current monster id" name="current monster id" />
         <input type="hidden" id="breed id" name="breed id" />
