@@ -7,23 +7,29 @@ package servlets;
 import database.Monster;
 import database.MonsterDOA;
 import database.Person;
+import database.PersonDOA;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Random;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Dave
  */
+@WebServlet(name = "MonsterFight", urlPatterns = {"/monsterFight"})
 public class MonsterFightServlet extends HttpServlet {
-    @EJB
-    private MonsterDOA monsterDOA;
+    
+    @EJB PersonDOA personDOA;
+    @EJB MonsterDOA monsterDOA;
+    String currentAction;
     
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,22 +40,7 @@ public class MonsterFightServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MonsterFightServlet</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet MonsterFightServlet at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-             */
-        } finally {            
-            out.close();
-        }
+        
     }
     
     protected void doPost() {
@@ -129,6 +120,25 @@ public class MonsterFightServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        personDOA = new PersonDOA();
+        monsterDOA = new MonsterDOA();
+        HttpSession session = request.getSession(false);
+        Person user = (Person) session.getAttribute("user");
+        currentAction  = request.getParameter("current action");
+        Long id;
+        
+        if(currentAction.equals("personStats")){
+            id = Long.parseLong(request.getParameter("current person id"));
+            session.setAttribute("current person", personDOA.getPersonByID(id));
+        }
+        else if(currentAction.equals("monsterStats")){
+            id = Long.parseLong(request.getParameter("current monster id"));
+            session.setAttribute("current monster", monsterDOA.getMonsterById(id));
+        }
+        
+        request.setAttribute("offers", user.getFightOffers() );
+        request.setAttribute("challenges", personDOA.getPersonsFightChallenges(user) );
     }
 
     /** 

@@ -15,13 +15,13 @@
 <title>Home</title>
 <script type="text/javascript"><!--
     function personStats(id){
-        document.getElementById("current_action").value = "personStats";
+        document.getElementById("current action").value = "personStats";
         document.getElementById("current person id").value =  id; 
         document.getElementById("current monster id").value =  null;                   
         document.forms["monsterFights"].submit();
     }
     function monsterStats(id){
-        document.getElementById("current_action").value = "monsterStats";
+        document.getElementById("current action").value = "monsterStats";
         document.getElementById("current monster id").value =  id;
         document.getElementById("current person id").value =  null; 
         document.forms["monsterFights"].submit();
@@ -62,6 +62,9 @@
   <section id="content">
 <h2>Monster Fights</h2><br><br><br>
 <form method="post" action="monsterFights" id="monsterFights" name="monsterFights">
+    <input type="hidden" id="current monster id" name="current monster id" />
+    <input type="hidden" id="current person id" name="current person id" />
+    <input type="hidden" id="current action" name="current action" />
     <%DecimalFormat df = new DecimalFormat("#.##");%>
 
     <table name="offers" border="1">
@@ -86,11 +89,11 @@
     <table name="challenges" border="1">
         <% ArrayList<Fight> challenges = (ArrayList<Fight>) request.getAttribute("challenges");%>
         <tr>
-            <th name="tableTitle">Challenges to other players</th>
+            <th name="tableTitle">Challenges sent to other players</th>
         </tr>
         <tr>
             <th>Player</th>
-            <th>Monster</th>
+            <th>Monster you selected</th>
         </tr>
         <% if(challenges != null){
             for(Fight fight: challenges){%>

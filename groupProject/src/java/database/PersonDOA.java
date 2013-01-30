@@ -14,6 +14,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import types.Fight;
 
 /**
  *
@@ -163,6 +164,28 @@ public class PersonDOA {
         this.monsterDOA.persist(m);
         p.addMonster(m.getMonsterID());
     }
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    
+    public Person getPersonByID(Long id){
+        Person person = null;
+        for(Person p: getAllPeople()){
+            if(p.getId().equals(id)){
+                person = p;
+            }
+        }
+        return person;
+    }
+    
+    public ArrayList<Fight> getPersonsFightChallenges(Person p){
+        ArrayList<Fight> offers = new ArrayList<Fight>();
+        Fight tempFight;
+        for(Person person: getAllPeople()){
+            for(Fight fight: person.getFightOffers()){
+                if(fight.getPerson().getId().equals(p.getId())){
+                    tempFight = new Fight(person, fight.getMonster());
+                }
+            }
+        }
+        
+        return offers;
+    }
 }
