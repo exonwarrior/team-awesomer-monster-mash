@@ -38,18 +38,25 @@ public class PersonDOA {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
 
         em = emf.createEntityManager();
-        try {
+        if(person.getAllMonsters().isEmpty()){
+            try {
             em.getTransaction().begin();
             em.persist(person);
             giveFirstMonster(person);
             giveFirstMonster(person);
-            giveFirstMonster(person);
-            giveFirstMonster(person);
-            giveFirstMonster(person);
-            giveFirstMonster(person);
             em.getTransaction().commit();
-        } finally {
-            em.close();
+            } finally {
+                em.close();
+            }
+        }
+        else {
+            try {
+                em.getTransaction().begin();
+                em.persist(person);
+                em.getTransaction().commit();
+            } finally {
+                em.close();
+            }
         }
     }
 
