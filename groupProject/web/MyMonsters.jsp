@@ -68,7 +68,7 @@
                 Strength:       <%=df.format(currentMonster.getCurrentStrength())%>/<%=df.format(currentMonster.getBaseStrength())%> <br />
                 Defence:        <%=df.format(currentMonster.getCurrentDefence())%>/<%=df.format(currentMonster.getBaseDefence())%> <br />
                 Health:         <%=df.format(currentMonster.getCurrentHealth())%>/<%=df.format(currentMonster.getBaseHealth())%> <br />
-                
+                Breed Offer:    <%=currentMonster.getBreedOffer()%>
                 
                 <input type="text" placeholder="breeding price" name="breed price" />
                 <input type="submit" name="breed" onclick="breed(<%=currentMonster.getId()%>);" value="breed" />
