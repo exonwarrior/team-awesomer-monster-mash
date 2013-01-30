@@ -196,8 +196,8 @@ public class PersonDOA {
     }
     
     public ArrayList<Fight> updateFights(ArrayList<Fight> fights){
-        ArrayList<Fight> latestFights = new ArrayList<Fight>();
         Long opp, chall, oppM, challM;
+        
         for(Fight fight:fights){
             
             opp = fight.getOpponent().getId();
@@ -210,13 +210,10 @@ public class PersonDOA {
             fight.setOppMonster(monsterDOA.getMonsterById(oppM));
             
             challM  = fight.getChallMonster().getId();
-            fight.setChallMonster(monsterDOA.getMonsterById(challM));
-            
-            monsterDOA.getMonsterById(fight.getChallMonster().getId());
-            
+            fight.setChallMonster(monsterDOA.getMonsterById(challM));   
         }
         
-        return latestFights;
+        return fights;
     }
     
 }
