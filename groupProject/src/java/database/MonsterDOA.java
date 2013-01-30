@@ -114,8 +114,18 @@ public class MonsterDOA {
         
     }
     
-    public void updateMonster(Monster monster){
+    public void updateMonstersInfo(Monster monster){
+        emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb");
         
+        em = emf.createEntityManager();
+        try{
+             em.getTransaction().begin();
+             em.persist(monster);          
+             em.getTransaction().commit();
+        }
+        finally{
+             em.close();
+        } 
     }
  
     public ArrayList<Monster> getMonsterByUser(Person user){
