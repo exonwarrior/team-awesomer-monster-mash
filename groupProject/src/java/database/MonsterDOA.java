@@ -184,6 +184,13 @@ public class MonsterDOA {
         }
         return baby;
     }
+    
+    public void checkLife(Monster m){
+        m.setLifeSpan((int)(m.getLifeSpan()-((System.currentTimeMillis() / 1000L)+m.getBirthDate())));
+        if(m.getLifeSpan()<0){
+            
+        }
+    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

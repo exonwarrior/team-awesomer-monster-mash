@@ -4,3 +4,16 @@ health begins at random number.
 2. Life span is reduced by 10% for every 20% damage, but restored when health is.
 3. Health regeneration takes place over time, say 10% base health per day
 
+Birthdate: 50
+current time 100
+max lifespan 800
+new lifespan 750
+
+800-100+50=750
+
+50
+300
+750
+500
+
+750-300+50=
