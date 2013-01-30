@@ -14,9 +14,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Friends</title>
         <script type="text/javascript"><!--
-            function sendreq(email){              
+            function sendreq(){       
+                var email = document.getElementById('sendrequest').value;
                 document.getElementById("current_action").value = "send_request";
-                session.setAttribute("sendFriendRequest") = email;
+                document.getElementById("sendFriendRequest").value = email;
                 document.forms["friends form"].submit();
             }           
             -->
@@ -25,7 +26,8 @@
     <body>
         <h1>My Friends</h1>
         <form method="post" action="myFriends" id="friends form">
-        <input type="hidden" id="current_action" name="current_action" />    
+        <input type="hidden" id="current_action" name="current_action" />
+        <input type="hidden" id="sendFriendRequest" name="sendFriendRequest" />
             <table name="friend" border="1">	
                 <% ArrayList<Person> friends = (ArrayList<Person>) request.getAttribute("firends");%>
                 <tr>
@@ -57,7 +59,7 @@
                     }%>
             </table>
             Friends Email: <input type="text" id="sendrequest" name="email" />
-            <input type="submit" name="sendreq" onclick="sendreq(document.getElementById('sendrequest').value);" value="Send friend request" />
+            <input type="submit" name="sendreq" onclick="sendreq();" value="Send friend request" />
         </form>
     </body>		
 </html>
