@@ -135,7 +135,7 @@ public class PersonDOA {
         Monster m = new Monster();
         m = m.generateRandom(p);
         this.monsterDOA.persist(m);
-        p.addMonster(m.getId());
+        p.addMonster(m.getMonsterID());
     }
      
 
