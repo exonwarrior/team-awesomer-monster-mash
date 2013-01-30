@@ -39,7 +39,7 @@
 
 			
 				<input type="submit" value="Login" />
-				<a href="register.html">Register</a>
+				<a href="register.jsp">Register</a>
 				<br><br><br><br>
 				<p>Welcome to Monster Mash, a new, fun and exciting online game, please start by logging in, if you are not a member then click on the register
 				button just above. Enjoy :)</p>
