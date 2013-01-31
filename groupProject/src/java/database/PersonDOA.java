@@ -38,25 +38,14 @@ public class PersonDOA {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
 
         em = emf.createEntityManager();
-        if(person.getAllMonsters().isEmpty()){
-            try {
-            em.getTransaction().begin();
-            em.persist(person);
-            giveFirstMonster(person);
-            giveFirstMonster(person);
-            em.getTransaction().commit();
-            } finally {
-                em.close();
-            }
-        }
-        else {
-            try {
-                em.getTransaction().begin();
-                em.persist(person);
-                em.getTransaction().commit();
-            } finally {
-                em.close();
-            }
+        try {
+        em.getTransaction().begin();
+        em.persist(person);
+        giveFirstMonster(person);
+        giveFirstMonster(person);
+        em.getTransaction().commit();
+        } finally {
+            em.close();
         }
     }
 
@@ -229,7 +218,8 @@ public class PersonDOA {
         Monster m = new Monster();
         m = m.generateRandom(p);
         this.monsterDOA.persist(m);
-        p.addMonster(m.getMonsterID());
+        //p.addMonster(m.getMonsterID());
+        
     }
     
     public Person getPersonByID(Long id){
@@ -261,6 +251,22 @@ public class PersonDOA {
         }
         
         return person;
+    }
+    
+    public void updatePersonsInfo(Person person){
+        emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb"); 
+        em = emf.createEntityManager();
+        
+        Person dbPerson = em.find(Person.class, person.getId());
+        
+        try{
+             em.getTransaction().begin();
+             dbPerson.setMoney(person.getMoney());
+             em.getTransaction().commit();
+        }
+        finally{
+             em.close();
+        } 
     }
     
 }

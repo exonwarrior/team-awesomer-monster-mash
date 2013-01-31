@@ -4,11 +4,6 @@
  */
 package database;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Level;
@@ -67,6 +62,9 @@ public class Monster implements Serializable {
     
     public String getOwnerID() {
         return ownerID;
+    }
+    public void setOwnerID(String ownerID){
+        this.ownerID = ownerID;
     }
     
     public String getMonsterID() {
@@ -210,5 +208,9 @@ public class Monster implements Serializable {
         
         return baby;
     }*/
+
+    public void setOwner(String email) {
+        this.ownerID = email;
+    }
     
 }

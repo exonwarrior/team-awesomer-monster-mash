@@ -28,7 +28,7 @@ public class Person implements Serializable {
     private ArrayList<String> friends;
     private ArrayList<String> friendRequests;
     private ArrayList<Fight> fights;
-    private ArrayList<String> monsters;
+    //private ArrayList<String> monsters;
     private ArrayList<String> activity;
     
     public Person(){
@@ -41,7 +41,7 @@ public class Person implements Serializable {
         this.email = email;
         this.friends = new ArrayList<String>();
         this.friendRequests = new ArrayList<String>();
-        this.monsters = new ArrayList<String>();
+        //this.monsters = new ArrayList<String>();
         this.fights = new ArrayList<Fight>();
         this.money = 1000;
     }
@@ -137,13 +137,13 @@ public class Person implements Serializable {
     public void removeFriend(String email){
         this.friends.remove(email);
     }
-    public ArrayList<String> getAllMonsters(){
+    /*public ArrayList<String> getAllMonsters(){
         return monsters;
     }
     
     public void addMonster(String id ){
         this.monsters.add(id);
-    }
+    }*/
     
     public void setEmail(String email) {
         this.email = email;
@@ -185,6 +185,13 @@ public class Person implements Serializable {
         this.id = id;
     }
 
+    /*public void removeMonster(Monster m){
+     * for(int i = 0; i < monsters.size(); i++){
+     * if(m.getId() == Long.parseLong(monsters.get(i))){
+     * monsters.remove(i);
+     * }
+     * }
+     * }*/
     @Override
     public int hashCode() {
         int hash = 0;

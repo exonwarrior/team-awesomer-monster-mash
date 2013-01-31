@@ -42,6 +42,11 @@
                 document.getElementById("requestEmail").value = email;
                 document.forms["friends form"].submit();
             }
+            function purchase(id){
+                document.getElementById("current_action").value  = "purchase"
+                document.getElementById("friendsMonsterID").value = id;
+                document.forms["friends form"].submit();
+            }
             -->
         </script>
         <div id="header">
@@ -121,7 +126,8 @@
                        <input type="submit" name="challengeMonster" onclick="challengeMonster(<%=currentMonster.getId()%>);" value="Challenge" />
                     <%}%>
                     <% if(currentMonster.getSaleOffer() > 0) { %>
-                        <input type="submit" name="buyMonster" onclick="challengeMonster(<%=currentMonster.getId()%>);" value="Purchase" />
+                        Price:         <%=currentMonster.getSaleOffer()%> <br />
+                        <input type="submit" name="buyMonster" onclick="purchase(<%=currentMonster.getId()%>);" value="Purchase" />
                     <% } %>
                 </p><% }
             }%>

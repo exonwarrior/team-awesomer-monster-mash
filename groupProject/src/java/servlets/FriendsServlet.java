@@ -4,6 +4,8 @@
  */
 package servlets;
 
+import database.Monster;
+import database.MonsterDOA;
 import database.Person;
 import database.PersonDOA;
 import java.io.IOException;
@@ -23,6 +25,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "friends", urlPatterns = {"/myFriends"})
 public class FriendsServlet extends HttpServlet {
     @EJB PersonDOA personDOA;
+    @EJB MonsterDOA monsterDOA;
     String currentAction;
    
     /**
@@ -68,6 +71,7 @@ public class FriendsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         personDOA = new PersonDOA();
+        monsterDOA = new MonsterDOA();
        
         processRequest(request, response);
         HttpSession session = request.getSession(false);
@@ -92,7 +96,9 @@ public class FriendsServlet extends HttpServlet {
         }else if(currentAction.equals("challenge_monster")){
             Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));
             this.challengeMonster(session, friendsMonsterID);
-            }
+        } else if(currentAction.equals("purchase")){            
+            this.buyMonster(request, user);
+        }
         
         user = personDOA.getPersonByID(user.getId());
         session.setAttribute("user", user);
@@ -120,18 +126,12 @@ public class FriendsServlet extends HttpServlet {
     private HttpServletRequest sendRequest(HttpServletRequest request, Person user ){
         String friendsEmail = request.getParameter("requestEmail");
             if(checkIfExist(friendsEmail) && !(user.getEmail().equalsIgnoreCase(friendsEmail))){
-                
                 Person friend = personDOA.getPersonByEmail(friendsEmail);
-                
                 friend.addFriendRequest(user.getEmail());
-
                 personDOA.addFriendRequest(friend, user.getEmail());
-         
-            
             }else{
                 request.setAttribute("message", "Friend doesn't exist.");               
             }
-            
             return request;
     }
     
@@ -176,7 +176,15 @@ public class FriendsServlet extends HttpServlet {
      }
      
      private void buyMonster(HttpServletRequest request, Person user){
-         
+         Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));
+         Monster m = monsterDOA.getMonsterById(friendsMonsterID);
+         Person seller;
+         seller = personDOA.getPersonByEmail(m.getOwnerID());
+         seller.setMoney(seller.getMoney()+m.getSaleOffer());
+         m.setOwner(user.getEmail());         
+         user.setMoney(user.getMoney() - m.getSaleOffer());
+         m.setSaleOffer(0);
+         monsterDOA.updateMonstersInfo(m);
      }
     
     /**
