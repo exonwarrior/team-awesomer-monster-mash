@@ -20,14 +20,12 @@
                 document.getElementById("sendFriendRequest").value = email;
                 document.forms["friends form"].submit();
             }
-            function acceptreq(){
-                var email = document.getElementById('accept_decline').value;
+            function acceptreq(email){               
                 document.getElementById("current_action").value = "accept_request";
                 document.getElementById("acceptFriendRequest").value = email;
                 document.forms["friends form"].submit();
             } 
-            function declinereq(){
-                var email = document.getElementById('accept_decline').value;
+            function declinereq(email){               
                 document.getElementById("current_action").value = "decline_request";
                 document.getElementById("declineFriendRequest").value = email;
                 document.forms["friends form"].submit();
@@ -56,10 +54,11 @@
                 </tr>
                 <% if (friends != null) {
                         for (Person friend : friends) {%>
-                <tr>
-                    <td><%=friend.getName()%></td>
-                    <td><%=friend.getEmail()%></td>
-                </tr>
+                            <tr>
+                                <td><%=friend.getName()%></td>
+                                <td><%=friend.getEmail()%></td>
+                                <td><input type="submit" name="challenge" onclick="challenge(<%=friend.getEmail()%>);" value="challenge to a fight" /></td>
+                            </tr>
                 <%}
                     }%>
             </table>
@@ -77,6 +76,8 @@
                 <tr>
                     <td><%=req.getName()%></td>
                     <td><%=req.getEmail()%></td>
+                    <td><input type="submit" name="acceptFriend" onclick="acceptreq(<%=req.getEmail()%>);" value="Accept friend request" /></td>
+                    <td><input type="submit" name="declineFriend" onclick="declinereq(<%=req.getEmail()%>);" value="Decline friend request" /></td>
                 </tr>
                 <%}
                     }%>
@@ -84,10 +85,7 @@
             <p>Send Friend request:</p>
             Friends Email: <input type="text" id="sendrequest" name="email" />
             <input type="submit" name="reqButton" onclick="sendreq();" value="Send friend request" />
-            <p>Accept/Decline Friends:</p>
-            Friends Email: <input type="text" id="accept_decline" name="emailToAccOrDel" />
-            <input type="submit" name="acceptFriend" onclick="acceptreq();" value="Accept friend request" />
-            <input type="submit" name="declineFriend" onclick="declinereq();" value="Decline friend request" />
+            
         </form>
     </body>		
 </html>

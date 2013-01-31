@@ -35,6 +35,7 @@ public class Person implements Serializable {
     public ArrayList<Fight> getFightChallenges(){
         ArrayList<Fight> challenges = new ArrayList<Fight>();
         
+        
         for(Fight fight: fights){
             if(fight.getChallenger().getId().equals(this.id)){
                 challenges.add(fight);
@@ -47,11 +48,14 @@ public class Person implements Serializable {
     public ArrayList<Fight> getFightOffers(){
         ArrayList<Fight> offers = new ArrayList<Fight>();
         
-        for(Fight fight: fights){
+        if(fights != null){
+          for(Fight fight: fights){
             if(fight.getOpponent().getId().equals(this.id)){
                 offers.add(fight);
             }
+         }  
         }
+        
         
         return offers;
     }
@@ -99,6 +103,7 @@ public class Person implements Serializable {
         this.friends = new ArrayList<String>();
         this.friendRequests = new ArrayList<String>();
         this.monsters = new ArrayList<String>();
+        this.fights = new ArrayList<Fight>();
     }
     
     
