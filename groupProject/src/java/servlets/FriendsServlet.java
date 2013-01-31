@@ -108,7 +108,8 @@ public class FriendsServlet extends HttpServlet {
                 request.setAttribute("message", "Friend doesn't exist.");               
             } 
         }
-        
+     
+        session.setAttribute("requestList", personDOA.getPersonsFriendRequests(user) );
         session.setAttribute("friends", personDOA.getPersonsFriends(user) );
         request.getRequestDispatcher("/friends.jsp").forward(request, response);
     }

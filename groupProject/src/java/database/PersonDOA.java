@@ -191,7 +191,7 @@ public class PersonDOA {
     //TODO 
     public ArrayList<Person> getPersonsFriends(Person p) {
         ArrayList<Person> list = new ArrayList<Person>();
-        if (!p.getAllFriends().isEmpty()) {
+        if (!(p.getAllFriends().isEmpty())) {
             for (Person friend : getAllPeople()) {
                 for (String person : p.getAllFriends()) {
                     if (friend.getEmail().equals(person)) {
@@ -204,6 +204,21 @@ public class PersonDOA {
         return list;
     }
 
+    public ArrayList<Person> getPersonsFriendRequests(Person p) {
+        ArrayList<Person> list = new ArrayList<Person>();
+        if (!(p.getAllFriendRequests().isEmpty())) {
+            for (Person friend : getAllPeople()) {
+                for (String person : p.getAllFriendRequests()) {
+                    if (friend.getEmail().equals(person)) {
+                        list.add(friend);
+                    }
+                }
+            }
+
+        }
+        return list;
+    }
+   
     public ArrayList<Monster> getPersonsMonsters(Person p) {
         monsterDOA = new MonsterDOA();
 
