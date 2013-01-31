@@ -59,6 +59,30 @@ public class PersonDOA {
             }
         }
     }
+    /**
+     * Updates the entity held within the database to 
+     * equal the instance person put in.
+     * @param person Latest instance of the person
+     */
+    public void updatePersonInfo(Person person){
+        emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb"); 
+        em = emf.createEntityManager();
+        
+        Person dbPerson = em.find(Person.class, person.getId());
+        
+        try{
+             em.getTransaction().begin();
+             em.remove(dbPerson);
+             em.getTransaction().commit();
+             
+             em.getTransaction().begin();
+             em.persist(person);
+             em.getTransaction().commit();
+        }
+        finally{
+             em.close();
+        } 
+    }
 
     public void addFriendRequest(Person person, String email) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
@@ -116,19 +140,36 @@ public class PersonDOA {
         }
     }
     
-    private List<Person> getAllPeople() {
+    private ArrayList<Person> getAllPeople() {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
         em = emf.createEntityManager();
-        List<Person> list;
+        ArrayList<Person> list = new ArrayList<Person>();
         try {
             em.getTransaction().begin();
             TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);
-            list = query.getResultList();
+            list.addAll(query.getResultList()) ;
             em.getTransaction().commit();
         } finally {
             em.close();
         }
+        list = getPeoplesArrays(list);
         return list;
+    }
+    
+    public ArrayList<Person> getPeoplesArrays(ArrayList<Person> people){
+        ArrayList<Person> list = new ArrayList<Person>();
+        for(Person p : people){
+            p = getPersonsArrays(p);
+            list.add(p);
+        }
+        return list;
+    }
+    
+    public Person getPersonsArrays(Person p){
+        emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
+        em = emf.createEntityManager();
+        Person dbPerson = em.find(Person.class, p.getId());
+        return dbPerson;
     }
 
 //    public boolean doesExist(String email){
@@ -143,7 +184,7 @@ public class PersonDOA {
 //    }
     public boolean lookForEmail(String email) {
         boolean answer = false;
-        List<Person> list = this.getAllPeople();
+        ArrayList<Person> list = this.getAllPeople();
         for (Person p : list) {
             if (p.getEmail() == null ? email == null : p.getEmail().equals(email)) {
                 answer = true;
@@ -153,22 +194,15 @@ public class PersonDOA {
     }
 
     public Person getPersonByEmail(String email) {
-        emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
-        em = emf.createEntityManager();
+        ArrayList<Person> people = getAllPeople();
         Person p = null;
-        try {
-            em.getTransaction().begin();
-            TypedQuery<Person> query = em.createQuery(
-                    "SELECT p FROM Person AS p WHERE p.email = :email", Person.class)
-                    .setParameter("email", email);
-            p = query.getSingleResult();
-            em.getTransaction().commit();
-
-        } finally {
-            em.close();
+        for(Person person: people){
+            if(person.getEmail().equalsIgnoreCase(email)){
+                p = person;
+            }
         }
         return p;
-        //return me;
+        
     }
     
     public boolean checkFriendRequestList(Person p, String email) {

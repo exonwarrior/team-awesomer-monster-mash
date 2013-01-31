@@ -116,7 +116,6 @@ public class Person implements Serializable {
         this.activity.add(active);
     }
     public void addFriendRequest(String email){
-        System.out.println(email);
         this.friendRequests.add(email);
     }
     public void removeFriendRequest(String email){

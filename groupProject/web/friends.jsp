@@ -43,7 +43,7 @@
         <input type="hidden" id="acceptFriendRequest" name="acceptFriendRequest" />
         <input type="hidden" id="declineFriendRequest" name="declineFriendRequest" />
             <table name="friend" border="1">	
-                <% ArrayList<Person> friends = (ArrayList<Person>) request.getAttribute("friends");%>
+                <% ArrayList<Person> friends = (ArrayList<Person>) session.getAttribute("friends");%>
                 <tr>
                     <th>Friend Name</th>
                     <th>Email</th>
@@ -58,7 +58,7 @@
                     }%>
             </table>
             <table name="friendRequestList" border="1">	
-                <% ArrayList<Person> friendRequests = (ArrayList<Person>) request.getAttribute("requestList");%>
+                <% ArrayList<Person> friendRequests = (ArrayList<Person>) session.getAttribute("requestList");%>
                 <tr>
                     <th>Friend Name</th>
                     <th>Email</th>
