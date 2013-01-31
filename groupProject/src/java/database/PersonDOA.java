@@ -87,6 +87,7 @@ public class PersonDOA {
             em.close();
         }
     }
+    
     private List<Person> getAllPeople() {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
         em = emf.createEntityManager();
@@ -195,10 +196,10 @@ public class PersonDOA {
         return person;
     }
     
-    public ArrayList<Fight> updateFights(ArrayList<Fight> fights){
+    public Person updateFights(Person person){
         Long opp, chall, oppM, challM;
         
-        for(Fight fight:fights){
+        for(Fight fight:person.getAllFights()){
             
             opp = fight.getOpponent().getId();
             fight.setOpponent(getPersonByID(opp));
@@ -213,7 +214,7 @@ public class PersonDOA {
             fight.setChallMonster(monsterDOA.getMonsterById(challM));   
         }
         
-        return fights;
+        return person;
     }
     
 }

@@ -56,6 +56,9 @@ public class Person implements Serializable {
         return offers;
     }
     
+    public ArrayList<Fight> getAllFights(){
+        return this.fights;
+    }
     
     public void addFightOffer(Person opponent, Monster oppMonster, Monster challMonster){
         this.fights.add(new Fight(this,opponent, challMonster,oppMonster));
@@ -72,6 +75,15 @@ public class Person implements Serializable {
                 this.fights.remove(fight);
             }
         }
+    }
+    
+    public Fight getFightByID(String id){
+        for(Fight fight: this.fights){
+            if(fight.getId().equals(id)){
+                return fight;
+            }
+        }
+        return null;
     }
     
 

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import types.Fight;
 
 /**
  *
@@ -59,11 +60,11 @@ public class MonsterFightServlet extends HttpServlet {
     public void declineFight(Person friend) {
         
     }
-    public void fight(long myMonsterID, long friendMonsterID) {
+    public void fight(Fight fight) {
         Monster m1;
         Monster m2;
-        m1 = monsterDOA.getMonsterById(myMonsterID);
-        m2 = monsterDOA.getMonsterById(friendMonsterID);
+        m1 = fight.getOppMonster();
+        m2 = fight.getChallMonster();
 		
 	while((m1.getCurrentHealth()!=0)&&(m2.getCurrentHealth()!=0)){
             Random random = new Random();
@@ -87,6 +88,8 @@ public class MonsterFightServlet extends HttpServlet {
                 System.out.println("Your monster took a damage! Its health is now "+m1.getCurrentHealth());
             }
 	}
+        monsterDOA.updateMonstersInfo(m2);
+        monsterDOA.updateMonstersInfo(m1);
         
     }
     
@@ -128,6 +131,7 @@ public class MonsterFightServlet extends HttpServlet {
         Person user = (Person) session.getAttribute("user");
         currentAction  = request.getParameter("current action");
         Long id;
+        user = personDOA.updateFights(user);
         
         if(currentAction.equals("personStats")){
             id = Long.parseLong(request.getParameter("current person id"));
@@ -138,7 +142,10 @@ public class MonsterFightServlet extends HttpServlet {
             session.setAttribute("current monster", monsterDOA.getMonsterById(id));
         }
         else if(currentAction.equals("fight")){
-            //personDOA
+            String fightID = (String)  request.getAttribute("current fight id");
+            fight(user.getFightByID(fightID));
+            
+            
         }
         
         request.setAttribute("offers", user.getFightOffers() );

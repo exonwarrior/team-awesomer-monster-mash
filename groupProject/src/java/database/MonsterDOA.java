@@ -123,8 +123,11 @@ public class MonsterDOA {
         
         try{
              em.getTransaction().begin();
-             dbMonster.setBreedOffer(monster.getBreedOffer()); 
-             dbMonster.setSaleOffer(monster.getSaleOffer());
+             em.remove(dbMonster);
+             em.getTransaction().commit();
+             
+             em.getTransaction().begin();
+             em.persist(monster);
              em.getTransaction().commit();
         }
         finally{
