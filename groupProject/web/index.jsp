@@ -23,9 +23,11 @@
         </div>
     </head>
     <body>
-If your browser doesn't automatically redirect within a few seconds, 
-you may want to go to 
-<a href="/MonsterGame/login.jsp">the login page</a> 
-manually.
-</body>
+        <p>
+            If your browser doesn't automatically redirect within a few seconds, 
+            you may want to go to 
+            <a href="/MonsterGame/login.jsp">the login page</a> 
+            manually.
+        </p>
+    </body>
 </html>

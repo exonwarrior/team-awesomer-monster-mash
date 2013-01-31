@@ -104,6 +104,7 @@ public class Person implements Serializable {
         this.friendRequests = new ArrayList<String>();
         this.monsters = new ArrayList<String>();
         this.fights = new ArrayList<Fight>();
+        this.money = 1000;
     }
     
     

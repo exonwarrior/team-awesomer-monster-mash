@@ -185,14 +185,18 @@ public class MonsterDOA {
     
     public void checkLife(Monster m){
         m.setLifeSpan((int)(m.getLifeSpan()-((System.currentTimeMillis() / 1000L)-m.getBirthDate())));
+        if(m.getLifeSpan()<0){
+            remove(m);
+        }
+    }
+    
+    public void remove(Monster m){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb"); 
         em = emf.createEntityManager();
-        if(m.getLifeSpan()<0){
-            m = em.find(Monster.class, m.getId());
-            em.getTransaction().begin();
-            em.remove(m);
-            em.getTransaction().commit();
-        }
+        m = em.find(Monster.class, m.getId());
+        em.getTransaction().begin();
+        em.remove(m);
+        em.getTransaction().commit();
     }
 
     // Add business logic below. (Right-click in editor and choose

@@ -81,15 +81,21 @@ public class MonsterFightServlet extends HttpServlet {
             }
             if((attack1+m1.getCurrentStrength())>m2.getCurrentDefence()){
                 m2.setCurrentHealth(m2.getCurrentHealth()-(m1.getCurrentStrength()/4));
-                System.out.println("Friend monster took a damage! Its health is now "+m2.getCurrentHealth());
+                System.out.println("Friend monster took "+(m2.getCurrentHealth()-(m1.getCurrentStrength()/4))+"damage! Its health is now "+m2.getCurrentHealth());
             }
             if((attack2+m2.getCurrentStrength())>m1.getCurrentDefence()){
                 m1.setCurrentHealth(m1.getCurrentHealth()-(m2.getCurrentStrength()/4));
-                System.out.println("Your monster took a damage! Its health is now "+m1.getCurrentHealth());
+                System.out.println("Your monster took "+(m1.getCurrentHealth()-(m2.getCurrentStrength()/4))+" damage! Its health is now "+m1.getCurrentHealth());
             }
 	}
-        monsterDOA.updateMonstersInfo(m2);
         monsterDOA.updateMonstersInfo(m1);
+        monsterDOA.updateMonstersInfo(m2);
+        if(monsterDOA.getMonsterById(m2.getId()).getCurrentHealth()<0){
+            monsterDOA.remove(m2);
+        }        
+        if(monsterDOA.getMonsterById(m1.getId()).getCurrentHealth()<0){
+            monsterDOA.remove(m1);
+        }
         
     }
     
