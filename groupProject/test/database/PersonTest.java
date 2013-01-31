@@ -252,8 +252,8 @@ public class PersonTest {
         System.out.println("getAllMonsters");
         Person instance = new Person();
         ArrayList expResult = null;
-        ArrayList result = instance.getAllMonsters();
-        assertEquals(expResult, result);
+       // ArrayList result = instance.getAllMonsters();
+     //   assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -266,7 +266,7 @@ public class PersonTest {
         System.out.println("addMonster");
         String id = "";
         Person instance = new Person();
-        instance.addMonster(id);
+       // instance.addMonster(id);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

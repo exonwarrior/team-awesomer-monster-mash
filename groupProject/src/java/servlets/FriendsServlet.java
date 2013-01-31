@@ -129,6 +129,7 @@ public class FriendsServlet extends HttpServlet {
                 Person friend = personDOA.getPersonByEmail(friendsEmail);
                 friend.addFriendRequest(user.getEmail());
                 personDOA.addFriendRequest(friend, user.getEmail());
+                request.setAttribute("message", "Friend Request has been successfully sent.");
             }else{
                 request.setAttribute("message", "Friend doesn't exist.");               
             }

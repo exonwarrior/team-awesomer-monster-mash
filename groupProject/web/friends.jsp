@@ -108,6 +108,10 @@
                     }%>
             </table>
             <p>Send Friend request:</p>
+              <% String errorMess = (String) request.getAttribute("message");
+              if(errorMess != null){%>
+              <p><%=errorMess %></p><%   
+              } %> 
             Friends Email: <input type="text" id="sendrequest" name="email" />
             <input type="submit" name="reqButton" onclick="sendreq();" value="Send friend request" />
             
