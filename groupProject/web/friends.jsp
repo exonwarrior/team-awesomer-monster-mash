@@ -52,7 +52,7 @@
     </head>
     <body>
         <ul id="list-nav">            
-            <li><a href="./MyMonsters.jsp">My Monsters</a></li>
+            <li><a href="./myMonsters.jsp">My Monsters</a></li>
             <li><a href="./monsterFights.jsp">Monster Fights</a></li>
             <li><a href="./login.jsp">Log Out</a></li>
         </ul>

@@ -111,7 +111,7 @@ public class MyMonsterServlet extends HttpServlet {
                     monsterDOA.checkLife(monster);
                 }
         }
-        request.getRequestDispatcher("/MyMonsters.jsp").forward(request, response);
+        request.getRequestDispatcher("/myMonsters.jsp").forward(request, response);
     
     }
 

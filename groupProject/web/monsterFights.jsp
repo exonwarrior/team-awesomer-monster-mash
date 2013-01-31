@@ -47,7 +47,7 @@
     
     <body>
         <ul id="list-nav">
-            <li><a href="./MyMonsters.jsp">My Monsters</a></li>
+            <li><a href="./myMonsters.jsp">My Monsters</a></li>
             <li><a href="./friends.jsp">Friends</a></li>
             <li><a href="./login.jsp">Log Out</a></li>
         </ul>
