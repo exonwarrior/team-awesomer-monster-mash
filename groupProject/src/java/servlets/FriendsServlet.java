@@ -90,10 +90,9 @@ public class FriendsServlet extends HttpServlet {
             Person currentUser = personDOA.getPersonByEmail(user.getEmail());
             Person friend = personDOA.getPersonByEmail(friendsEmail);
             if(personDOA.checkFriendRequestList(currentUser, friendsEmail)){
-                System.out.println(" jestem tu?");
                 personDOA.addFriend(currentUser, friendsEmail);
-                personDOA.deleteFriendRequest(currentUser, friendsEmail);
                 personDOA.addFriend(friend, friendsEmail);
+                personDOA.deleteFriendRequest(currentUser, friendsEmail);
             
             }else{
                 request.setAttribute("message", "Friend doesn't exist.");               

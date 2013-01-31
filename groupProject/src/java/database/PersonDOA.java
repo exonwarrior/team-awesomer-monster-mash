@@ -171,7 +171,6 @@ public class PersonDOA {
         //return me;
     }
     
-    //persona z bazy danych!!
     public boolean checkFriendRequestList(Person p, String email) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
         em = emf.createEntityManager();
