@@ -126,6 +126,7 @@ public class MonsterDOA {
              dbMonster.setBreedOffer(monster.getBreedOffer());
              dbMonster.setSaleOffer(monster.getSaleOffer());
              dbMonster.setCurrentHealth(monster.getBaseHealth());
+             dbMonster.setOwner(monster.getOwnerID());
              em.getTransaction().commit();
         }
         finally{

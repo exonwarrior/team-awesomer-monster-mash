@@ -25,11 +25,18 @@
                 }
                 
                 function saleOffer(id){
+                    var money = document.getElementById("price").value;
+                    var moneyReg = /([0-9]{1,8})/;
                     
-                    document.getElementById("sale id").value= id;
-                    document.getElementById("current_action").value = "sale";
-                    document.getElementById("current monster id").value =  id;
-                    document.forms["monster form"].submit();
+                    if(!moneyReg.test(money) || money<=0){
+                        alert("Not a valid price!");
+                    }
+                    else {
+                        document.getElementById("sale id").value= id;
+                        document.getElementById("current_action").value = "sale";
+                        document.getElementById("current monster id").value =  id;
+                        document.forms["monster form"].submit();
+                    }
                 }
                 function changeMonster(id){
                     document.getElementById("current_action").value = "changeMonster";
@@ -88,7 +95,7 @@
                 <input type="submit" name="breed" onclick="breedOffer(<%=currentMonster.getId()%>);" value="breed" /> <br />
                 
                 Sale Offer:     <%=currentMonster.getSaleOffer()%>
-                <input type="text" placeholder="selling price" name="sale price" />
+                <input type="text" id="price" placeholder="selling price" name="sale price" />
                 <input type="submit" name="sale"  onclick="saleOffer(<%=currentMonster.getId()%>);" value="sale" />
 
             <%}%>

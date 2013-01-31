@@ -97,7 +97,7 @@ public class FriendsServlet extends HttpServlet {
             Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));
             this.challengeMonster(session, friendsMonsterID);
         } else if(currentAction.equals("purchase")){            
-            this.buyMonster(request, user);
+            request = this.buyMonster(request, user);
         }
         
         user = personDOA.getPersonByID(user.getId());
@@ -176,16 +176,27 @@ public class FriendsServlet extends HttpServlet {
          
      }
      
-     private void buyMonster(HttpServletRequest request, Person user){
+     private HttpServletRequest buyMonster(HttpServletRequest request, Person user){
+         HttpSession session = request.getSession(false);
          Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));
          Monster m = monsterDOA.getMonsterById(friendsMonsterID);
          Person seller;
          seller = personDOA.getPersonByEmail(m.getOwnerID());
-         seller.setMoney(seller.getMoney()+m.getSaleOffer());
-         m.setOwner(user.getEmail());         
-         user.setMoney(user.getMoney() - m.getSaleOffer());
-         m.setSaleOffer(0);
-         monsterDOA.updateMonstersInfo(m);
+         if(user.getMoney()<m.getSaleOffer()){
+             request.setAttribute("error", "Not enough funds! >:(");
+         }
+         else {
+            seller.setMoney(seller.getMoney()+m.getSaleOffer());
+            m.setOwner(user.getEmail());
+            user.setMoney(user.getMoney() - m.getSaleOffer());
+            m.setSaleOffer(0);
+            monsterDOA.updateMonstersInfo(m);
+            personDOA.updatePersonsInfo(seller);
+            personDOA.updatePersonsInfo(user);
+            session.setAttribute("friendsMonsters", personDOA.getPersonsMonsters(seller));
+         }
+         
+         return request;
      }
     
     /**

@@ -47,6 +47,12 @@
                 document.getElementById("friendsMonsterID").value = id;
                 document.forms["friends form"].submit();
             }
+            function warning(error){
+                if(error!=null && error.toString().length > 2 ){
+                    alert(error);
+                    document.getElementById("error").value = null;
+                }
+            }
             -->
         </script>
         <div id="header">
@@ -55,7 +61,11 @@
             </a>
         </div>
     </head>
-    <body>
+    <body <%if(request.getParameter("error") != null){
+        String error = (String) request.getParameter("error");%>
+        onload="warning('<%=error%>')"
+        <%}%>>
+        
         <ul id="list-nav">            
             <li><a href="./myMonsters.jsp">My Monsters</a></li>
             <li><a href="./monsterFights.jsp">Monster Fights</a></li>
@@ -67,7 +77,8 @@
         <form method="post" action="myFriends" id="friends form">
         <input type="hidden" id="current_action" name="current_action" />
         <input type="hidden" id="requestEmail" name="requestEmail" />
-        <input type="hidden" id="friendsMosnterID" name="friendsMonsterID" />
+        <input type="hidden" id="friendsMonsterID" name="friendsMonsterID" />
+        <input type="hidden" id="error" name="error" />
             <table name="friend" border="1">	
                 <% ArrayList<Person> friends = (ArrayList<Person>) session.getAttribute("friends");%>
                 <tr>
