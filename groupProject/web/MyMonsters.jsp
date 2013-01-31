@@ -36,6 +36,10 @@
                     document.forms["monster form"].submit();
                 }
                 
+                function refresh(){
+                    document.forms
+                }
+                
                 -->
             </script>
     </head>

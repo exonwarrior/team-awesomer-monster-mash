@@ -175,7 +175,7 @@ public class Monster implements Serializable {
          Random random = new Random();
          //this.monsterID = this.id.toString();
          this.birthDate = (int) (System.currentTimeMillis() / 1000L);
-         this.lifespan = 7344000;
+         this.lifespan = 30;
          this.baseStrength = random.nextDouble();
          if(this.baseStrength<0.51){
              this.baseStrength+=0.5;

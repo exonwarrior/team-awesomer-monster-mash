@@ -184,8 +184,9 @@ public class MonsterDOA {
     }
     
     public void checkLife(Monster m){
-        m.setLifeSpan((int)(m.getLifeSpan()-((System.currentTimeMillis() / 1000L)+m.getBirthDate())));
-        
+        m.setLifeSpan((int)(m.getLifeSpan()-((System.currentTimeMillis() / 1000L)-m.getBirthDate())));
+        emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb"); 
+        em = emf.createEntityManager();
         if(m.getLifeSpan()<0){
             m = em.find(Monster.class, m.getId());
             em.getTransaction().begin();

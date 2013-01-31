@@ -10,6 +10,7 @@ import database.Person;
 import database.PersonDOA;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -104,6 +105,12 @@ public class MyMonsterServlet extends HttpServlet {
         }
         
         session.setAttribute("monsters", personDOA.getPersonsMonsters(user) );
+        ArrayList<Monster> monsters = (ArrayList<Monster>)session.getAttribute("monsters");
+        if(monsters != null){ 
+                for(Monster monster : monsters){                     
+                    monsterDOA.checkLife(monster);
+                }
+        }
         request.getRequestDispatcher("/MyMonsters.jsp").forward(request, response);
     
     }
@@ -140,6 +147,6 @@ public class MyMonsterServlet extends HttpServlet {
     
     public void setCurrentMonster(HttpSession session, Long id){
         monsterDOA = new MonsterDOA();
-        session.setAttribute("current monster", monsterDOA.getMonsterById(id));
+        session.setAttribute("current monster", monsterDOA.getMonsterById(id));        
     }
 }
