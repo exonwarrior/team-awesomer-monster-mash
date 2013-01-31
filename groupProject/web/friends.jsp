@@ -36,7 +36,9 @@
         </script>
     </head>
     <body>
-        <h1>My Friends</h1>
+        <%Person user = (Person) session.getAttribute("user"); %>
+        <h1>My Friends  <%=user.getName() %></h1>
+        
         <form method="post" action="myFriends" id="friends form">
         <input type="hidden" id="current_action" name="current_action" />
         <input type="hidden" id="sendFriendRequest" name="sendFriendRequest" />
@@ -44,6 +46,10 @@
         <input type="hidden" id="declineFriendRequest" name="declineFriendRequest" />
             <table name="friend" border="1">	
                 <% ArrayList<Person> friends = (ArrayList<Person>) session.getAttribute("friends");%>
+                <tr>
+                    <th>Your Friends </th>                  
+                </tr>
+                
                 <tr>
                     <th>Friend Name</th>
                     <th>Email</th>

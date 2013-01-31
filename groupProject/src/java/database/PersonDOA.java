@@ -59,30 +59,6 @@ public class PersonDOA {
             }
         }
     }
-    /**
-     * Updates the entity held within the database to 
-     * equal the instance person put in.
-     * @param person Latest instance of the person
-     */
-    public void updatePersonInfo(Person person){
-        emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb"); 
-        em = emf.createEntityManager();
-        
-        Person dbPerson = em.find(Person.class, person.getId());
-        
-        try{
-             em.getTransaction().begin();
-             em.remove(dbPerson);
-             em.getTransaction().commit();
-             
-             em.getTransaction().begin();
-             em.persist(person);
-             em.getTransaction().commit();
-        }
-        finally{
-             em.close();
-        } 
-    }
 
     public void addFriendRequest(Person person, String email) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
@@ -97,7 +73,7 @@ public class PersonDOA {
             em.close();
         }
     }
-
+    
     public void deleteFriendRequest(Person person, String email) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
 
@@ -172,16 +148,6 @@ public class PersonDOA {
         return dbPerson;
     }
 
-//    public boolean doesExist(String email){
-//        boolean answer = false;
-//        List<Person> list = this.getAllPeople();
-//        for(Person p: list){
-//            if(p.getEmail() == null ? email == null : p.getEmail().equals(email)){
-//                answer = true;
-//            }
-//        }
-//        return answer;
-//    }
     public boolean lookForEmail(String email) {
         boolean answer = false;
         ArrayList<Person> list = this.getAllPeople();

@@ -80,10 +80,12 @@ public class FriendsServlet extends HttpServlet {
             if(checkIfExist(friendsEmail) && !(user.getEmail().equalsIgnoreCase(friendsEmail))){
                 
                 Person friend = personDOA.getPersonByEmail(friendsEmail);
-
-               //personDOA.updatePersonsFriendRequests(friend, user.getEmail());
                 
-                friend = personDOA.getPersonByID(friend.getId());
+                friend.addFriendRequest(user.getEmail());
+
+                personDOA.addFriendRequest(friend, user.getEmail());
+                
+                //friend = personDOA.getPersonByID(friend.getId());
 
             
             }else{
@@ -92,14 +94,19 @@ public class FriendsServlet extends HttpServlet {
             
         } else if(currentAction.equals("accept_request")){
             String friendsEmail = request.getParameter("acceptFriendRequest");
-            Person currentUser = personDOA.getPersonByEmail(user.getEmail());
-
-            currentUser = personDOA.getPersonsArrays(currentUser);
-            if(personDOA.checkFriendRequestList(currentUser, friendsEmail)){
-                currentUser.addFriend(friendsEmail);
-                currentUser.removeFriendRequest(friendsEmail);
-                personDOA.updatePersonInfo(currentUser);
+            
+            
+            user = personDOA.getPersonByEmail(user.getEmail());
+            
+            if(personDOA.checkFriendRequestList(user, friendsEmail)){
+                Person friend = personDOA.getPersonByEmail(friendsEmail);
                 
+                personDOA.addFriend(user, friendsEmail);
+                personDOA.deleteFriendRequest(user, friendsEmail);
+                
+                personDOA.addFriend(friend, user.getEmail());
+                
+               
 
             }else{
                 request.setAttribute("message", "Friend doesn't exist.");               
@@ -107,17 +114,21 @@ public class FriendsServlet extends HttpServlet {
             
         }else if(currentAction.equals("decline_request")){
            String friendsEmail = request.getParameter("acceptFriendRequest");
-            Person currentUser = personDOA.getPersonByEmail(user.getEmail());
-            if(personDOA.checkFriendRequestList(currentUser, friendsEmail)){
-                personDOA.deleteFriendRequest(currentUser, friendsEmail);
+            user = personDOA.getPersonByEmail(user.getEmail());
+            if(personDOA.checkFriendRequestList(user, friendsEmail)){
+                
+                personDOA.deleteFriendRequest(user, friendsEmail);
             
             }else{
                 request.setAttribute("message", "Friend doesn't exist.");               
             } 
         }
+        
+        user = personDOA.getPersonByID(user.getId());
+        session.setAttribute("user", user);
 
-        //session.setAttribute("requestList", user.getAllFriendRequests());
-        //session.setAttribute("friends", personDOA.getPersonsFriends(user) );
+        session.setAttribute("requestList", personDOA.getPersonsFriendRequests(user));
+        session.setAttribute("friends", personDOA.getPersonsFriends(user) );
 
         request.getRequestDispatcher("/friends.jsp").forward(request, response);
     }
