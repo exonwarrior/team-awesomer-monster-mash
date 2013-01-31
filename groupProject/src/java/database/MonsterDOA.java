@@ -65,7 +65,7 @@ public class MonsterDOA {
         return list;
     }
     
-    public boolean doesExit(String name){
+    public boolean doesExist(String name){
         boolean answer = false;
         List<Monster> list = this.getAllMonsters();
         for(Monster m: list){

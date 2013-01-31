@@ -60,7 +60,7 @@ public class PersonDOA {
         }
     }
 
-    public void updatePersonsFriendRequests(Person person, String email) {
+    public void addFriendRequest(Person person, String email) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
 
         em = emf.createEntityManager();
@@ -74,14 +74,42 @@ public class PersonDOA {
         }
     }
 
-    public void updatePersonsFriendList(Person person) {
+    public void deleteFriendRequest(Person person, String email) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
 
         em = emf.createEntityManager();
         Person dbPerson = em.find(Person.class, person.getId());
         try {
             em.getTransaction().begin();
-            dbPerson.setFriends(person.getAllFriends());
+            dbPerson.removeFriendRequest(email);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+    
+    public void addFriend(Person person, String email) {
+        emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
+
+        em = emf.createEntityManager();
+        Person dbPerson = em.find(Person.class, person.getId());
+        try {
+            em.getTransaction().begin();
+            dbPerson.addFriend(email);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+    
+    public void deleteFriend(Person person, String email) {
+        emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
+
+        em = emf.createEntityManager();
+        Person dbPerson = em.find(Person.class, person.getId());
+        try {
+            em.getTransaction().begin();
+            dbPerson.removeFriend(email);
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -142,16 +170,22 @@ public class PersonDOA {
         return p;
         //return me;
     }
-
+    
+    //persona z bazy danych!!
     public boolean checkFriendRequestList(Person p, String email) {
-        boolean answer = false;
-        if (!p.getAllFriendRequests().isEmpty()) {
-            for (String person : p.getAllFriendRequests()) {
+        emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
+        em = emf.createEntityManager();
+        
+        boolean answer = false;      
+        Person dbPerson = em.find(Person.class, p.getId());
+        if (!(dbPerson.getAllFriendRequests().isEmpty())) {
+            for (String person : dbPerson.getAllFriendRequests()) {
                 if (person.equals(email)) {
                     answer = true;
                 }
             }
         }
+        em.close();
         return answer;
     }
 
@@ -166,10 +200,9 @@ public class PersonDOA {
                     }
                 }
             }
-            return list;
-        } else {
-            return null;
+
         }
+        return list;
     }
 
     public ArrayList<Monster> getPersonsMonsters(Person p) {
