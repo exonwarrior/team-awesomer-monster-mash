@@ -33,7 +33,7 @@
 <hr>
 
 <div class="container">
-  <section id="content">
+  <section id="registerContent">
 		<form action="">
 <h1>Registration</h1><br><br><br>
 <input type="text" placeholder="First Name" name="first_name" size="30" required="" /><br><br>
