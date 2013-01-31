@@ -66,6 +66,9 @@
             <table name="friendRequestList" border="1">	
                 <% ArrayList<Person> friendRequests = (ArrayList<Person>) session.getAttribute("requestList");%>
                 <tr>
+                    <th>Friend Requests</th>
+                </tr>
+                <tr>
                     <th>Friend Name</th>
                     <th>Email</th>
                 </tr>

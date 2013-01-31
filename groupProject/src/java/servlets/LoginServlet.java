@@ -52,6 +52,8 @@ public class LoginServlet extends HttpServlet {
                 
             session.setAttribute("user", p);            
             session.setAttribute("monsters", personDOA.getPersonsMonsters(p));
+            session.setAttribute("friends", personDOA.getPersonsFriends(p));
+            session.setAttribute("requestList", personDOA.getPersonsFriendRequests(p));
             request.getRequestDispatcher("/MyMonsters.jsp").forward(request, response);
             
         }
