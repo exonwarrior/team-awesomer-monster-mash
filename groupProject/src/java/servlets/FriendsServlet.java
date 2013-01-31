@@ -77,9 +77,14 @@ public class FriendsServlet extends HttpServlet {
         
         if(currentAction.equals("send_request")){
             String friendsEmail = request.getParameter("sendFriendRequest");
-            if(checkIfExist(friendsEmail) && !(user.getEmail().equals(friendsEmail))){
+            if(checkIfExist(friendsEmail) && !(user.getEmail().equalsIgnoreCase(friendsEmail))){
+                
                 Person friend = personDOA.getPersonByEmail(friendsEmail);
-                personDOA.addFriendRequest(friend, user.getEmail());
+
+               //personDOA.updatePersonsFriendRequests(friend, user.getEmail());
+                
+                friend = personDOA.getPersonByID(friend.getId());
+
             
             }else{
                 request.setAttribute("message", "Friend doesn't exist.");               
@@ -88,12 +93,14 @@ public class FriendsServlet extends HttpServlet {
         } else if(currentAction.equals("accept_request")){
             String friendsEmail = request.getParameter("acceptFriendRequest");
             Person currentUser = personDOA.getPersonByEmail(user.getEmail());
-            Person friend = personDOA.getPersonByEmail(friendsEmail);
+
+            currentUser = personDOA.getPersonsArrays(currentUser);
             if(personDOA.checkFriendRequestList(currentUser, friendsEmail)){
-                personDOA.addFriend(currentUser, friendsEmail);
-                personDOA.addFriend(friend, currentUser.getEmail());
-                personDOA.deleteFriendRequest(currentUser, friendsEmail);
-            
+                currentUser.addFriend(friendsEmail);
+                currentUser.removeFriendRequest(friendsEmail);
+                personDOA.updatePersonInfo(currentUser);
+                
+
             }else{
                 request.setAttribute("message", "Friend doesn't exist.");               
             }
@@ -108,9 +115,10 @@ public class FriendsServlet extends HttpServlet {
                 request.setAttribute("message", "Friend doesn't exist.");               
             } 
         }
-     
-        session.setAttribute("requestList", personDOA.getPersonsFriendRequests(user) );
-        session.setAttribute("friends", personDOA.getPersonsFriends(user) );
+
+        //session.setAttribute("requestList", user.getAllFriendRequests());
+        //session.setAttribute("friends", personDOA.getPersonsFriends(user) );
+
         request.getRequestDispatcher("/friends.jsp").forward(request, response);
     }
     
