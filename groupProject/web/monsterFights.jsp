@@ -79,7 +79,7 @@
     <%DecimalFormat df = new DecimalFormat("#.##");%>
 
     <table name="offers" border="1">
-        <% ArrayList<Fight> offers = (ArrayList<Fight>) request.getAttribute("offers");%>
+        <% ArrayList<Fight> offers = (ArrayList<Fight>) session.getAttribute("offers");%>
         <tr>
             <th name="tableTitle">Challenges from other players</th>
         </tr>
@@ -102,7 +102,7 @@
         
     </table>
     <table name="challenges" border="1">
-        <% ArrayList<Fight> challenges = (ArrayList<Fight>) request.getAttribute("challenges");%>
+        <% ArrayList<Fight> challenges = (ArrayList<Fight>) session.getAttribute("challenges");%>
         <tr>
             <th name="tableTitle">Challenges you have issued</th>
         </tr>

@@ -122,13 +122,7 @@ public class MonsterDOA {
         Monster dbMonster = em.find(Monster.class, monster.getId());
         
         try{
-             em.getTransaction().begin();
-             em.remove(dbMonster);
-             em.getTransaction().commit();
-             
-             em.getTransaction().begin();
-             em.persist(monster);
-             em.getTransaction().commit();
+             dbMonster.setCurrentHealth(monster.getBaseHealth());
         }
         finally{
              em.close();
