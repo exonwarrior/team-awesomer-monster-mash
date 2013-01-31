@@ -24,10 +24,10 @@
 <hr>
 
 <div class="container">
-  <section id="content">
+	<section id="outsiderContent">
 		<form action="">
-			<h1>Login</h1>
-			
+			<h1>Login</h1><b><b><b>
+			<div id="loginButtons">
 				<input type="text" placeholder="Username" required="" /> <br><br>
 		
 		
@@ -35,16 +35,17 @@
 
 			
 				<input type="submit" value="Log in" />
-				<a href="register.html">Register</a>
+				<input type="button" value="Register" />
+			</div>
 				<br><br><br><br>
 				<p>Welcome to Monster Mash, a new, fun and exciting online game, please start by logging in, if you are not a member then click on the register
 				button just above. Enjoy :)</p>
 				<b><b>
 				<img alt="Monsters" src="monsters.jpg">
 	</div>
-		</form>
+				</form>
 		
 	</section>
-</div>
+
 </body>
 </html>
