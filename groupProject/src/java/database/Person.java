@@ -31,6 +31,21 @@ public class Person implements Serializable {
     private ArrayList<String> monsters;
     private ArrayList<String> activity;
     
+    public Person(){
+        
+    }
+
+    public Person(String name, String password, String email) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.friends = new ArrayList<String>();
+        this.friendRequests = new ArrayList<String>();
+        this.monsters = new ArrayList<String>();
+        this.fights = new ArrayList<Fight>();
+        this.money = 1000;
+    }
+    
     
     public ArrayList<Fight> getFightChallenges(){
         ArrayList<Fight> challenges = new ArrayList<Fight>();
@@ -89,25 +104,7 @@ public class Person implements Serializable {
         }
         return null;
     }
-    
 
-    
-    
-    public Person(){
-    }
-
-    public Person(String name, String password, String email) {
-        this.name = name;
-        this.password = password;
-        this.email = email;
-        this.friends = new ArrayList<String>();
-        this.friendRequests = new ArrayList<String>();
-        this.monsters = new ArrayList<String>();
-        this.fights = new ArrayList<Fight>();
-        this.money = 1000;
-    }
-    
-    
 //    public ArrayList<String> setFriendRequests(ArrayList<String> updatedRequests){
 //        this.friendRequests = new ArrayList<String>(updatedRequests);
 //        return friendRequests;

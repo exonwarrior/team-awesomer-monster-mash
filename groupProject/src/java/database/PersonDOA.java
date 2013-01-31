@@ -221,7 +221,6 @@ public class PersonDOA {
    
     public ArrayList<Monster> getPersonsMonsters(Person p) {
         monsterDOA = new MonsterDOA();
-
         return monsterDOA.getMonsterByUser(p);
     }
 

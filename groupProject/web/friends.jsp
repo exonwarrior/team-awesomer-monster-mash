@@ -117,12 +117,12 @@
                     Defence:        <%=df.format(currentMonster.getCurrentDefence())%>/<%=df.format(currentMonster.getBaseDefence())%> <br />
                     Health:         <%=df.format(currentMonster.getCurrentHealth())%>/<%=df.format(currentMonster.getBaseHealth())%> <br />
                 
-                    <% if(currentMonster.getBreedOffer() <= 0 && currentMonster.getSaleOffer() <= 0){%>
-                       <input type="submit" name="challengeMonster" onclick="challengeMonster(<%=currentMonster.getId()%>);" value="challenge this monster" /> 
-                    
+                    <% if(currentMonster.getSaleOffer() <= 0){%>
+                       <input type="submit" name="challengeMonster" onclick="challengeMonster(<%=currentMonster.getId()%>);" value="Challenge" />
                     <%}%>
-                    
-                
+                    <% if(currentMonster.getSaleOffer() > 0) { %>
+                        <input type="submit" name="buyMonster" onclick="challengeMonster(<%=currentMonster.getId()%>);" value="Purchase" />
+                    <% } %>
                 </p><% }
             }%>
             

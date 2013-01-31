@@ -7,7 +7,6 @@ package servlets;
 import database.Person;
 import database.PersonDOA;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -170,6 +169,14 @@ public class FriendsServlet extends HttpServlet {
      
      private void challengeMonster(HttpSession session, Long id){
          //Make me workz!!1!
+     }
+     
+     private void breedMonster(HttpServletRequest request, Person user){
+         
+     }
+     
+     private void buyMonster(HttpServletRequest request, Person user){
+         
      }
     
     /**
