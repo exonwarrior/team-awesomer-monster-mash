@@ -8,11 +8,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta http-equiv="refresh" content="0; URL=/MonsterGame/login.jsp">
+        <meta name="keywords" content="automatic redirection">
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <p>Click <a href="login.jsp">here</a> to go to login page</p>
-    </body>
+If your browser doesn't automatically redirect within a few seconds, 
+you may want to go to 
+<a href="/MonsterGame/login.jsp">the login page</a> 
+manually.
+</body>
 </html>
