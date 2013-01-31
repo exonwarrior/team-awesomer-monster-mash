@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("requestList", personDOA.getPersonsFriendRequests(p));
             session.setAttribute("offers", p.getFightOffers() );
             session.setAttribute("challenges", p.getFightChallenges() );
-            request.getRequestDispatcher("/MyMonsters.jsp").forward(request, response);
+            request.getRequestDispatcher("/myMonsters.jsp").forward(request, response);
             
         }
         else{
