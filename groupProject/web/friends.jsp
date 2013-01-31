@@ -10,9 +10,9 @@
 <%@page import="database.Person"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*, servlets.FriendsServlet"%>
-<!DOCTYPE html>
-<html>
-    <head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <link rel="stylesheet" href="style.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Friends</title>
         <script type="text/javascript"><!--
@@ -44,8 +44,18 @@
             }
             -->
         </script>
+        <div id="header">
+            <a href="./home.jsp">
+            <img alt="Monster logo" src="monsterlogo.png">
+            </a>
+        </div>
     </head>
     <body>
+        <ul id="list-nav">            
+            <li><a href="./MyMonsters.jsp">My Monsters</a></li>
+            <li><a href="./monsterFights.jsp">Monster Fights</a></li>
+            <li><a href="./login.jsp">Log Out</a></li>
+        </ul>
         <%Person user = (Person) session.getAttribute("user"); %>
         <h1>My Friends  <%=user.getName() %></h1>
         

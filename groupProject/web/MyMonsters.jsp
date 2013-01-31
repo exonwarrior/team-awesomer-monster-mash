@@ -9,8 +9,9 @@
 <%@page import="database.Monster"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*, servlets.MyMonsterServlet"%>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <link rel="stylesheet" href="style.css" />
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>My Monsters</title>
@@ -44,6 +45,11 @@
             </script>
     </head>
     <body>
+        <ul id="list-nav">            
+            <li><a href="./friends.jsp">Friends</a></li>
+            <li><a href="./monsterFights.jsp">Monster Fights</a></li>
+            <li><a href="./login.jsp">Log Out</a></li>
+        </ul>
         <h1>Monsters</h1>
         <form method="post" action="myMonsters" id="change_monster">
         <input type="hidden" id="current monster id" name="current monster id" />

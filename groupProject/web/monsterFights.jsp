@@ -44,8 +44,8 @@
 
 
 <div id="header">
-<a href="./home.html">
-<img alt="Monster logo" src="monsterLogo.png">
+<a href="./home.jsp">
+<img alt="Monster logo" src="monsterlogo.png">
 </a>
 
 </div>
@@ -55,13 +55,9 @@
 
 
 <ul id="list-nav">
-  
-<li><a href="./marketplace.html">Marketplace</a></li>
-<li><a href="./myMonsters.html">My Monsters</a></li>
-<li><a href="./friends.html">Friends</a></li>
-<li><a href="./monsterFights.html">Monster Fights</a></li>
-<li><a href="./login.html">Log Out</a></li>
-<li><a href="./home.html">Home</a></li>
+<li><a href="./MyMonsters.jsp">My Monsters</a></li>
+<li><a href="./friends.jsp">Friends</a></li>
+<li><a href="./login.jsp">Log Out</a></li>
 
 </div>
 </ul>

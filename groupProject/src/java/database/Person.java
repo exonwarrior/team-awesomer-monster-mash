@@ -35,13 +35,13 @@ public class Person implements Serializable {
     public ArrayList<Fight> getFightChallenges(){
         ArrayList<Fight> challenges = new ArrayList<Fight>();
         
-        
-        for(Fight fight: fights){
-            if(fight.getChallenger().getId().equals(this.id)){
-                challenges.add(fight);
+        if(fights != null) {
+            for(Fight fight: fights){
+                if(fight.getChallenger().getId().equals(this.id)){
+                    challenges.add(fight);
+                }
             }
         }
-        
         return challenges;
     }
     

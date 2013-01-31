@@ -41,7 +41,7 @@
 --></script>
 
 <div id="header">
-<a href="./home.html">
+<a href="./home.jsp">
 <img alt="Monster logo" src="monsterlogo.png" />
 </a>
 
@@ -52,12 +52,9 @@
 
 
 <ul id="list-nav">
-  
-<li><a href="./marketplace.html">Marketplace</a></li>
-<li><a href="./myMonsters.html">My Monsters</a></li>
-<li><a href="./friends.html">Friends</a></li>
-<li><a href="./monsterFights.html">Monster Fights</a></li>
-<li><a href="./login.html">Log Out</a></li>
+<li><a href="./myMonsters.jsp">My Monsters</a></li>
+<li><a href="./friends.jsp">Friends</a></li>
+<li><a href="./monsterFights.jsp">Monster Fights</a></li>
 </ul>
 
 <hr>
@@ -81,7 +78,7 @@
                     <input type="password" placeholder="Password" name="password" id="password" size="30" /><br /><br />
 
                     <input type="password" placeholder="Confirm Password" name="confirm_password" id="confirm_password"  size="30" /><br />
-                    Pass words must be between 6 and 20 characters and contain a number and an upper and lower case letter.
+                    Passwords must be between 6 and 20 characters and contain a number and an upper and lower case letter.
                     Special characters are not allowed.<br /><br />
                 </p>
                 <% 

@@ -14,7 +14,7 @@
 
 
 <div id="header">
-<a href="./home.html">
+<a href="./home.jsp">
 <img alt="Monster logo" src="monsterlogo.png">
 </a>
 <link rel="icon" href="favicon.ico" />
