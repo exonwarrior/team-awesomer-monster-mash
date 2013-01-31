@@ -30,7 +30,15 @@
                 <input type="password" placeholder="Password" required="" name="password" id="password" /> <br><br>
                 <input type="submit" value="Login" />
                 <a href="register.jsp">Register</a>
-                <br><br><br><br>
+                <br>
+                <% 
+                      String errorMess = (String) request.getAttribute("message");
+                        if(errorMess != null){%>
+                        <p><%=errorMess %></p><%   
+                        }
+                        %> 
+                <br><br><br>
+                
                 <p>Welcome to Monster Mash, a new, fun and exciting online game.<br> Please start by logging in.<br> If you are not a member then click on the register
                 button just above. Enjoy :)</p>
                 <b><b>

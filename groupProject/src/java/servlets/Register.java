@@ -78,8 +78,11 @@ public class Register extends HttpServlet {
              request.getRequestDispatcher("/register.jsp").forward(request, response);
          }
          else{
+             formError ="Sucessfully Registered!";
+             request.setAttribute("message", formError);
              this.personDOA.persist(new Person(temp_name, temp_password, temp_email));
-         
+             
+             request.getRequestDispatcher("/login.jsp").forward(request, response); 
              response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
              response.setHeader("Location", "http://localhost:8080/MonsterGame/login.jsp");
          }   

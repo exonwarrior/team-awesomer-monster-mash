@@ -40,6 +40,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String tempEmail = request.getParameter("email");
         String tempPassword = request.getParameter("password");
+        String formError =" ";
         
         response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
         
@@ -60,7 +61,10 @@ public class LoginServlet extends HttpServlet {
             
         }
         else{
-             response.setHeader("Location", "http://localhost:8080/MonsterGame/login.jsp");
+            formError ="Incorrect email or password!";
+            request.setAttribute("message", formError);
+            request.getRequestDispatcher("/login.jsp").forward(request, response); 
+            response.setHeader("Location", "http://localhost:8080/MonsterGame/login.jsp");
         }
         
        
