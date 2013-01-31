@@ -82,6 +82,7 @@ public class FriendsServlet extends HttpServlet {
             request = this.acceptRequest(request, user);
             
         }else if(currentAction.equals("decline_request")){
+            request = this.declineRequest(request, user);
             
         }else if(currentAction.equals("get_monster")){
             String friendsEmail = request.getParameter("requestEmail");
@@ -143,14 +144,9 @@ public class FriendsServlet extends HttpServlet {
             
             if(personDOA.checkFriendRequestList(user, friendsEmail)){
                 Person friend = personDOA.getPersonByEmail(friendsEmail);
-                
                 personDOA.addFriend(user, friendsEmail);
                 personDOA.deleteFriendRequest(user, friendsEmail);
-                
                 personDOA.addFriend(friend, user.getEmail());
-                
-               
-
             }else{
                 request.setAttribute("message", "Friend doesn't exist.");               
             }
@@ -166,7 +162,7 @@ public class FriendsServlet extends HttpServlet {
                 personDOA.deleteFriendRequest(user, friendsEmail);
             
             }else{
-                request.setAttribute("message", "Friend doesn't exist.");               
+                request.setAttribute("message", "Friend doesn't exist.");  
             }
          
          return request;
