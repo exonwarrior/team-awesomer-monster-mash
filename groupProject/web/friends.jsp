@@ -87,30 +87,29 @@
         <input type="hidden" id="requestEmail" name="requestEmail" />
         <input type="hidden" id="friendsMonsterID" name="friendsMonsterID" />
         <input type="hidden" id="error" name="error" />
-            <table name="friend" border="1">	
-                <% ArrayList<Person> friends = (ArrayList<Person>) session.getAttribute("friends");%>
-                <tr>
-                    <th>Your Friends </th>                  
-                </tr>
+        <h2>Your Friends</h2>
+            <table name="friend" border="1">
+                <% ArrayList<Person> friends = (ArrayList<Person>) session.getAttribute("friends");%>                
                 
                 <tr>
                     <th>Friend Name</th>
                     <th>Email</th>
+                    <th>Money</th>
                 </tr>
                 <% if (friends != null) {
                         for (Person friend : friends) {%>
                             <tr>
                                 <td><input type="submit" name="friend" onclick="getFriendsMonsters('<%=friend.getEmail()%>');" value="<%=friend.getName()%>" /></td>
-                                <td><%=friend.getEmail()%></td>                             
+                                <td><%=friend.getEmail()%></td>          
+                                <td><%=friend.getMoney()%></td>
                             </tr>
                 <%}
                     }%>
             </table>
+            <input type="submit" name="sortPrice" onclick="" value="Sort by Price" />
+            <h2>Friend Requests</h2>
             <table name="friendRequestList" border="1">	
                 <% ArrayList<Person> friendRequests = (ArrayList<Person>) session.getAttribute("requestList");%>
-                <tr>
-                    <th>Friend Requests</th>
-                </tr>
                 <tr>
                     <th>Friend Name</th>
                     <th>Email</th>
