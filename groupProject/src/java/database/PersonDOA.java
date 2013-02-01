@@ -16,7 +16,7 @@ import javax.persistence.TypedQuery;
 import types.Fight;
 
 /**
- *
+ * Class for handling the interaction of Person objects with the database.
  * @author thh21
  */
 @Stateless
@@ -32,7 +32,10 @@ public class PersonDOA {
     public PersonDOA() {
     }
 
-    // Stores a new guest: 
+    /**
+     * 
+     * @param person 
+     */
     public void persist(Person person) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
 
@@ -47,7 +50,11 @@ public class PersonDOA {
             em.close();
         }
     }
-
+    /**
+     * 
+     * @param person
+     * @param email 
+     */
     public void addFriendRequest(Person person, String email) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
 
@@ -61,7 +68,11 @@ public class PersonDOA {
             em.close();
         }
     }
-    
+    /**
+     * 
+     * @param person
+     * @param email 
+     */
     public void deleteFriendRequest(Person person, String email) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
 
@@ -75,7 +86,11 @@ public class PersonDOA {
             em.close();
         }
     }
-    
+    /**
+     * 
+     * @param person
+     * @param email 
+     */
     public void addFriend(Person person, String email) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
 
@@ -89,7 +104,11 @@ public class PersonDOA {
             em.close();
         }
     }
-    
+    /**
+     * 
+     * @param person
+     * @param email 
+     */
     public void deleteFriend(Person person, String email) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
 
@@ -103,7 +122,10 @@ public class PersonDOA {
             em.close();
         }
     }
-    
+    /**
+     * 
+     * @return 
+     */
     private ArrayList<Person> getAllPeople() {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
         em = emf.createEntityManager();
@@ -119,7 +141,11 @@ public class PersonDOA {
         list = getPeoplesArrays(list);
         return list;
     }
-    
+    /**
+     * 
+     * @param people
+     * @return 
+     */
     public ArrayList<Person> getPeoplesArrays(ArrayList<Person> people){
         ArrayList<Person> list = new ArrayList<Person>();
         for(Person p : people){
@@ -128,14 +154,22 @@ public class PersonDOA {
         }
         return list;
     }
-    
+    /**
+     * 
+     * @param p
+     * @return 
+     */
     public Person getPersonsArrays(Person p){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
         em = emf.createEntityManager();
         Person dbPerson = em.find(Person.class, p.getId());
         return dbPerson;
     }
-
+    /**
+     * 
+     * @param email
+     * @return 
+     */
     public boolean lookForEmail(String email) {
         boolean answer = false;
         ArrayList<Person> list = this.getAllPeople();
@@ -146,7 +180,11 @@ public class PersonDOA {
         }
         return answer;
     }
-
+    /**
+     * 
+     * @param email
+     * @return 
+     */
     public Person getPersonByEmail(String email) {
         ArrayList<Person> people = getAllPeople();
         Person p = null;
@@ -158,7 +196,12 @@ public class PersonDOA {
         return p;
         
     }
-    
+    /**
+     * 
+     * @param p
+     * @param email
+     * @return 
+     */
     public boolean checkFriendRequestList(Person p, String email) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb");
         em = emf.createEntityManager();
@@ -175,8 +218,11 @@ public class PersonDOA {
         em.close();
         return answer;
     }
-
-    //TODO 
+    /**
+     * 
+     * @param p
+     * @return 
+     */
     public ArrayList<Person> getPersonsFriends(Person p) {
         ArrayList<Person> list = new ArrayList<Person>();
         if (!(p.getAllFriends().isEmpty())) {
@@ -191,7 +237,11 @@ public class PersonDOA {
         }
         return list;
     }
-
+    /**
+     * 
+     * @param p
+     * @return 
+     */
     public ArrayList<Person> getPersonsFriendRequests(Person p) {
         ArrayList<Person> list = new ArrayList<Person>();
         if (!(p.getAllFriendRequests().isEmpty())) {
@@ -206,12 +256,20 @@ public class PersonDOA {
         }
         return list;
     }
-   
+    /**
+     * 
+     * @param p
+     * @return 
+     */
     public ArrayList<Monster> getPersonsMonsters(Person p) {
         monsterDOA = new MonsterDOA();
         return monsterDOA.getMonsterByUser(p);
     }
 
+    /**
+     * 
+     * @param p 
+     */
     public void giveFirstMonster(Person p) {
         monsterDOA = new MonsterDOA();
         Monster m = new Monster();
@@ -221,6 +279,11 @@ public class PersonDOA {
         
     }
     
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     public Person getPersonByID(Long id){
         Person person = null;
         for(Person p: getAllPeople()){
@@ -231,6 +294,10 @@ public class PersonDOA {
         return person;
     }
    
+    /**
+     * 
+     * @param person 
+     */
     public void updatePersonsInfo(Person person){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb"); 
         em = emf.createEntityManager();
@@ -270,6 +337,11 @@ public class PersonDOA {
         } 
     }
     
+    /**
+     * 
+     * @param person
+     * @param fight 
+     */
     public void deupdatPersonsInfo(Person person,Fight fight){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb"); 
         em = emf.createEntityManager();

@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * Class for handling the interaction between Monster objects and the databse
  * @author Dave
  */
 @Stateless
@@ -32,7 +32,10 @@ public class MonsterDOA {
 
     }
  
-    // Stores a new guest: 
+    /**
+     * Method for saving monster objects to database.
+     * @param monster - monster object to be saved.
+     */
     public void persist(Monster monster) {
         emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb");
         
@@ -46,7 +49,10 @@ public class MonsterDOA {
              em.close();
         }   
     }
-    
+    /**
+     * Method for retrieving list of monsters in the database, regardless of owner.
+     * @return - list of Monsters.
+     */
     private List<Monster> getAllMonsters(){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb");
         em = emf.createEntityManager();
@@ -60,11 +66,13 @@ public class MonsterDOA {
         finally{
              em.close();
         }
-        
-        
         return list;
     }
-    
+    /**
+     * Method for verifying a monster with the name provided exists in list.
+     * @param name - name of monster to be found
+     * @return true/false.
+     */
     public boolean doesExist(String name){
         boolean answer = false;
         List<Monster> list = this.getAllMonsters();
@@ -75,7 +83,11 @@ public class MonsterDOA {
         }
         return answer;
     }
-    
+    /**
+     * Retrieve monster from database, based on its name.
+     * @param name - name that is being searched for.
+     * @return - the found monster.
+     */
     public Monster getMonsterByName(String name){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb");
         em = emf.createEntityManager();
@@ -93,9 +105,12 @@ public class MonsterDOA {
             em.close();
         }
         return m;
-        //return me;
     }
-    
+    /**
+     * Retrieve monster from database, based on its id.
+     * @param id - id that is being searched for.
+     * @return - the found monster.
+     */
     public Monster getMonsterById(Long id){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb");
         em = emf.createEntityManager();
@@ -107,15 +122,16 @@ public class MonsterDOA {
                     .setParameter("id", id);
             m = query.getSingleResult();
             em.getTransaction().commit();
-            
         }
         finally{
             em.close();
         }
         return m;
-        
     }
-    
+    /**
+     * Method for updating monster info.
+     * @param monster - monster that is to be updated.
+     */
     public void updateMonstersInfo(Monster monster){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb"); 
         em = emf.createEntityManager();
@@ -134,7 +150,11 @@ public class MonsterDOA {
              em.close();
         } 
     }
- 
+    /**
+     * Method that retrieves a list of monsters belonging to a single user.
+     * @param user - user that's list of monsters is needed.
+     * @return - resultant list.
+     */
     public ArrayList<Monster> getMonsterByUser(Person user){
         ArrayList<Monster> list = new ArrayList<Monster>();
         for(Monster monster : getAllMonsters()){
@@ -144,7 +164,14 @@ public class MonsterDOA {
         }
         return list;
     }
-    
+    /**
+     * Method for breeding two monsters. Using a series of random dice rolls,
+     * stats to be inherited or randomized are chosen, with a healthy dose of
+     * random mutation.
+     * @param monster - known as the stud.
+     * @param monster2 - known as the bitch. 
+     * @return - resulting baby monster.
+     */
     public Monster breedMonsters(Monster monster, Monster monster2){
         Monster baby = new Monster();
         Random random = new Random();
@@ -191,14 +218,21 @@ public class MonsterDOA {
         System.out.println("NOW RETURN THE BABY");
         return baby;
     }
-    
+    /**
+     * Method for checking remaining lifespan on Monster. If lifespan is reduced
+     * to zero or below, monster is removed from database.
+     * @param m - monster that's life is to be checked.
+     */
     public void checkLife(Monster m){
         m.setLifeSpan((int)(m.getLifeSpan()-((System.currentTimeMillis() / 1000L)-m.getBirthDate())));
         if(m.getLifeSpan()<0){
             remove(m);
         }
     }
-    
+    /**
+     * Method to simply remove a monster from a player's monster list.
+     * @param m - monster to be deleted.
+     */
     public void remove(Monster m){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb"); 
         em = emf.createEntityManager();
@@ -207,8 +241,4 @@ public class MonsterDOA {
         em.remove(m);
         em.getTransaction().commit();
     }
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-    
 }

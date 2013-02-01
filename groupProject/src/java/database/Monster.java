@@ -1,12 +1,6 @@
 package database;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Level;
@@ -19,7 +13,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- *
+ * Class for Monster objects, which are controlled by the players (bred,
+ * fights arranged for, etc)
  * @author Dave
  */
 @Entity
@@ -36,128 +31,242 @@ public class Monster implements Serializable {
             baseDefence, currentDefence, baseHealth, 
             currentHealth, price;
 
-  
+  /**
+   * Sets the monster's birth date to the parameter provided.
+   * @param birthDate - given birth date.
+   */
     public void setBirthDate(int birthDate) {
         this.birthDate = birthDate;
     }
-
+    /**
+     * Sets the monster's name to the parameter provided.
+     * @param name - name provided for monster
+     */
     public void setName(String name) {
         this.name = name;
     }
+    /**
+     * Method for returning the remaining lifespan of a monster.
+     * @return lifespan remaining as an int.
+     */
     public int getLifeSpan(){
         return lifespan;
     }
+    /**
+     * Sets the lifespan for the monster. Used in monster creation and periodic
+     * checks to update remaining lifespan.
+     * @param lifespan - time left to live.
+     */
     public void setLifeSpan(int lifespan){
         this.lifespan = lifespan;
     }
-
+    /**
+     * Used to set breeding price of monster, based on parameter provided.
+     * @param breedOffer 
+     */
     public void setBreedOffer(int breedOffer) {
         this.breedOffer = breedOffer;
     }
-
+    /**
+     * Used to set selling price of monster, based on parameter provided.
+     * @param saleOffer 
+     */
     public void setSaleOffer(int saleOffer) {
         this.saleOffer = saleOffer;
     }
-
+    /**
+     * Method for returning the monster's breed offer.
+     * @return - breedOffer as int.
+     */
     public int getBreedOffer() {
         return breedOffer;
     }
-
+    /**
+     * Method for returning the monster's sale offer.
+     * @return - saleOffer as int.
+     */
     public int getSaleOffer() {
         return saleOffer;
     }
-    
+    /**
+     * Method for returning the monster's name.
+     * @return name of monster.
+     */
     public String getName() {
         return name;
     }
-    
-    
+    /**
+     * Sets the ownerID (i.e., email) based on parameter provided.
+     * @param email 
+     */
     public void setOwner(String email) {
         this.ownerID = email;
     }
-   
+    /**
+     * Method for returning the monster's ownerID.
+     * @return ID of monster owner.
+     */
     public String getOwnerID() {
         return ownerID;
     }
+    /**
+     * Sets the ownerID based on parameter provided.
+     * @param ownerID - identifier of the owner.
+     */
     public void setOwnerID(String ownerID){
         this.ownerID = ownerID;
     }
-    
+    /**
+     * Method for retrieving monster's identifier.
+     * @return monsterID as String
+     */
     public String getMonsterID() {
         return monsterID;
     }
-    
+    /**
+     * Sets the monsterID based on parameter provided.
+     * @param id new monster ID.
+     */
     public void setMonsterID(String id){
         this.monsterID = id;
     }
-    
+    /**
+     * Method for retrieving ID of monster.
+     * @return monster ID as long
+     */
     public Long getId() {
         return id;
     }
-    
+    /**
+     * Method for retrieving monster's birthday. Maybe you want to give him a cake.
+     * @return birthday as int.
+     */
     public int getBirthDate(){
         return birthDate;
     }
-    
+    /**
+     * Method for retrieving the monster's base or beginning health.
+     * @return 
+     */
     public double getBaseHealth(){
         return baseHealth;
     }
+    /**
+     * 
+     * @param health 
+     */
     public void setBaseHealth(double health){
         this.baseHealth = health;
     }
+    /**
+     * 
+     * @return 
+     */
     public double getCurrentHealth(){
         return currentHealth;
     }
+    /**
+     * 
+     * @param health 
+     */
     public void setCurrentHealth(double health){
         this.currentHealth = health;
     }
-    
+    /**
+     * 
+     * @return 
+     */
     public double getBaseStrength(){
         return baseStrength;
     }
+    /**
+     * 
+     * @param strength 
+     */
     public void setBaseStrength(double strength){
         this.baseStrength = strength;
     }
+    /**
+     * 
+     * @return 
+     */
     public double getCurrentStrength(){
         return currentStrength;
     }
+    /**
+     * 
+     * @param strength 
+     */
     public void setCurrentStrength(double strength){
         this.currentStrength = strength;
     }
-    
+    /**
+     * 
+     * @return 
+     */
     public double getBaseDefence(){
         return baseDefence;
     }
+    /**
+     * 
+     * @param defence 
+     */
     public void setBaseDefence(double defence){
         this.baseDefence = defence;
     }
+    /**
+     * 
+     * @return 
+     */
     public double getCurrentDefence(){
         return currentDefence;
     }
+    /**
+     * 
+     * @param defence 
+     */
     public void setCurrentDefence(double defence){
         this.currentDefence = defence;
     }
-    
+    /**
+     * 
+     * @return 
+     */
     public double getPrice(){
         return price;
     }
+    /**
+     * 
+     * @param price 
+     */
     public void setPrice(double price){
         this.price = price;
     }
     // </editor-fold>
-
+    
+    /**
+     * 
+     * @return 
+     */
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-    
+    /**
+     * Method for creating and then returning a String comprised of the monster's
+     * basic stats.
+     * @return stats of monster as one String, used in display.
+     */
     public String getStats(){
         return "Monster name: "+ this.name + "\nStrength: " + this.baseStrength 
                 + "\nDefence: " + this.baseDefence + "\nHealth: " +this.baseHealth;
     }
-
+    /**
+     * Method for returning monster stats in the form of a JSON object.
+     * @return 
+     */
     public JSONObject getJSONMonster(){
         JSONObject jMonster = new JSONObject();
         try {
@@ -171,7 +280,11 @@ public class Monster implements Serializable {
         
         return jMonster;
     }
-    
+    /**
+     * Method for checking if two monsters are equal.
+     * @param object - a monster
+     * @return true/false, depending on whether they match.
+     */
     @Override
     public boolean equals(Object object) {
         if (!(object instanceof Monster)) {
@@ -183,7 +296,10 @@ public class Monster implements Serializable {
         }
         return true;
     }
-
+    /**
+     * Custom toString() method. 
+     * @return the completed String.
+     */
     @Override
     public String toString() {
         return "database.Monster[ id=" + id + " ]";
