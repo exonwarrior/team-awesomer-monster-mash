@@ -18,9 +18,8 @@ import static org.junit.Assert.*;
  */
 public class MonsterTest {
     
-    public MonsterTest() {
-    }
-    
+    Monster monster = new Monster();
+   
     @Before
     public void setUp() {
     }
@@ -30,13 +29,10 @@ public class MonsterTest {
      */
     @Test
     public void testGetLifeSpan() {
-        System.out.println("getLifeSpan");
-        Monster instance = new Monster();
-        int expResult = 0;
-        int result = instance.getLifeSpan();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int lifespan = 1234;
+        monster.setLifeSpan(lifespan);
+        int newLifespan = monster.getLifeSpan();
+        assertEquals(lifespan, newLifespan);
     }
 
     /**
@@ -44,12 +40,10 @@ public class MonsterTest {
      */
     @Test
     public void testSetLifeSpan() {
-        System.out.println("setLifeSpan");
-        int lifespan = 0;
-        Monster instance = new Monster();
-        instance.setLifeSpan(lifespan);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int lifespan = 1234;
+        monster.setLifeSpan(lifespan);
+        int newLifespan = monster.getLifeSpan();
+        assertEquals(lifespan, newLifespan);
     }
 
     /**
@@ -57,12 +51,10 @@ public class MonsterTest {
      */
     @Test
     public void testSetBreedOffer() {
-        System.out.println("setBreedOffer");
-        int breedOffer = 0;
-        Monster instance = new Monster();
-        instance.setBreedOffer(breedOffer);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int breedOffer = 1234;
+        monster.setBreedOffer(breedOffer);
+        int newBreedOffer = monster.getBreedOffer();
+        assertEquals(breedOffer, newBreedOffer);
     }
 
     /**
@@ -70,12 +62,10 @@ public class MonsterTest {
      */
     @Test
     public void testSetSaleOffer() {
-        System.out.println("setSaleOffer");
-        int saleOffer = 0;
-        Monster instance = new Monster();
-        instance.setSaleOffer(saleOffer);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int saleOffer = 1234;
+        monster.setSaleOffer(saleOffer);
+        int newsaleOffer = monster.getSaleOffer();
+        assertEquals(saleOffer, newsaleOffer);
     }
 
     /**
@@ -83,13 +73,10 @@ public class MonsterTest {
      */
     @Test
     public void testGetBreedOffer() {
-        System.out.println("getBreedOffer");
-        Monster instance = new Monster();
-        int expResult = 0;
-        int result = instance.getBreedOffer();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int breedOffer = 1234;
+        monster.setBreedOffer(breedOffer);
+        int newBreedOffer = monster.getBreedOffer();
+        assertEquals(breedOffer, newBreedOffer);
     }
 
     /**
@@ -97,13 +84,10 @@ public class MonsterTest {
      */
     @Test
     public void testGetSaleOffer() {
-        System.out.println("getSaleOffer");
-        Monster instance = new Monster();
-        int expResult = 0;
-        int result = instance.getSaleOffer();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int saleOffer = 1234;
+        monster.setSaleOffer(saleOffer);
+        int newsaleOffer = monster.getSaleOffer();
+        assertEquals(saleOffer, newsaleOffer);
     }
 
     /**
@@ -111,13 +95,10 @@ public class MonsterTest {
      */
     @Test
     public void testGetName() {
-        System.out.println("getName");
-        Monster instance = new Monster();
-        String expResult = "";
-        String result = instance.getName();
+        monster.setName("name");
+        String expResult = "name";
+        String result = monster.getName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -125,13 +106,10 @@ public class MonsterTest {
      */
     @Test
     public void testGetOwnerID() {
-        System.out.println("getOwnerID");
-        Monster instance = new Monster();
-        String expResult = "";
-        String result = instance.getOwnerID();
+        monster.setOwnerID("id");
+        String expResult = "id";
+        String result = monster.getOwnerID();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -139,12 +117,10 @@ public class MonsterTest {
      */
     @Test
     public void testSetOwnerID() {
-        System.out.println("setOwnerID");
-        String ownerID = "";
-        Monster instance = new Monster();
-        instance.setOwnerID(ownerID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        monster.setOwnerID("id");
+        String expResult = "id";
+        String result = monster.getOwnerID();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -152,13 +128,10 @@ public class MonsterTest {
      */
     @Test
     public void testGetMonsterID() {
-        System.out.println("getMonsterID");
-        Monster instance = new Monster();
-        String expResult = "";
-        String result = instance.getMonsterID();
+        monster.setMonsterID("id");
+        String expResult = "id";
+        String result = monster.getMonsterID();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -166,26 +139,10 @@ public class MonsterTest {
      */
     @Test
     public void testSetMonsterID() {
-        System.out.println("setMonsterID");
-        String id = "";
-        Monster instance = new Monster();
-        instance.setMonsterID(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getId method, of class Monster.
-     */
-    @Test
-    public void testGetId() {
-        System.out.println("getId");
-        Monster instance = new Monster();
-        Long expResult = null;
-        Long result = instance.getId();
+        monster.setMonsterID("id");
+        String expResult = "id";
+        String result = monster.getMonsterID();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
