@@ -84,17 +84,11 @@ public class Person implements Serializable {
     }
 
     public void removeFightOffer(Fight fight) {
-        this.fights.remove(fight);
+        
+        this.fights.remove(getFightByID(fight.getChallenger(),fight.getChallMonster()));
     }
 
-    public void removeFightOffer(Person opponent, Monster oppMonster) {
-        for (Fight fight : this.fights) {
-            if (fight.getOppMonster().equals(oppMonster.getId())
-                    && fight.getOpponent().equals(opponent.getId())) {
-                this.fights.remove(fight);
-            }
-        }
-    }
+    
 
     public Fight getFightByID(Long person, Long monster){
         for(Fight fight: this.fights){
