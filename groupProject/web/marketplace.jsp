@@ -1,55 +1,72 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+  <link rel="stylesheet" href="style.css" />
 
 <head>
-
- <link rel="stylesheet" href="style.css" />
 <meta content="en-us" http-equiv="Content-Language" />
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Marketplace</title>
-</head>
+<title>Home</title>
 
-<body>
+
 
 <div id="header">
 <a href="./home.html">
 <img alt="Monster logo" src="monsterLogo.png">
 </a>
+
+</div>
+</head>
+<body>
+
+
+
 <ul id="list-nav">
   
-<li><a href="./marketplace.jsp">Marketplace</a></li>
-<li><a href="./myMonsters.jsp">My Monsters</a></li>
-<li><a href="./friends.jsp">Friends</a></li>
-<li><a href="./monsterFights.jsp">Monster Fights</a></li>
-<li><a href="./login.jsp">Log Out</a></li>
+<li><a href="./marketplace.html">Marketplace</a></li>
+<li><a href="./myMonsters.html">My Monsters</a></li>
+<li><a href="./friends.html">Friends</a></li>
+<li><a href="./monsterFights.html">Monster Fights</a></li>
+<li><a href="./login.html">Log Out</a></li>
+<li><a href="./home.html">Home</a></li>
+
 </div>
 </ul>
 
 <hr>
-<h2>Marketplace</h2>
+
+<div class="container">
+	<section id="content">
+<h1>Marketplace</h1>
+<br><br><br>
+
+
 <form method="post">
-
-<textarea name="TextArea1" style="height: 231px; width: 196px"></textarea>
-
-
-<div class="rent">
-<input name="rent" type="button" value="rent" style="width: 306px; height: 70px position: relative" />
-</div>
-
-
+<select name="monsterList">
+<option value="monster1">monster1</option>
+<option value="monster2">monster2</option>
+<option value="monster3">monster3</option>
+<option value="monster4">monster4</option>
+</select>
+<br><br>
 
 
 
-<input name="showAttributes" type="button" value="Show Attributes" style="width: 299px; height: 54px; top: 249px; position: absolute; left: 246px;" /><input name="buy" type="button" value="buy" style="width: 306px; height: 70px; position: absolute; top: 176px; left: 225px" /><input name="home" onclick="location='home.html'" style="width: 140px" type="button" value="home" />
 
-<div class="wallet">
+
+<input name="rent" type="button" value="rent"><br><br>
+<input name="showAttributes" type="button" value="Show Attributes"><br><br>
+<input name="buy" type="button" value="buy"><br><br>
+
 <p> Money: </p>
 </div>
 
 
 
-	<br />
+	
 
-
-
+		</form>
+		
+	</section>
+</body>
+</html>
 
