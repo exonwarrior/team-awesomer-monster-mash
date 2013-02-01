@@ -18,7 +18,6 @@ import types.Fight;
  * @author thomas
  */
 public class PersonTest {
-<<<<<<< HEAD
     
     public PersonTest() {
     }
@@ -34,16 +33,9 @@ public class PersonTest {
         Person p1 = new Person(p1Name,p1Password,p1Email);
         Person p2 = new Person(p2Name, p2Password, p2Email);
     }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-=======
 
     private Person person;
 
->>>>>>> basics of basic JUnit
     @Before
     public void setUp() {
         person = new Person("name", "password", "email");
@@ -254,12 +246,7 @@ public class PersonTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
-    /**
-<<<<<<< HEAD
-=======
-     * Test of getAllMonsters method, of class Person.
-     */
+    
     @Test
     public void testGetAllMonsters() {
         System.out.println("getAllMonsters");
@@ -285,7 +272,6 @@ public class PersonTest {
     }
 
     /**
->>>>>>> basics of basic JUnit
      * Test of setEmail method, of class Person.
      */
     @Test
@@ -428,21 +414,5 @@ public class PersonTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-<<<<<<< HEAD
 
-    /**
-     * Test of toString method, of class Person.
-     */
-    @Test
-    public void testToString() {
-        System.out.println("toString");
-        Person instance = new Person();
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-=======
->>>>>>> basics of basic JUnit
 }
