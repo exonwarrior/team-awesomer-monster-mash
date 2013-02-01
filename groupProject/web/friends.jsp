@@ -59,9 +59,11 @@
                 document.getElementById("error").value = null;
             }
         }
+        
         function logOut(){
-            document.getElementById("current_action").value = "logout";
-        }
+                    document.getElementById("logout").value = "logout";
+                    document.forms["login"].submit();
+                }
         -->
     </script>
 </head>
