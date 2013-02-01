@@ -72,29 +72,31 @@
         </ul>
         <h1>Monsters</h1>
         <form method="post" action="myMonsters" id="change_monster">
-        <input type="hidden" id="current monster id" name="current monster id" />
-        <input type="hidden" id="breed id" name="breed id" />
-        <input type="hidden" id="sale id" name="sale id" />
-        <input type="hidden" id="current_action" name="current_action" />
-        <table name="monster" border="1">
-            <% ArrayList<Monster> monsters = (ArrayList<Monster>)session.getAttribute("monsters"); %>
-            <%DecimalFormat df = new DecimalFormat("#.##");%>
-            <tr>
-                <th>Monster Name</th>
-                
-            </tr>
-            <% if(monsters != null){ 
-                for(Monster monster : monsters){ %>
+            <div class="monsters">
+                <input type="hidden" id="current monster id" name="current monster id" />
+                <input type="hidden" id="breed id" name="breed id" />
+                <input type="hidden" id="sale id" name="sale id" />
+                <input type="hidden" id="current_action" name="current_action" />
+                <table name="monster" border="1">
+                    <% ArrayList<Monster> monsters = (ArrayList<Monster>)session.getAttribute("monsters"); %>
+                    <%DecimalFormat df = new DecimalFormat("#.##");%>
                     <tr>
-                        <td>
-                            <input type="submit" onclick="changeMonster(<%=monster.getId()%>);" value="<%=monster.getName()%>"  />                           
-                        </td>
+                        <th>Monster Name</th>
 
                     </tr>
-                <%}
-              }%>
-        </table>
-       
+                    <% if(monsters != null){ 
+                        for(Monster monster : monsters){ %>
+                            <tr>
+                                <td>
+                                    <input type="submit" onclick="changeMonster(<%=monster.getId()%>);" value="<%=monster.getName()%>"  />                           
+                                </td>
+
+                            </tr>
+                        <%}
+                      }%>
+                </table>
+            </div>
+        <div class="monsters">
         <p name="display monster"><%
             if(session.getAttribute("current monster") != null){
                 Monster currentMonster = (Monster) session.getAttribute("current monster");%>
@@ -105,22 +107,20 @@
                 
                 Breed Offer:    <%=currentMonster.getBreedOffer()%> 
                 <input type="text" placeholder="breeding price" name="breed price" />
-                <input type="submit" name="breed" onclick="breedOffer(<%=currentMonster.getId()%>);" value="breed" /> <br />
+                <input type="submit" class="button" name="breed" onclick="breedOffer(<%=currentMonster.getId()%>);" value="breed" /> <br />
                 
                 Sale Offer:     <%=currentMonster.getSaleOffer()%>
                 <input type="text" id="price" placeholder="selling price" name="sale price" />
-                <input type="submit" name="sale"  onclick="saleOffer(<%=currentMonster.getId()%>);" value="sale" />
+                <input type="submit"  class="button" name="sale"  onclick="saleOffer(<%=currentMonster.getId()%>);" value="sale" />
                 
                 <%if(session.getAttribute("current_action") != null && session.getAttribute("current_action").equals("breed")){%>
-                <input type="submit" name="breed"  onclick="breedMyMonster(<%=currentMonster.getId()%>);" value="breed with me" />    
+                <input type="submit" class="button" name="breed"  onclick="breedMyMonster(<%=currentMonster.getId()%>);" value="breed with me" />    
                 <%}%>
 
             <%}%>
         </p>
+        </div>
         
-        <input name="buyMonster" onclick="location='newMonster.html'" type="button" value="+ Buy Monsters" />
-        <input name="sellMonsters" type="button" value="Sell Monsters" />
-        <input name="home" onclick="location='home.jsp'" type="button" value="home" style="width: 66px" />
         </form>
         
         <textarea rows="10" cols="50"></textarea>

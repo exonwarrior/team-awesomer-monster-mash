@@ -115,7 +115,7 @@ input {
     border:2px solid #dadada;
     border-radius:7px;
     font-size:20px;
-    padding:5px;
+    padding:1px;
     margin-top:-10px;   
 	position: relative;
 	
@@ -131,3 +131,24 @@ input:hover {
 	outline:none;
     border-color: black;
 	}
+.button {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #000000), color-stop(1, #ad5662) );
+	background:-moz-linear-gradient( center top, #000000 5%, #ad5662 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ad5662');
+	background-color:#000000;
+	display:inline-block;
+	color:#777777;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:3px 24px;
+	text-decoration:none;
+}.button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ad5662), color-stop(1, #000000) );
+	background:-moz-linear-gradient( center top, #ad5662 5%, #000000 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ad5662', endColorstr='#000000');
+	background-color:#ad5662;
+}.button:active {
+	position:relative;
+	top:1px;
+}
