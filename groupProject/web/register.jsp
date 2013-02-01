@@ -39,26 +39,25 @@
             }
         }
         --></script>
-
-        <div id="header">
-            <a href="./home.jsp">
-            <img alt="Monster logo" src="monsterlogo.png" />
-            </a>
-        </div>
     </head>
     
     <body>
-        <ul id="list-nav">
-            <li><a href="./myMonsters.jsp">My Monsters</a></li>
-            <li><a href="./friends.jsp">Friends</a></li>
-            <li><a href="./monsterFights.jsp">Monster Fights</a></li>
-        </ul>
-
-        <hr>
-
         <div class="container">
+        <div id="header">
+                <a href="./home.jsp">
+                    <img alt="Monster logo" src="monsterlogo.png" />
+                </a>
+                <link rel="icon" href="favicon.ico" />
+            </div>
+        <div id="navbar">
+            <jsp:include page="navbar.jsp" />
+        </div>
+
             <section id="content">
-                <h1>Registration</h1><br><br><br>
+                <h1>Registration</h1>
+                <br />
+                <br />
+                <br />
                 <form method="POST" name="paymentForm" id="paymentForm" action="register">
                     <p name="name_text">
                         <input type="text" placeholder="First Name" name="first_name" id="name" size="30" /><br /><br />
