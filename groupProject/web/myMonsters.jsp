@@ -82,8 +82,8 @@
                         <input type="hidden" id="current_action" name="current_action" />
                        <% Person user = (Person) session.getAttribute("user");%>
                           
-                                 your Money: <%user.getMoney();%>
-                        <table name="monster" border="1">
+                                 Your Money: <%user.getMoney();%>
+                                 <center><table name="monster" border="1">
                             <% ArrayList<Monster> monsters = (ArrayList<Monster>) session.getAttribute("monsters");%>
                             <%DecimalFormat df = new DecimalFormat("#.##");%>
                             <tr>
@@ -95,13 +95,14 @@
                                     for (Monster monster : monsters) {%>
                             <tr>
                                 <td>
+                                    <br />
                                     <input type="submit" class="button" onclick="changeMonster(<%=monster.getId()%>);" value="<%=monster.getName()%>"  />                           
                                 </td>
 
                             </tr>
                             <%}
                                 }%>
-                        </table>
+                        </table><center/>
                     </div>
                     <div class="monsters">
                         <p name="display monster"><%
