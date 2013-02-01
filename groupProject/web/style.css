@@ -1,0 +1,201 @@
+body {
+    background-color: #141F26;
+}
+
+#header {
+    height: 100px;
+    width: auto;
+    margin: 0 auto;
+}
+
+
+.container { 
+    margin: 25px auto;  
+    width: 900px; 
+    font-family: Arial;
+    background-color: #2B4040;
+    -moz-box-shadow:    3px 3px 3px 3px #000;
+    -webkit-box-shadow: 3px 3px 3px 3px #000;
+    box-shadow:         3px 3px 3px 3px #000;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#content {
+    background-color:#A69E86;
+    border: 1px solid #c4c6ca;
+    margin: 0 auto;
+    padding: 25px 5px 5px;
+    position: relative;
+    text-align: center;
+    width: 500px;
+    -moz-box-shadow:    3px 3px 3px 3px #000;
+    -webkit-box-shadow: 3px 3px 3px 3px #000;
+    box-shadow:         3px 3px 3px 3px #000;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+#content:h1 {
+    text-align: center;
+}
+
+#navbar {
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-left:5px;
+    padding-right: 5px;
+    background-color: #405950;
+    -moz-box-shadow:    3px 3px 3px 3px #000;
+    -webkit-box-shadow: 3px 3px 3px 3px #000;
+    box-shadow:         3px 3px 3px 3px #000;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    width: 850px;
+    font-size:1.2em;
+    font-weight: bold;
+    font-family: Georgia,Serif;
+    color: #F2D9BB;
+}
+
+#navbar a:link {
+	font-family: Georgia,Serif;
+	color: #F2D9BB;
+	text-decoration: none;
+}
+	
+#navbar a:hover {
+	font-family: Georgia,Serif;
+	color: #F2D9BB;
+	text-decoration: underline;
+}
+
+#navbar a:visited {
+ font-family: Georgia,Serif;
+	color: #F2D9BB;
+	text-decoration: none;
+}
+
+#navbar li {
+    display: inline;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#navbar ul {
+    list-style: none;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+ul#list-nav {
+    list-style:none;
+    margin:20px;
+    padding:0px;
+    width:auto;
+    top: 0px;
+}
+
+ul#list-nav li {
+    display:inline
+}
+
+ul#list-nav li a {
+    text-decoration:none;
+    padding:0px;
+    width:200px;
+    background:black;
+    color:white;
+    float:left;
+    text-align:center;
+    border-left:1px solid #fff;
+}
+
+input.logoutbutton{
+    text-decoration:none;
+    padding:0px;
+    width:200px;
+    background:black;
+    color:white;
+    float:left;
+    text-align:center;
+    border-left:1px solid #fff;  
+}
+
+ul#list-nav li a :hover {
+    background:red;
+    border-color: red;
+}
+
+
+#buttonLayout{
+    position:absolute;
+    float: right;
+    top: 500px;
+}
+
+#monsterList{
+    position:absolute;
+    top:450px;
+    width:auto;
+
+}
+
+#monsterList:hover {
+    outline:none;
+    border-color: black;
+
+}
+
+input {
+    width:auto;
+    border:2px solid #dadada;
+    border-radius:7px;
+    font-size:20px;
+    padding:1px;
+    margin-top:-10px;   
+    position: relative;
+}
+
+input:focus {
+    outline:none;
+    border-color: black;
+    box-shadow:0 0 10px red;
+}
+
+input:hover {
+    outline:none;
+    border-color: black;
+}
+
+.button {
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #000000), color-stop(1, #ad5662) );
+    background:-moz-linear-gradient( center top, #000000 5%, #ad5662 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ad5662');
+    background-color:#000000;
+    display:inline-block;
+    color:#777777;
+    font-family:arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:3px 24px;
+    text-decoration:none;
+}
+
+.button:hover {
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ad5662), color-stop(1, #000000) );
+    background:-moz-linear-gradient( center top, #ad5662 5%, #000000 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ad5662', endColorstr='#000000');
+    background-color:#ad5662;
+}
+
+.button:active {
+    position:relative;
+    top:1px;
+}
