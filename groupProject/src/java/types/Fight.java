@@ -5,67 +5,73 @@
 package types;
 
 import database.Monster;
+import database.MonsterDOA;
 import database.Person;
+import database.PersonDOA;
 import java.io.Serializable;
 import java.util.UUID;
+import javax.ejb.EJB;
 import javax.persistence.Embeddable;
 
 /**
  *
  * @author thomas
  */
-@Embeddable 
+@Embeddable
 public class Fight implements Serializable {
-    private Person challenger, opponent;
-    private Monster challMonster, OppMonster;
-    private String id;
+    private static final long serialVersionUID = 1L;
+
+    private String id = UUID.randomUUID().toString();
+    private Long challenger;
+    private Long opponent;
+    private Long challMonster;
+    private Long oppMonster;
 
     public Fight() {
     }
 
     public Fight(Person challenger, Person opponent, Monster challMonster, Monster OppMonster) {
-        this.challenger = challenger;
-        this.opponent = opponent;
-        this.challMonster = challMonster;
-        this.OppMonster = OppMonster;
-        id = UUID.randomUUID().toString();
+        this.challenger = challenger.getId();
+        this.opponent = opponent.getId();
+        this.challMonster = challMonster.getId();
+        this.oppMonster = OppMonster.getId();
     }
 
     public String getId() {
         return id;
     }
 
-    public Person getChallenger() {
+    public Long getChallenger() {
         return challenger;
     }
 
     public void setChallenger(Person challenger) {
-        this.challenger = challenger;
+        this.challenger = challenger.getId();
     }
 
-    public Monster getChallMonster() {
+    public Long getChallMonster() {
         return challMonster;
     }
     
     public void setChallMonster(Monster challMonster) {
-        this.challMonster = challMonster;
+        this.challMonster = challMonster.getId();
     }
 
-    public Person getOpponent() {
+    public Long getOpponent() {
         return opponent;
     }
 
     public void setOpponent(Person person) {
-        this.opponent = person;
+        this.opponent = person.getId();
     }
 
-    public Monster getOppMonster() {
-        return OppMonster;
+    public Long getOppMonster() {
+        return oppMonster;
     }
 
     public void setOppMonster(Monster monster) {
-        this.OppMonster = monster;
+        this.oppMonster = monster.getId();
     }
-    
+
     
 }

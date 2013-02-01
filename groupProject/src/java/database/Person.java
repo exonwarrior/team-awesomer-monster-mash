@@ -6,6 +6,7 @@ package database;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,9 +28,11 @@ public class Person implements Serializable {
     private int money;
     private ArrayList<String> friends;
     private ArrayList<String> friendRequests;
+    
+    @Embedded
     private ArrayList<Fight> fights;
-    //private ArrayList<String> monsters;
     private ArrayList<String> activity;
+    
     
     public Person(){
         
@@ -52,7 +55,7 @@ public class Person implements Serializable {
         
         if(fights != null) {
             for(Fight fight: fights){
-                if(fight.getChallenger().getId().equals(this.id)){
+                if(fight.getChallenger().equals(this.id)){
                     challenges.add(fight);
                 }
             }
@@ -65,7 +68,7 @@ public class Person implements Serializable {
         
         if(fights != null){
           for(Fight fight: fights){
-            if(fight.getOpponent().getId().equals(this.id)){
+            if(fight.getOpponent().equals(this.id)){
                 offers.add(fight);
             }
          }  
@@ -89,8 +92,8 @@ public class Person implements Serializable {
     
     public void removeFightOffer(Person opponent, Monster oppMonster){
         for(Fight fight: this.fights){
-            if(fight.getOppMonster().getId().equals(oppMonster.getId()) 
-                    && fight.getOpponent().getId().equals(opponent.getId())){
+            if(fight.getOppMonster().equals(oppMonster.getId()) 
+                    && fight.getOpponent().equals(opponent.getId())){
                 this.fights.remove(fight);
             }
         }

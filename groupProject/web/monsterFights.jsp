@@ -66,7 +66,7 @@
                     <input type="hidden" id="current action" name="current action" />
                     <input type="hidden" id="current fight id" name="current fight id" />
                     <%DecimalFormat df = new DecimalFormat("#.##");%>
-
+                    <%if(session.getAttribute("offers") != null){%>
                     <table name="offers" border="1">
                         <% ArrayList<Fight> offers = (ArrayList<Fight>) session.getAttribute("offers");%>
                         <tr>
@@ -89,7 +89,8 @@
                             <%}
                         }%>
                     </table>
-                    
+                    <%}%>
+                    <%if(session.getAttribute("challenges") != null){%>
                     <table name="challenges" border="1">
                         <% ArrayList<Fight> challenges = (ArrayList<Fight>) session.getAttribute("challenges");%>
                         <tr>
@@ -104,14 +105,14 @@
                         <% if(challenges != null){
                             for(Fight fight: challenges){%>
                             <tr>
-                                <td><input type="submit" onclick="personStats(<%=fight.getOpponent().getId()%>);" value="<%=fight.getOpponent().getName()%>" /></td>
-                                <td><input type="submit" onclick="MonsterStats(<%=fight.getOppMonster().getId()%>);" value="<%=fight.getOppMonster().getName()%>" /></td>
+                                <td><input type="submit" onclick="personStats(<%=fight.getOpponent()%>);" value="<%=fight.getOpponent().getName()%>" /></td>
+                                <td><input type="submit" onclick="MonsterStats(<%=fight.getOppMonster()%>);" value="<%=fight.getOppMonster().getName()%>" /></td>
                                 <td><input type="submit" onclick="declineFight(<%=fight.getId()%>);" value="Cancel" /></td>
                             </tr>
                             <%}
                         }%>
                     </table>
-                    
+                    <%}%>
                     <p name="display stats"><%
                         if(session.getAttribute("current monster") != null){
                             Monster currentMonster = (Monster) session.getAttribute("current monster");%>

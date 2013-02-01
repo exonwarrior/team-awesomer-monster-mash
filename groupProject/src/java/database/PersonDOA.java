@@ -5,7 +5,6 @@
 package database;
 
 import java.util.ArrayList;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -237,16 +236,16 @@ public class PersonDOA {
         
         for(Fight fight:person.getAllFights()){
             
-            opp = fight.getOpponent().getId();
+            opp = fight.getOpponent();
             fight.setOpponent(getPersonByID(opp));
             
-            chall = fight.getChallenger().getId();
+            chall = fight.getChallenger();
             fight.setOpponent(getPersonByID(chall));
             
-            oppM = fight.getOppMonster().getId();
+            oppM = fight.getOppMonster();
             fight.setOppMonster(monsterDOA.getMonsterById(oppM));
             
-            challM  = fight.getChallMonster().getId();
+            challM  = fight.getChallMonster();
             fight.setChallMonster(monsterDOA.getMonsterById(challM));   
         }
         
@@ -269,6 +268,11 @@ public class PersonDOA {
         } 
     }
     
+    /**
+     *
+     * @param person
+     * @param fight
+     */
     public void updatePersonsInfo(Person person,Fight fight){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb"); 
         em = emf.createEntityManager();
@@ -277,7 +281,9 @@ public class PersonDOA {
         
         try{
              em.getTransaction().begin();
+             
              dbPerson.addFight(fight);
+
              em.getTransaction().commit();
         }
         finally{

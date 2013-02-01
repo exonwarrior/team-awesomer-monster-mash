@@ -53,14 +53,16 @@ public class LoginServlet extends HttpServlet {
 
                 personDOA = new PersonDOA();
                 HttpSession session = request.getSession(true);
-                Person p = personDOA.getPersonByEmail(tempEmail);
+                Person user = personDOA.getPersonByEmail(tempEmail);
 
-                session.setAttribute("user", p);            
-                session.setAttribute("monsters", personDOA.getPersonsMonsters(p));
-                session.setAttribute("friends", personDOA.getPersonsFriends(p));
-                session.setAttribute("requestList", personDOA.getPersonsFriendRequests(p));
-                session.setAttribute("offers", p.getFightOffers() );
-                session.setAttribute("challenges", p.getFightChallenges() );
+                session.setAttribute("user", user);            
+                session.setAttribute("monsters", personDOA.getPersonsMonsters(user));
+                session.setAttribute("friends", personDOA.getPersonsFriends(user));
+                session.setAttribute("requestList", personDOA.getPersonsFriendRequests(user));
+                session.setAttribute("offers", user.getFightOffers() );
+                session.setAttribute("challenges", user.getFightChallenges() );
+                session.setAttribute("offers", user.getFightOffers() );
+                session.setAttribute("challenges", user.getFightChallenges() );
                 request.getRequestDispatcher("/myMonsters.jsp").forward(request, response);
 
             }
