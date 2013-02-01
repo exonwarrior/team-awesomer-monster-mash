@@ -226,12 +226,6 @@ public class Monster implements Serializable {
                  +this.baseDefence+"\n"+this.baseHealth);
          return this;
      }
-<<<<<<< HEAD
-=======
-
-    public void setOwner(String email) {
-        this.ownerID = email;
-    }
 
     private String generateName() throws IOException {
         String randomName;
@@ -246,6 +240,5 @@ public class Monster implements Serializable {
         randomName = list.get(index);
         return randomName;
     }
->>>>>>> Home.jsp
     
 }
