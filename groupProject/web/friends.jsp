@@ -143,7 +143,7 @@
                     Health:         <%=df.format(currentMonster.getCurrentHealth())%>/<%=df.format(currentMonster.getBaseHealth())%> <br />
                 
                     <% if(currentMonster.getSaleOffer() <= 0){%>
-                       <input type="submit" name="challengeMonster" onclick="challengeMonster(<%=currentMonster.getId()%>);" value="Challenge" />
+                       <input type="submit" name="challenge" onclick="challengeMonster(<%=currentMonster.getId()%>);" value="Challenge" />
                     <%}%>
                     <% if(currentMonster.getSaleOffer() > 0) { %>
                         Sale Price:         <%=currentMonster.getSaleOffer()%> <br />

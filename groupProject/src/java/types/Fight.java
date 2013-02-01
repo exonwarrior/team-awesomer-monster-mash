@@ -6,16 +6,22 @@ package types;
 
 import database.Monster;
 import database.Person;
+import java.io.Serializable;
 import java.util.UUID;
+import javax.persistence.Embeddable;
 
 /**
  *
  * @author thomas
  */
-public class Fight {
+@Embeddable 
+public class Fight implements Serializable {
     private Person challenger, opponent;
     private Monster challMonster, OppMonster;
     private String id;
+
+    public Fight() {
+    }
 
     public Fight(Person challenger, Person opponent, Monster challMonster, Monster OppMonster) {
         this.challenger = challenger;
