@@ -132,7 +132,7 @@ public class PersonTest {
     @Test
     public void testGetEmail() {
         String expResult = "email";
-        String result = person.getPassword();
+        String result = person.getEmail();
         assertEquals(expResult, result);
     }
 
@@ -153,7 +153,7 @@ public class PersonTest {
     @Test
     public void testGetName() {
         String expResult = "name";
-        String result = person.getPassword();
+        String result = person.getName();
         assertEquals(expResult, result);
     }
 
