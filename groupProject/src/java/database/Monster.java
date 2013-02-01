@@ -193,7 +193,12 @@ public class Monster implements Serializable {
     public String toString() {
         return "database.Monster[ id=" + id + " ]";
     }
-    
+    /**
+     * Generating a random Monster, mostly for newly registered users.
+     * Many variables are randomly assigned.
+     * @param user for whom a monster is to be created.
+     * @return monster that was generated/ 
+     */
     public Monster generateRandom(Person user){
          Random random = new Random();
          //this.monsterID = this.id.toString();
@@ -227,7 +232,12 @@ public class Monster implements Serializable {
                  +this.baseDefence+"\n"+this.baseHealth);
          return this;
      }
-
+    /**
+     * Method for choosing a random name for newly created monsters based on a 
+     * hard-coded array of 10 names.
+     * @return randomName, String with chosen name
+     * @throws IOException 
+     */
     private String generateName() throws IOException {
         String randomName;
         String[] array = {"Tana Eris", "Rolim Ironfist", "Rurruka Knesos", "Misou Long", "Teel Brangwin", "Jospi Ulluto", "Robe Dremine", "Woro Irokini", "Lynorri Seki", "Kyle Rayley", "Jarvis Parlayy"};
