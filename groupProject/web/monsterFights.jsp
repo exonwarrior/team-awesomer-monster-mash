@@ -31,9 +31,10 @@
                 document.getElementById("current person id").value = person;
                 document.forms["monster fight"].submit();
             }
-            function declineFight(id){
+            function declineFight(person,monster){
                 document.getElementById("current action").value = "deleteFight";
-                document.getElementById("current fight id").value = id;
+                document.getElementById("current monster id").value = monster;
+                document.getElementById("current person id").value = person;
                 document.forms["monster fight"].submit();
             }
             function logOut(){
@@ -50,7 +51,7 @@
             </div>
             <section id="content">
                 <h2>Monster Fights</h2><br /><br /><br />
-                <form method="post" action="monsterFights" id="monster fight">
+                <form method="post" action="monsterFight" id="monster fight">
                     <input type="hidden" id="current monster id" name="current monster id" />
                     <input type="hidden" id="current person id" name="current person id" />
                     <input type="hidden" id="current action" name="current action" />
@@ -74,7 +75,7 @@
                                <td><input type="submit" onclick="personStats(<%=fight.getChallenger()%>);" value="<%=fight.getChallengerName()%>" /></td>
                                 <td><input type="submit" onclick="monsterStats(<%=fight.getChallMonster()%>);" value="<%=fight.getChallMonsterName()%>" /></td>
                                 <td><input type="submit" onclick="acceptFight(<%=fight.getChallenger()%>,<%=fight.getChallMonster()%>);" value="Accept" /></td>
-                               <td><input type="submit" onclick="declineFight('<%=fight.getId()%>');" value="Decline" /></td>
+                               <td><input type="submit" onclick="declineFight(<%=fight.getChallenger()%>,<%=fight.getChallMonster()%>);" value="Decline" /></td>
 
                         </tr>
                         <%}
@@ -116,6 +117,12 @@
                         <%} if(session.getAttribute("current person") != null){
                                         Person currentPerson = (Person) session.getAttribute("current person");%>
                         Player Name:    <%=currentPerson.getName()%> <br />
+                        <%}%>
+                    </p>
+                    <p name="fight">
+                       <% if(session.getAttribute("fight result") != null){
+                           String s = (String) session.getAttribute("fight result");%>
+                                 <%=s%> <br />
                         <%}%>
                     </p>
                 </form>

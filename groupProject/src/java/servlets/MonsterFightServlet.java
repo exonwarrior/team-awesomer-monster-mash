@@ -66,9 +66,12 @@ public class MonsterFightServlet extends HttpServlet {
      * At the end monster stats are updated and the dead one removed.
      * @param fight object containing information on monsters and people involved.
      */
-    public void fight(Fight fight) {
+    public HttpServletRequest fight(Fight fight,HttpServletRequest request ) {
+        personDOA = new PersonDOA();
         Monster m1;
         Monster m2;
+        Person challenger = personDOA.getPersonByID(fight.getChallenger());
+        Person user = personDOA.getPersonByID(fight.getOpponent());
         
         m1 = monsterDOA.getMonsterById(fight.getOppMonster());
         m2 = monsterDOA.getMonsterById(fight.getChallMonster());
@@ -99,11 +102,26 @@ public class MonsterFightServlet extends HttpServlet {
         monsterDOA.updateMonstersInfo(m2);
         if(monsterDOA.getMonsterById(m2.getId()).getCurrentHealth()<0){
             monsterDOA.remove(m2);
+            request.setAttribute("fight result", "You won the Fight!!!");
+            user.setMoney(user.getMoney() + 100);
+            
         }        
         if(monsterDOA.getMonsterById(m1.getId()).getCurrentHealth()<0){
             monsterDOA.remove(m1);
+            request.setAttribute("fight result", "You lost the fight :(");
+            challenger.setMoney(challenger.getMoney() + 100);
         }
+        challenger.removeFightOffer(fight);
+        personDOA.updatePersonsInfo(challenger);
+        personDOA.deupdatPersonsInfo(challenger, fight);
         
+        user.removeFightOffer(fight);
+        personDOA.updatePersonsInfo(user);
+        personDOA.deupdatPersonsInfo(user, fight);
+        
+        
+        
+        return request;
     }
     
     public List<Monster> getMonsterList(Person friend) {
@@ -157,7 +175,17 @@ public class MonsterFightServlet extends HttpServlet {
             Long monster = Long.parseLong(request.getParameter("current monster id"));
             Long person = Long.parseLong(request.getParameter("current person id"));
             
-            fight(user.getFightByID( person, monster));
+            request = fight(user.getFightByID( person, monster), request);
+            
+            
+        }else if(currentAction.equals("deleteFight")){
+            Long monster = Long.parseLong(request.getParameter("current monster id"));
+            Long person = Long.parseLong(request.getParameter("current person id"));
+            
+            Fight fight = user.getFightByID( person, monster);
+            user.removeFightOffer(fight);
+            personDOA.getPersonByID(fight.getChallenger()).removeFightOffer(fight);
+            personDOA.getPersonByID(fight.getOpponent()).removeFightOffer(fight);
             
             
         }
@@ -166,6 +194,7 @@ public class MonsterFightServlet extends HttpServlet {
         session.setAttribute("user", user);
         session.setAttribute("offers", user.getFightOffers() );
         session.setAttribute("challenges", user.getFightChallenges() );
+        
         request.getRequestDispatcher("/monsterFights.jsp").forward(request, response);
     }
 
