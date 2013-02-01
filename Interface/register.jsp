@@ -5,7 +5,7 @@
 <head>
 <meta content="en-us" http-equiv="Content-Language" />
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Home</title>
+<title>Register</title>
 
 
 
@@ -13,6 +13,7 @@
 <a href="./home.html">
 <img alt="Monster logo" src="monsterLogo.png">
 </a>
+<link rel="icon" href="favicon.ico" />
 
 </div>
 </head>
@@ -33,7 +34,7 @@
 <hr>
 
 <div class="container">
-  <section id="registerContent">
+	<section id="registerContent">
 		<form action="">
 <h1>Registration</h1><br><br><br>
 <input type="text" placeholder="First Name" name="first_name" size="30" required="" /><br><br>
@@ -48,6 +49,14 @@
 
 <input type="submit" value="submit" />
 
+
+
+<div id="dragon">
+<br><br> <img alt="monster" src="registermonster.png">
+</div>
+
+<div id="planty">
+<img alt="planty" src="registermonster1.png">
 		</div>
 		</form>
 		
