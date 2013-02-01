@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlets;
 
 import database.Monster;
@@ -22,8 +19,9 @@ import javax.servlet.http.HttpSession;
 import types.Fight;
 
 /**
- *
- * @author Dave
+ * This class contains methods which manages connection and 
+ * data exchange between .jsp and java classes for monsters fight.
+ * 
  */
 @WebServlet(name = "MonsterFight", urlPatterns = {"/monsterFight"})
 public class MonsterFightServlet extends HttpServlet {
@@ -51,15 +49,6 @@ public class MonsterFightServlet extends HttpServlet {
         
     }
     
-    public void sendFightRequest(Person friend) {
-        
-    }
-    public void acceptFight(Person friend) {
-        
-    }
-    public void declineFight(Person friend) {
-        
-    }
     /**
      * Algorithm for processing monster fights. attacks are calculated based on
      * random dice rolls and respective attributes. Critical hits are also possible.
@@ -119,18 +108,11 @@ public class MonsterFightServlet extends HttpServlet {
         personDOA.updatePersonsInfo(user);
         personDOA.deupdatPersonsInfo(user, fight);
         
-        
-        
+              
         return request;
     }
-    
-    public List<Monster> getMonsterList(Person friend) {
-        List<Monster> list = null;
-        
-        return list;
-    }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+   
     /** 
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
@@ -205,5 +187,5 @@ public class MonsterFightServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 }

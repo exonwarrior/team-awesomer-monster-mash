@@ -200,19 +200,28 @@ public class FriendsServlet extends HttpServlet {
      }
      
      /**
-      * 
-      * @param request
-      * @param user
-      * @return 
+      * Method that takes user input sends fight request 
+      * and updates the database
+      * @param request , HTTP request   
+      * @param user , Obejct Person 
+      * @return , request
       */
      private HttpServletRequest challengeMonster(HttpServletRequest request, Person user){
          HttpSession session = request.getSession(false);
          Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));
          Monster challenged = monsterDOA.getMonsterById(friendsMonsterID);
          Person challengedFriend = personDOA.getPersonByEmail(challenged.getOwnerID());
+         
          return request;
      }
      
+     /**
+      * Method that takes user input sends breed request to the friend 
+      * and updates the database
+      * @param request , HTTPrequest    
+      * @param user , Object Person
+      * @return , request
+      */
      private HttpServletRequest breedMonster(HttpServletRequest request, Person user){
          HttpSession session = request.getSession(false);
          Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));
@@ -229,6 +238,13 @@ public class FriendsServlet extends HttpServlet {
          return request;
      }
      
+     /**
+      * Method that takes user input sends buy request to the friend 
+      * and updates the database
+      * @param request , HTTP request   
+      * @param user , Object Person
+      * @return , request
+      */
      private HttpServletRequest buyMonster(HttpServletRequest request, Person user){
          HttpSession session = request.getSession(false);
          Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));

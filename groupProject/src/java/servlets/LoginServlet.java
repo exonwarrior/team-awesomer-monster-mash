@@ -1,10 +1,5 @@
 package servlets;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import database.*;
 import java.io.IOException;
 import javax.ejb.EJB;
@@ -17,7 +12,8 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author thh21
+ * This class contains methods which manages connection and 
+ * data exchange between login.jsp and database.
  */
 @WebServlet(name = "Login", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
@@ -45,12 +41,14 @@ public class LoginServlet extends HttpServlet {
         response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
         String logout = request.getParameter("logout");
         
+        //method which allows user to logout
         if(logout!=null && logout.equals("logout")){
             request.getSession().invalidate();
             request.getRequestDispatcher("/login.jsp").forward(request, response);
         }else{
+           //creates new session and updates database
             if(this.check(tempEmail, tempPassword)){
-
+                
                 personDOA = new PersonDOA();
                 HttpSession session = request.getSession(true);
                 Person user = personDOA.getPersonByEmail(tempEmail);
@@ -67,6 +65,7 @@ public class LoginServlet extends HttpServlet {
 
             }
             else{
+                //sends error message to the user
                 formError ="Incorrect email or password!";
                 request.setAttribute("message", formError);
                 request.getRequestDispatcher("/login.jsp").forward(request, response); 
@@ -91,6 +90,13 @@ public class LoginServlet extends HttpServlet {
         
     }
     
+    /**
+     * Method that validates user input with the existing field in database
+     * to log in 
+     * @param email , String unique email 
+     * @param password , String users password
+     * @return , response
+     */
     public boolean check(String email, String password){
         boolean response = false;
         personDOA = new PersonDOA();
@@ -112,5 +118,5 @@ public class LoginServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 }

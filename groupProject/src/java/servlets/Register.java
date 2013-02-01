@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author thomas
+ * This class contains methods which manages connection and 
+ * data exchange between register.jsp and database.
  */
 @WebServlet(name = "Register", urlPatterns = {"/register"})
 public class Register extends HttpServlet {
@@ -72,6 +73,7 @@ public class Register extends HttpServlet {
          String temp_password = request.getParameter("password");
          String formError =" ";
          
+         //checks if email already exists in database
          if(personDOA.lookForEmail(temp_email)){
              formError ="Email address is already in the system";
              request.setAttribute("error", formError);
