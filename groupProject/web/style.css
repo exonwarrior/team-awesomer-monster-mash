@@ -1,7 +1,7 @@
 .container { margin: 25px auto; position: relative; width: 900px; }
 
 #content {
-  background-color:#000;
+	background-color:#000;
 	border: 1px solid #c4c6ca;
 	margin: 0 auto;
 	padding: 25px 0 0;
@@ -48,8 +48,19 @@ ul#list-nav li a {
   text-align:center;
   border-left:1px solid #fff;
 }
+input.logoutbutton{
+  text-decoration:none;
+  padding:0px;
+  width:200px;
+  background:black;
+  color:white;
+  float:left;
+  text-align:center;
+  border-left:1px solid #fff;  
+}
 
-ul#list-nav li a:hover {
+
+ul#list-nav li a :hover {
   background:red;
  
   border-color: red;
@@ -58,7 +69,7 @@ ul#list-nav li a:hover {
 
 	html {
 		
-	background-image: url(bg.jpg);
+	background-image: url(headerbg.jpg);
 	font: a dripping marker, mv boli, times new roman;
 	}
 
@@ -104,7 +115,7 @@ input {
     border:2px solid #dadada;
     border-radius:7px;
     font-size:20px;
-    padding:5px;
+    padding:1px;
     margin-top:-10px;   
 	position: relative;
 	
@@ -120,3 +131,24 @@ input:hover {
 	outline:none;
     border-color: black;
 	}
+.button {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #000000), color-stop(1, #ad5662) );
+	background:-moz-linear-gradient( center top, #000000 5%, #ad5662 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ad5662');
+	background-color:#000000;
+	display:inline-block;
+	color:#777777;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:3px 24px;
+	text-decoration:none;
+}.button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ad5662), color-stop(1, #000000) );
+	background:-moz-linear-gradient( center top, #ad5662 5%, #000000 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ad5662', endColorstr='#000000');
+	background-color:#ad5662;
+}.button:active {
+	position:relative;
+	top:1px;
+}
