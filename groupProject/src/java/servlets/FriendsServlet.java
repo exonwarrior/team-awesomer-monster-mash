@@ -212,8 +212,14 @@ public class FriendsServlet extends HttpServlet {
          }
          else {
             seller.setMoney(seller.getMoney()+m.getSaleOffer());
+            seller.addActivity(user.getName()+" chose to buy your "+m.getName()
+                    +". You earned "+m.getSaleOffer()+ " credits! Your total is now "+
+                    seller.getMoney());
+            System.out.println(seller.getActivity());
             m.setOwner(user.getEmail());
             user.setMoney(user.getMoney() - m.getSaleOffer());
+            user.addActivity("You bought "+m.getName()+"for "+m.getSaleOffer()+
+                    " credits! Your total is now "+seller.getMoney());
             m.setSaleOffer(0);
             monsterDOA.updateMonstersInfo(m);
             personDOA.updatePersonsInfo(seller);

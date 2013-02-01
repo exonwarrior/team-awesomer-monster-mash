@@ -166,6 +166,11 @@ public class MyMonsterServlet extends HttpServlet {
          Person seller = personDOA.getPersonByEmail(stud.getOwnerID());
          seller.setMoney(seller.getMoney()+stud.getBreedOffer());
          user.setMoney(user.getMoney() - stud.getBreedOffer());
+         seller.addActivity(user.getName()+" chose to breed their "+
+                 bitch.getName()+" with your "+stud.getName()+". You earned "+
+                 stud.getBreedOffer()+ " credits! Your total amount is now "+
+                 seller.getMoney()+".");
+         System.out.println(seller.getActivity());
          
          Monster baby = monsterDOA.breedMonsters(stud, bitch);
          
