@@ -43,10 +43,11 @@ public class LoginServlet extends HttpServlet {
         String formError =" ";
         
         response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
-        String currentAction = request.getParameter("current_action");
+        String logout = request.getParameter("logout");
         
-        if(currentAction!=null && currentAction.equals("logout")){
+        if(logout!=null && logout.equals("logout")){
             request.getSession().invalidate();
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
         }else{
             if(this.check(tempEmail, tempPassword)){
 
@@ -86,10 +87,6 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-//        String home = "http://localhost:8080/MonsterGame/home.jsp";
-//        String register = "http://localhost:8080/MonsterGame/pee.jsp";
-//        request.setAttribute("check", answer );
-//        request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
     
     public boolean check(String email, String password){

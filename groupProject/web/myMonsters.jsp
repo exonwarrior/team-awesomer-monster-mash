@@ -48,7 +48,8 @@
                     document.forms
                 }
                 function logOut(){
-                    document.getElementById("current_action").value = "logout";
+                    document.getElementById("logout").value = "logout";
+                    document.forms["login"].submit();
                 }
                 function breedMyMonster(id){
                     document.getElementById("current_action").value = "breed_with_monster";
@@ -63,7 +64,11 @@
         <ul id="list-nav">            
             <li><a href="./friends.jsp">Friends</a></li>
             <li><a href="./monsterFights.jsp">Monster Fights</a></li>
-            <li><a href="./login.jsp" onClick="logOut();">Log Out</a></li>
+            <form method="post" action="login" id="login" class="logoutbutton">
+             <input type="hidden" id="logout" name="logout" />
+             <li><input type="button" onClick="logOut();" value="logout" /></li>
+            </form>
+            
         </ul>
         <h1>Monsters</h1>
         <form method="post" action="myMonsters" id="change_monster">

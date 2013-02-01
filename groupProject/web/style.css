@@ -48,8 +48,19 @@ ul#list-nav li a {
   text-align:center;
   border-left:1px solid #fff;
 }
+input.logoutbutton{
+  text-decoration:none;
+  padding:0px;
+  width:200px;
+  background:black;
+  color:white;
+  float:left;
+  text-align:center;
+  border-left:1px solid #fff;  
+}
 
-ul#list-nav li a:hover {
+
+ul#list-nav li a :hover {
   background:red;
  
   border-color: red;
