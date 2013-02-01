@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package database;
 
 import java.io.BufferedReader;
@@ -178,7 +174,6 @@ public class Monster implements Serializable {
     
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Monster)) {
             return false;
         }
@@ -201,7 +196,7 @@ public class Monster implements Serializable {
      */
     public Monster generateRandom(Person user){
          Random random = new Random();
-         //this.monsterID = this.id.toString();
+
          this.birthDate = (int) (System.currentTimeMillis() / 1000L);
          this.lifespan = 74300;
          this.baseStrength = random.nextDouble();
@@ -225,7 +220,6 @@ public class Monster implements Serializable {
          } catch (IOException ex) {
             Logger.getLogger(Monster.class.getName()).log(Level.SEVERE, null, ex);
          }
-         //this.name = "" + user.getName() + "'s Monster";
          this.ownerID = user.getEmail();
          
          System.out.println(this.id+"\n"+ this.ownerID +"\n"+this.baseStrength+"\n"
