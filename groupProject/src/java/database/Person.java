@@ -95,17 +95,10 @@ public class Person implements Serializable {
             }
         }
     }
-<<<<<<< HEAD
 
-    public Fight getFightByID(String id) {
-        for (Fight fight : this.fights) {
-            if (fight.getId().equals(id)) {
-=======
-    
     public Fight getFightByID(Long person, Long monster){
         for(Fight fight: this.fights){
             if(fight.getChallenger().equals(person) && fight.getChallMonster().equals(monster)){
->>>>>>> Hello World!
                 return fight;
             }
         }

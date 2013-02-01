@@ -60,6 +60,12 @@ public class MonsterFightServlet extends HttpServlet {
     public void declineFight(Person friend) {
         
     }
+    /**
+     * Algorithm for processing monster fights. attacks are calculated based on
+     * random dice rolls and respective attributes. Critical hits are also possible.
+     * At the end monster stats are updated and the dead one removed.
+     * @param fight object containing information on monsters and people involved.
+     */
     public void fight(Fight fight) {
         Monster m1;
         Monster m2;
@@ -69,14 +75,14 @@ public class MonsterFightServlet extends HttpServlet {
 		
 	while((m1.getCurrentHealth()>0)&&(m2.getCurrentHealth()>0)){
             Random random = new Random();
-            int attack1 = random.nextInt(20)+1;
-            int attack2 = random.nextInt(20)+1;
+            double attack1 = random.nextDouble();
+            double attack2 = random.nextDouble();
             
-            if(attack1 == 20){
+            if(attack1 == 1){
                 m2.setCurrentHealth(m2.getCurrentHealth()-(m1.getCurrentStrength()/2));
                 System.out.println("Friend monster took a critical hit! Its health is now "+m2.getCurrentHealth());
             }
-            if(attack2 == 20){
+            if(attack2 == 1){
                 m1.setCurrentHealth(m1.getCurrentHealth()-(m2.getCurrentStrength()/2));
                 System.out.println("Your monster took a critical hit! Its health is now "+m1.getCurrentHealth());
             }
