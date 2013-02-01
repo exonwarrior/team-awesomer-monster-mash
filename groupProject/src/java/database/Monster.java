@@ -29,6 +29,15 @@ public class Monster implements Serializable {
     private String monsterID;
     private String name, ownerID;
     private int birthDate, lifespan, breedOffer, saleOffer;
+
+    public void setBirthDate(int birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     
     public int getLifeSpan(){
         return lifespan;

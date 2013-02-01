@@ -93,7 +93,12 @@ public class MyMonsterServlet extends HttpServlet {
          * update the selling price
          */
         else if(currentAction.equals("sale")){
+            
             setSaleOffer(session, request);
+            
+        }else if(currentAction.equals("breed_with_monster")){
+            
+            request = breedMonster(request, user);
         }
         /*
          * Update the current monster
@@ -149,4 +154,30 @@ public class MyMonsterServlet extends HttpServlet {
         monsterDOA = new MonsterDOA();
         session.setAttribute("current monster", monsterDOA.getMonsterById(id));        
     }
+    
+    private HttpServletRequest breedMonster(HttpServletRequest request, Person user){
+         HttpSession session = request.getSession(false);
+        
+         Long friendsMonsterID = Long.parseLong(session.getAttribute("friendsMonsterID").toString());
+         Long currentMonsterID = Long.parseLong(request.getParameter("current monster id"));
+         
+         Monster stud = monsterDOA.getMonsterById(friendsMonsterID);
+         Monster bitch = monsterDOA.getMonsterById(currentMonsterID);
+         
+         Person seller = personDOA.getPersonByEmail(stud.getOwnerID());
+         seller.setMoney(seller.getMoney()+stud.getBreedOffer());
+         user.setMoney(user.getMoney() - stud.getBreedOffer());
+         
+         Monster baby = monsterDOA.breedMonsters(stud, bitch);
+         
+         baby.setOwner(user.getEmail());
+         monsterDOA.persist(baby);
+         
+         personDOA.updatePersonsInfo(seller);
+         personDOA.updatePersonsInfo(user);
+         
+         session.setAttribute("current_action", "done breeding");
+
+         return request;
+     }
 }

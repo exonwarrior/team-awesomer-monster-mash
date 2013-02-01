@@ -47,6 +47,11 @@
                 document.getElementById("friendsMonsterID").value = id;
                 document.forms["friends form"].submit();
             }
+            function breed(id){
+                document.getElementById("current_action").value = "breed";
+                document.getElementById("friendsMonsterID").value = id;
+                document.forms["friends form"].submit();
+            }
             function warning(error){
                 if(error!=null && error.toString().length > 2 ){
                     alert(error);
@@ -144,9 +149,13 @@
                        <input type="submit" name="challengeMonster" onclick="challengeMonster(<%=currentMonster.getId()%>);" value="Challenge" />
                     <%}%>
                     <% if(currentMonster.getSaleOffer() > 0) { %>
-                        Price:         <%=currentMonster.getSaleOffer()%> <br />
+                        Sale Price:         <%=currentMonster.getSaleOffer()%> <br />
                         <input type="submit" name="buyMonster" onclick="purchase(<%=currentMonster.getId()%>);" value="Purchase" />
                     <% } %>
+                    <% if(currentMonster.getBreedOffer() > 0){ %>
+                        Breed Price:        <%=currentMonster.getBreedOffer()%><br />
+                        <input type="submit" name="breedMonster" onclick="breed(<%=currentMonster.getId()%>);" value="Breed" />7
+                        <%}%>
                 </p><% }
             }%>
             

@@ -184,6 +184,9 @@ public class MonsterDOA {
                 baby.setBaseHealth(baby.getBaseDefence()+(baby.getBaseDefence()/4));
             }
         }
+        baby.setLifeSpan(73400);
+        baby.setName("Little baby " + baby.getMonsterID());
+        baby.setBirthDate((int) (System.currentTimeMillis() / 1000L));
         System.out.println("NOW RETURN THE BABY");
         return baby;
     }

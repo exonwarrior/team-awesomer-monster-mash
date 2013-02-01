@@ -27,6 +27,7 @@ public class FriendsServlet extends HttpServlet {
     @EJB PersonDOA personDOA;
     @EJB MonsterDOA monsterDOA;
     String currentAction;
+    String forwardUrl = "/friends.jsp";
    
     /**
      * Processes requests for both HTTP
@@ -97,7 +98,14 @@ public class FriendsServlet extends HttpServlet {
             Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));
             this.challengeMonster(session, friendsMonsterID);
         } else if(currentAction.equals("purchase")){            
-            request = this.buyMonster(request, user);
+            
+            request = buyMonster(request, user);
+            
+            
+        } else if(currentAction.equals("breed")){
+            this.forwardUrl = "/myMonsters.jsp";
+            session.setAttribute("friendsMonsterID", request.getParameter("friendsMonsterID"));
+            session.setAttribute("current_action", "breed");
         }
         
         user = personDOA.getPersonByID(user.getId());
@@ -106,7 +114,7 @@ public class FriendsServlet extends HttpServlet {
         session.setAttribute("requestList", personDOA.getPersonsFriendRequests(user));
         session.setAttribute("friends", personDOA.getPersonsFriends(user) );
 
-        request.getRequestDispatcher("/friends.jsp").forward(request, response);
+        request.getRequestDispatcher(this.forwardUrl).forward(request, response);
     }
     
                 //  response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
@@ -172,8 +180,21 @@ public class FriendsServlet extends HttpServlet {
          //Make me workz!!1!
      }
      
-     private void breedMonster(HttpServletRequest request, Person user){
+     private HttpServletRequest breedMonster(HttpServletRequest request, Person user){
+         HttpSession session = request.getSession(false);
+         Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));
+         Monster stud = monsterDOA.getMonsterById(friendsMonsterID);
+         Person seller = personDOA.getPersonByEmail(stud.getOwnerID());
          
+         if(user.getMoney()<stud.getBreedOffer()){
+             request.setAttribute("error", "Not enough funds! >:(");
+         }else{
+            seller.setMoney(seller.getMoney()+stud.getBreedOffer());
+            Monster baby;
+         }
+         
+         
+         return request;
      }
      
      private HttpServletRequest buyMonster(HttpServletRequest request, Person user){

@@ -50,6 +50,11 @@
                 function logOut(){
                     document.getElementById("current_action").value = "logout";
                 }
+                function breedMyMonster(id){
+                    document.getElementById("current_action").value = "breed_with_monster";
+                    document.getElementById("current monster id").value =  id;                   
+                    document.forms["monster form"].submit();
+                }
                 
                 -->
             </script>
@@ -100,6 +105,10 @@
                 Sale Offer:     <%=currentMonster.getSaleOffer()%>
                 <input type="text" id="price" placeholder="selling price" name="sale price" />
                 <input type="submit" name="sale"  onclick="saleOffer(<%=currentMonster.getId()%>);" value="sale" />
+                
+                <%if(session.getAttribute("current_action") != null && session.getAttribute("current_action").equals("breed")){%>
+                <input type="submit" name="breed"  onclick="breedMyMonster(<%=currentMonster.getId()%>);" value="breed with me" />    
+                <%}%>
 
             <%}%>
         </p>
