@@ -150,13 +150,10 @@ public class MonsterTest {
      */
     @Test
     public void testGetBirthDate() {
-        System.out.println("getBirthDate");
-        Monster instance = new Monster();
-        int expResult = 0;
-        int result = instance.getBirthDate();
+        monster.setBirthDate(1);
+        int expResult = 1;
+        int result = monster.getBirthDate();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -164,13 +161,10 @@ public class MonsterTest {
      */
     @Test
     public void testGetBaseHealth() {
-        System.out.println("getBaseHealth");
-        Monster instance = new Monster();
-        double expResult = 0.0;
-        double result = instance.getBaseHealth();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        monster.setBaseHealth(1.0);
+        double expResult = 1.0;
+        double result = monster.getBaseHealth();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -344,20 +338,6 @@ public class MonsterTest {
         double price = 0.0;
         Monster instance = new Monster();
         instance.setPrice(price);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of hashCode method, of class Monster.
-     */
-    @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
-        Monster instance = new Monster();
-        int expResult = 0;
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
