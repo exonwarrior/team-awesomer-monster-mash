@@ -67,7 +67,7 @@ public class MonsterFightServlet extends HttpServlet {
         m1 = monsterDOA.getMonsterById(fight.getOppMonster());
         m2 = monsterDOA.getMonsterById(fight.getChallMonster());
 		
-	while((m1.getCurrentHealth()!=0)&&(m2.getCurrentHealth()!=0)){
+	while((m1.getCurrentHealth()>0)&&(m2.getCurrentHealth()>0)){
             Random random = new Random();
             int attack1 = random.nextInt(20)+1;
             int attack2 = random.nextInt(20)+1;
