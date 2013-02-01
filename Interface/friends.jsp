@@ -5,14 +5,15 @@
 <head>
 <meta content="en-us" http-equiv="Content-Language" />
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Home</title>
+<title>Friends</title>
 
 
 
 <div id="header">
-<a href="./home.html">
+<a href="./home.jsp">
 <img alt="Monster logo" src="monsterLogo.png">
 </a>
+<link rel="icon" href="favicon.ico" />
 
 </div>
 </head>
@@ -22,46 +23,116 @@
 
 <ul id="list-nav">
   
-<li><a href="./marketplace.html">Marketplace</a></li>
-<li><a href="./myMonsters.html">My Monsters</a></li>
-<li><a href="./friends.html">Friends</a></li>
-<li><a href="./monsterFights.html">Monster Fights</a></li>
-<li><a href="./login.html">Log Out</a></li>
-<li><a href="./home.html">Home</a></li>
-
+<li><a href="./marketplace.jsp">Marketplace</a></li>
+<li><a href="./myMonsters.jsp">My Monsters</a></li>
+<li><a href="./friends.jsp">Friends</a></li>
+<li><a href="./monsterFights.jsp">Monster Fights</a></li>
+<li><a href="./login.jsp">Log Out</a></li>
 </div>
 </ul>
 
 <hr>
 
 <div class="container">
-  <section id="content">
-<h1>Friends</h1>
+	<section id="content">
 
-<br><br><br>
+	<h1>Friends</h1><br><br>
 
+<div id="friendTable">
+<table name="FriendsList" border="1">
 
+	<tr>
+	<th name="FriendsList">Friends List</th>
+	
 
-<form method="post">
+	<th name="Email">Email</th>
+	</tr>
+	<tr>
+	<td><input type="button" value="Friend 1"/></td>
+		<td><p>E@Email.com<p/></td>
+		</tr>
+		</div>
+		<br>
+		
+		<div id="challenge">
+			<input type="submit" value="Challenge friend">
+	</div>
+	
+</div>
+	
+	<br><br><br>
+	<div id="requests">
+	<h1>Friend requests</h1>
+	</div>
+	
+	
+	<div id="requestsTable">
+	<table style="margin-top:200px; margin-left:10px;">
 
+	<tr>
+	<th name="Name">Name</th>
+	
 
-
-	<input name="displayFriends" type="button" value="Display Friends List" />	<br><br>
+	<th name="Email">Email</th>
 	
 	
 	
-	<input name="delete" type="button" value="delete friend" /><br><br>
-	<input name="viewFriendWealth"  type="button" value="View Friend Wealth" /><br><br>
+	</tr>
+	<tr>
+	<td><p>Bobby Jones<p></td>
+		<td><p>E@Email.com<p/></td>
+		<td><input type="button" value="Accept"></td>
+		</tr>
+		
+		
+				</div>
+
 	
-	<hr>
-	<h2> Friend Requests </h2><br><br><br>
+	</table>
+	
+	<br><br><br>
+	
+	
+	<div id="sendRequest">
+	<h1>Send friend request</h1>
+	<br><br><br><br>
+		
+
+	<input name="search" type="text" placeholder="Search for friend by email address" />
+	<input name="add"  type="button" value="Add friend" /></p><br><br>
+		
+	</div>
+	
+	
+	<div id="alienDude">
+	<img alt="alienDude" src="25.png">
+	</div>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- <h2> Friend Requests </h2><br><br><br>
 	<input name="accept" type="button" value="Accept Friend" /><br><br>
 	<input name="decline" type="button" value="Decline Friend" /><br><br>
 		<input name="add"  type="button" value="Add friend" /></p><br><br>
 
 	<input name="search" type="text" placeholder="Search for friend by email address" /><br><br>
+!-->
 
-	</div>
+	
+	</section>
 	</form>
 
 </body>
