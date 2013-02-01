@@ -120,9 +120,9 @@
                         <%}%>
                     </p>
                     <p name="fight">
-                       <% if(session.getAttribute("fight result") != null){
-                           String s = (String) session.getAttribute("fight result");%>
-                                 <%=s%> <br />
+                       <% if(request.getAttribute("fight result") != null){
+                           String message = (String) request.getAttribute("fight result");%>
+                                 <%=message%> <br />
                         <%}%>
                     </p>
                 </form>
