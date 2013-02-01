@@ -127,8 +127,6 @@
                     </div>
 
                 </form>
-
-                <textarea rows="10" cols="50"></textarea>
             </section>
         </div>
     </body>
