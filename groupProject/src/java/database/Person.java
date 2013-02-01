@@ -19,6 +19,7 @@ import types.Fight;
  */
 @Entity
 public class Person implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,14 +29,11 @@ public class Person implements Serializable {
     private int money;
     private ArrayList<String> friends;
     private ArrayList<String> friendRequests;
-    
     @Embedded
     private ArrayList<Fight> fights;
     private ArrayList<String> activity;
-    
-    
-    public Person(){
-        
+
+    public Person() {
     }
 
     public Person(String name, String password, String email) {
@@ -48,60 +46,59 @@ public class Person implements Serializable {
         this.fights = new ArrayList<Fight>();
         this.money = 1000;
     }
-    
-    
-    public ArrayList<Fight> getFightChallenges(){
+
+    public ArrayList<Fight> getFightChallenges() {
         ArrayList<Fight> challenges = new ArrayList<Fight>();
-        
-        if(fights != null) {
-            for(Fight fight: fights){
-                if(fight.getChallenger().equals(this.id)){
+
+        if (fights != null) {
+            for (Fight fight : fights) {
+                if (fight.getChallenger().equals(this.id)) {
                     challenges.add(fight);
                 }
             }
         }
         return challenges;
     }
-    
-    public ArrayList<Fight> getFightOffers(){
+
+    public ArrayList<Fight> getFightOffers() {
         ArrayList<Fight> offers = new ArrayList<Fight>();
-        
-        if(fights != null){
-          for(Fight fight: fights){
-            if(fight.getOpponent().equals(this.id)){
-                offers.add(fight);
+
+        if (fights != null) {
+            for (Fight fight : fights) {
+                if (fight.getOpponent().equals(this.id)) {
+                    offers.add(fight);
+                }
             }
-         }  
         }
-        
-        
+
+
         return offers;
     }
-    
-    public ArrayList<Fight> getAllFights(){
+
+    public ArrayList<Fight> getAllFights() {
         return this.fights;
     }
-    
-    public void addFight(Fight fight){
+
+    public void addFight(Fight fight) {
         this.fights.add(fight);
     }
-    
-    public void removeFightOffer(Fight fight){
+
+    public void removeFightOffer(Fight fight) {
         this.fights.remove(fight);
     }
-    
-    public void removeFightOffer(Person opponent, Monster oppMonster){
-        for(Fight fight: this.fights){
-            if(fight.getOppMonster().equals(oppMonster.getId()) 
-                    && fight.getOpponent().equals(opponent.getId())){
+
+    public void removeFightOffer(Person opponent, Monster oppMonster) {
+        for (Fight fight : this.fights) {
+            if (fight.getOppMonster().equals(oppMonster.getId())
+                    && fight.getOpponent().equals(opponent.getId())) {
                 this.fights.remove(fight);
             }
         }
     }
-    
-    public Fight getFightByID(String id){
-        for(Fight fight: this.fights){
-            if(fight.getId().equals(id)){
+
+    public Fight getFightByID(String id) {
+        for (Fight fight : this.fights) {
+            if (fight.getId().equals(id)) {
                 return fight;
             }
         }
@@ -112,42 +109,49 @@ public class Person implements Serializable {
 //        this.friendRequests = new ArrayList<String>(updatedRequests);
 //        return friendRequests;
 //    }
-    public ArrayList<String> getAllFriendRequests(){
-        return friendRequests;
-    }
-    public ArrayList<String> getActivity(){
+    public ArrayList<String> getActivity() {
         return activity;
     }
-    public void addActivity(String active){
+
+    public void addActivity(String active) {
         this.activity.add(active);
     }
-    public void addFriendRequest(String email){
+
+    public ArrayList<String> getAllFriendRequests() {
+        return friendRequests;
+    }
+
+    public void addFriendRequest(String email) {
         this.friendRequests.add(email);
     }
-    public void removeFriendRequest(String email){
+
+    public void removeFriendRequest(String email) {
         this.friendRequests.remove(email);
     }
 //   public ArrayList<String> setFriends(ArrayList<String> updatedFriends){
 //        this.friends = new ArrayList<String>(updatedFriends);
 //        return friends;
 //    }
-    public ArrayList<String> getAllFriends(){
+
+    public ArrayList<String> getAllFriends() {
         return friends;
     }
-    public void addFriend(String email){
+
+    public void addFriend(String email) {
         this.friends.add(email);
     }
-    public void removeFriend(String email){
+
+    public void removeFriend(String email) {
         this.friends.remove(email);
     }
     /*public ArrayList<String> getAllMonsters(){
-        return monsters;
-    }
+     return monsters;
+     }
     
-    public void addMonster(String id ){
-        this.monsters.add(id);
-    }*/
-    
+     public void addMonster(String id ){
+     this.monsters.add(id);
+     }*/
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -214,11 +218,9 @@ public class Person implements Serializable {
         }
         return true;
     }
-    
 
     @Override
     public String toString() {
         return "login.Person[ id=" + id + " ]";
     }
-    
 }
