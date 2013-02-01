@@ -15,7 +15,7 @@ import types.Fight;
 
 /**
  *
- * @author toffik
+ * @author thomas
  */
 public class PersonTest {
     
@@ -24,6 +24,14 @@ public class PersonTest {
     
     @BeforeClass
     public static void setUpClass() {
+        String p1Name = "p1";
+        String p2Name = "p2";
+        String p1Password = "123";
+        String p2Password  = "123";
+        String p1Email = "1email";
+        String p2Email = "2email";
+        Person p1 = new Person(p1Name,p1Password,p1Email);
+        Person p2 = new Person(p2Name, p2Password, p2Email);
     }
     
     @AfterClass
@@ -245,33 +253,6 @@ public class PersonTest {
     }
 
     /**
-     * Test of getAllMonsters method, of class Person.
-     */
-    @Test
-    public void testGetAllMonsters() {
-        System.out.println("getAllMonsters");
-        Person instance = new Person();
-        ArrayList expResult = null;
-       // ArrayList result = instance.getAllMonsters();
-     //   assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of addMonster method, of class Person.
-     */
-    @Test
-    public void testAddMonster() {
-        System.out.println("addMonster");
-        String id = "";
-        Person instance = new Person();
-       // instance.addMonster(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of setEmail method, of class Person.
      */
     @Test
@@ -435,4 +416,17 @@ public class PersonTest {
         fail("The test case is a prototype.");
     }
 
+    /**
+     * Test of toString method, of class Person.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        Person instance = new Person();
+        String expResult = "";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 }
