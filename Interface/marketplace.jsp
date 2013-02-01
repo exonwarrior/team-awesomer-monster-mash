@@ -35,7 +35,7 @@
 <hr>
 
 <div class="container">
-  <section id="content">
+	<section id="content">
 <h1>Marketplace</h1>
 <br><br><br>
 
