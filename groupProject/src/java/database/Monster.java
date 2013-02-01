@@ -4,6 +4,12 @@
  */
 package database;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Level;
@@ -208,12 +214,38 @@ public class Monster implements Serializable {
          this.currentDefence = this.baseDefence;
          this.currentHealth = this.baseHealth;
          this.price = 0;
-         this.name = "" + user.getName() + "'s Monster";
+         try {
+            this.name = generateName();
+         } catch (IOException ex) {
+            Logger.getLogger(Monster.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         //this.name = "" + user.getName() + "'s Monster";
          this.ownerID = user.getEmail();
          
          System.out.println(this.id+"\n"+ this.ownerID +"\n"+this.baseStrength+"\n"
                  +this.baseDefence+"\n"+this.baseHealth);
          return this;
      }
+<<<<<<< HEAD
+=======
+
+    public void setOwner(String email) {
+        this.ownerID = email;
+    }
+
+    private String generateName() throws IOException {
+        String randomName;
+        Scanner s = new Scanner(new File("examplenames.txt"));
+        ArrayList<String> list = new ArrayList<String>();
+        while (s.hasNext()){
+            list.add(s.next());
+        }   
+        s.close();        
+        Random random = new Random();
+        int index = random.nextInt(200)+1;
+        randomName = list.get(index);
+        return randomName;
+    }
+>>>>>>> Home.jsp
     
 }

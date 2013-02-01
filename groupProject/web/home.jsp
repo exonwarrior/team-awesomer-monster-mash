@@ -20,5 +20,8 @@
     </head>
     <body>
         <h1>Home</h1>
+        <textarea rows="10" cols="50">
+            <%%>
+        </textarea>
     </body>
 </html>
