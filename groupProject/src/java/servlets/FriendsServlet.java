@@ -43,7 +43,6 @@ public class FriendsServlet extends HttpServlet {
             throws ServletException, IOException {
         
     }
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
      * <code>GET</code> method.
@@ -96,13 +95,12 @@ public class FriendsServlet extends HttpServlet {
             session.setAttribute("friendsMonsters", personDOA.getPersonsMonsters(friend));
             
         }else if(currentAction.equals("challenge_monster")){
-            Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));
-            this.challengeMonster(session, friendsMonsterID);
-        } else if(currentAction.equals("purchase")){            
-            
+            //Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));
+            this.forwardUrl = "/myMonsters.jsp";
+            session.setAttribute("friendsMonsterID", request.getParameter("friendsMonsterID"));
+            session.setAttribute("current_action", "fight");
+        } else if(currentAction.equals("purchase")){   
             request = buyMonster(request, user);
-            
-            
         } else if(currentAction.equals("breed")){
             this.forwardUrl = "/myMonsters.jsp";
             session.setAttribute("friendsMonsterID", request.getParameter("friendsMonsterID"));
@@ -177,8 +175,15 @@ public class FriendsServlet extends HttpServlet {
          return request;
      }
      
-     private void challengeMonster(HttpSession session, Long id){
-         //Make me workz!!1!
+     /*private void challengeMonster(HttpSession session, Long id){
+      * //Make me workz!!1!
+      * }*/
+     private HttpServletRequest challengeMonster(HttpServletRequest request, Person user){
+         HttpSession session = request.getSession(false);
+         Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));
+         Monster challenged = monsterDOA.getMonsterById(friendsMonsterID);
+         Person challengedFriend = personDOA.getPersonByEmail(challenged.getOwnerID());
+         return request;
      }
      
      private HttpServletRequest breedMonster(HttpServletRequest request, Person user){
@@ -193,8 +198,6 @@ public class FriendsServlet extends HttpServlet {
             seller.setMoney(seller.getMoney()+stud.getBreedOffer());
             Monster baby;
          }
-         
-         
          return request;
      }
      
@@ -229,5 +232,5 @@ public class FriendsServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 }

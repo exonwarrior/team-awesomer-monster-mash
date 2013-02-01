@@ -29,7 +29,11 @@ public class Monster implements Serializable {
     private String monsterID;
     private String name, ownerID;
     private int birthDate, lifespan, breedOffer, saleOffer;
+    private double baseStrength, currentStrength, 
+            baseDefence, currentDefence, baseHealth, 
+            currentHealth, price;
 
+    // <editor-fold defaultstate="collapsed" desc="Getters and Setters. Click on the + sign on the left to edit the code.">
     public void setBirthDate(int birthDate) {
         this.birthDate = birthDate;
     }
@@ -37,8 +41,6 @@ public class Monster implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
     public int getLifeSpan(){
         return lifespan;
     }
@@ -61,9 +63,6 @@ public class Monster implements Serializable {
     public int getSaleOffer() {
         return saleOffer;
     }
-    private double baseStrength, currentStrength, 
-            baseDefence, currentDefence, baseHealth, 
-            currentHealth, price;
     
     public String getName() {
         return name;
@@ -137,6 +136,7 @@ public class Monster implements Serializable {
     public void setPrice(double price){
         this.price = price;
     }
+    // </editor-fold>
 
     @Override
     public int hashCode() {

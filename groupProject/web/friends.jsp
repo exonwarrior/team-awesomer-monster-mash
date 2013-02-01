@@ -4,6 +4,7 @@
     Author     : 
 --%>
 
+<%@page import="sun.security.krb5.internal.tools.Ktab"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="database.Monster"%>
 <%@page import="java.util.ArrayList"%>
@@ -89,24 +90,21 @@
         <input type="hidden" id="error" name="error" />
         <h2>Your Friends</h2>
             <table name="friend" border="1">
-                <% ArrayList<Person> friends = (ArrayList<Person>) session.getAttribute("friends");%>                
+                <% ArrayList<Person> friends = (ArrayList<Person>) session.getAttribute("friends");%>
                 
                 <tr>
                     <th>Friend Name</th>
                     <th>Email</th>
-                    <th>Money</th>
                 </tr>
                 <% if (friends != null) {
                         for (Person friend : friends) {%>
                             <tr>
                                 <td><input type="submit" name="friend" onclick="getFriendsMonsters('<%=friend.getEmail()%>');" value="<%=friend.getName()%>" /></td>
-                                <td><%=friend.getEmail()%></td>          
-                                <td><%=friend.getMoney()%></td>
+                                <td><%=friend.getEmail()%></td>
                             </tr>
                 <%}
                     }%>
             </table>
-            <input type="submit" name="sortPrice" onclick="" value="Sort by Price" />
             <h2>Friend Requests</h2>
             <table name="friendRequestList" border="1">	
                 <% ArrayList<Person> friendRequests = (ArrayList<Person>) session.getAttribute("requestList");%>
@@ -157,7 +155,35 @@
                         <%}%>
                 </p><% }
             }%>
-            
+            <table name="richestFriends" border="1">
+                <% ArrayList<Person> friends_sort = (ArrayList<Person>) session.getAttribute("friends");%>
+                <% Person temp = new Person(); %>
+                <% if(!(friends_sort.size() < 2)) {%>
+                    <% for(int i = 0; i < friends_sort.size(); i++){
+                         for(int j = 0; j < friends_sort.size()-1; j++){
+                             if(friends_sort.get(j).getMoney()<friends_sort.get(j+1).getMoney()){
+                                 temp = friends_sort.get(j+1);
+                                 friends_sort.set(j, friends_sort.get(j+1));
+                                 friends_sort.set(j+1, temp);
+                             }
+                         }
+                    }%>
+                <%}%>
+                <tr>
+                    <th>Friend Name</th>
+                    <th>Email</th>
+                    <th>Money</th>
+                </tr>
+                <% if (friends_sort != null) {
+                        for (Person friend : friends_sort) {%>
+                            <tr>
+                                <td><%=friend.getName()%></td>
+                                <td><%=friend.getEmail()%></td>
+                                <td><%=friend.getMoney()%></td>
+                            </tr>
+                <%}
+                    }%>
+            </table>
         </form>
     </body>		
 </html>
