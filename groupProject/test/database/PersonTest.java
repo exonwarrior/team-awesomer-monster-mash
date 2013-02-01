@@ -18,6 +18,7 @@ import types.Fight;
  * @author thomas
  */
 public class PersonTest {
+<<<<<<< HEAD
     
     public PersonTest() {
     }
@@ -38,12 +39,14 @@ public class PersonTest {
     public static void tearDownClass() {
     }
     
+=======
+
+    private Person person;
+
+>>>>>>> basics of basic JUnit
     @Before
     public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+        person = new Person("name", "password", "email");
     }
 
     /**
@@ -253,16 +256,44 @@ public class PersonTest {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Test of getAllMonsters method, of class Person.
+     */
+    @Test
+    public void testGetAllMonsters() {
+        System.out.println("getAllMonsters");
+        Person instance = new Person();
+        ArrayList expResult = null;
+        // ArrayList result = instance.getAllMonsters();
+        //   assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of addMonster method, of class Person.
+     */
+    @Test
+    public void testAddMonster() {
+        System.out.println("addMonster");
+        String id = "";
+        Person instance = new Person();
+        // instance.addMonster(id);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+>>>>>>> basics of basic JUnit
      * Test of setEmail method, of class Person.
      */
     @Test
     public void testSetEmail() {
-        System.out.println("setEmail");
-        String email = "";
-        Person instance = new Person();
-        instance.setEmail(email);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String email = "newEmail";
+        person.setEmail(email);
+        String newEmail = person.getEmail();
+        assertEquals(email, newEmail);
     }
 
     /**
@@ -270,12 +301,10 @@ public class PersonTest {
      */
     @Test
     public void testSetMoney() {
-        System.out.println("setMoney");
-        int money = 0;
-        Person instance = new Person();
-        instance.setMoney(money);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        int money = 1234;
+        person.setMoney(money);
+        int newMoney = person.getMoney();
+        assertEquals(money, newMoney);
     }
 
     /**
@@ -283,12 +312,10 @@ public class PersonTest {
      */
     @Test
     public void testSetName() {
-        System.out.println("setName");
-        String name = "";
-        Person instance = new Person();
-        instance.setName(name);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String name = "newName";
+        person.setName(name);
+        String newName = person.getName();
+        assertEquals(name, newName);
     }
 
     /**
@@ -296,12 +323,10 @@ public class PersonTest {
      */
     @Test
     public void testSetPassword() {
-        System.out.println("setPassword");
-        String password = "";
-        Person instance = new Person();
-        instance.setPassword(password);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String password = "newPassword";
+        person.setPassword(password);
+        String newPassword = person.getPassword();
+        assertEquals(password, newPassword);
     }
 
     /**
@@ -309,13 +334,9 @@ public class PersonTest {
      */
     @Test
     public void testGetEmail() {
-        System.out.println("getEmail");
-        Person instance = new Person();
-        String expResult = "";
-        String result = instance.getEmail();
+        String expResult = "email";
+        String result = person.getPassword();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -337,13 +358,9 @@ public class PersonTest {
      */
     @Test
     public void testGetName() {
-        System.out.println("getName");
-        Person instance = new Person();
-        String expResult = "";
-        String result = instance.getName();
+        String expResult = "name";
+        String result = person.getPassword();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -351,13 +368,9 @@ public class PersonTest {
      */
     @Test
     public void testGetPassword() {
-        System.out.println("getPassword");
-        Person instance = new Person();
-        String expResult = "";
-        String result = instance.getPassword();
+        String expResult = "password";
+        String result = person.getPassword();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -415,6 +428,7 @@ public class PersonTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+<<<<<<< HEAD
 
     /**
      * Test of toString method, of class Person.
@@ -429,4 +443,6 @@ public class PersonTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+=======
+>>>>>>> basics of basic JUnit
 }
