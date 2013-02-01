@@ -137,8 +137,7 @@ public class MonsterFightServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         Person user = (Person) session.getAttribute("user");
         currentAction  = request.getParameter("current action");
-        Long id;
-        user = personDOA.updateFights(user);
+        Long id;    
         
         if(currentAction.equals("personStats")){
             id = Long.parseLong(request.getParameter("current person id"));
@@ -149,8 +148,10 @@ public class MonsterFightServlet extends HttpServlet {
             session.setAttribute("current monster", monsterDOA.getMonsterById(id));
         }
         else if(currentAction.equals("fight")){
-            String fightID = (String)  request.getAttribute("current fight id");
-            fight(user.getFightByID(fightID));
+            Long monster = Long.parseLong(request.getParameter("current monster id"));
+            Long person = Long.parseLong(request.getParameter("current person id"));
+            
+            fight(user.getFightByID( person, monster));
             
             
         }
@@ -159,6 +160,7 @@ public class MonsterFightServlet extends HttpServlet {
         session.setAttribute("user", user);
         session.setAttribute("offers", user.getFightOffers() );
         session.setAttribute("challenges", user.getFightChallenges() );
+        request.getRequestDispatcher("/monsterFights.jsp").forward(request, response);
     }
 
     /** 

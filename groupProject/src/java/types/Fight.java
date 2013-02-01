@@ -26,15 +26,37 @@ public class Fight implements Serializable {
     private Long opponent;
     private Long challMonster;
     private Long oppMonster;
+    private String challengerName, opponentName, challMonsterName, oppMonsterName;
+
+    public String getChallMonsterName() {
+        return challMonsterName;
+    }
+
+    public String getOppMonsterName() {
+        return oppMonsterName;
+    }
+
+    public String getChallengerName() {
+        return challengerName;
+    }
+
+    public String getOpponentName() {
+        return opponentName;
+    }
 
     public Fight() {
     }
 
     public Fight(Person challenger, Person opponent, Monster challMonster, Monster OppMonster) {
         this.challenger = challenger.getId();
-        this.opponent = opponent.getId();
+        this.challengerName = challenger.getName();
         this.challMonster = challMonster.getId();
+        this.challMonsterName = challMonster.getName();
+        this.opponent = opponent.getId();
+        this.opponentName = opponent.getName();
         this.oppMonster = OppMonster.getId();
+        this.oppMonsterName = OppMonster.getName();
+        
     }
 
     public String getId() {
@@ -47,6 +69,7 @@ public class Fight implements Serializable {
 
     public void setChallenger(Person challenger) {
         this.challenger = challenger.getId();
+        this.challengerName = challenger.getName();
     }
 
     public Long getChallMonster() {
@@ -55,6 +78,7 @@ public class Fight implements Serializable {
     
     public void setChallMonster(Monster challMonster) {
         this.challMonster = challMonster.getId();
+        this.challMonsterName = challMonster.getName();
     }
 
     public Long getOpponent() {
@@ -63,6 +87,7 @@ public class Fight implements Serializable {
 
     public void setOpponent(Person person) {
         this.opponent = person.getId();
+        this.opponentName = person.getName();
     }
 
     public Long getOppMonster() {
@@ -71,6 +96,7 @@ public class Fight implements Serializable {
 
     public void setOppMonster(Monster monster) {
         this.oppMonster = monster.getId();
+        this.oppMonsterName = monster.getName();
     }
 
     

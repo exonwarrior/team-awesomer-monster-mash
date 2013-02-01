@@ -17,23 +17,24 @@
                 document.getElementById("current action").value = "personStats";
                 document.getElementById("current person id").value =  id; 
                 document.getElementById("current monster id").value =  null;                   
-                document.forms["monsterFights"].submit();
+                document.forms["monster fight"].submit();
             }
             function monsterStats(id){
                 document.getElementById("current action").value = "monsterStats";
                 document.getElementById("current monster id").value =  id;
                 document.getElementById("current person id").value =  null; 
-                document.forms["monsterFights"].submit();
+                document.forms["monster fight"].submit();
             }
-            function acceptFight(id){
+            function acceptFight(person, monster){
                 document.getElementById("current action").value = "fight";
-                document.getElementById("current fight id").value = id;
-                document.forms["monsterFights"].submit();
+                document.getElementById("current monster id").value = monster;
+                document.getElementById("current person id").value =  person; 
+                document.forms["monster fight"].submit();
             }
             function declineFight(id){
                 document.getElementById("current action").value = "deleteFight";
                 document.getElementById("current fight id").value = id;
-                document.forms["monsterFights"].submit();
+                document.forms["monster fight"].submit();
             }
             function logOut(){
                 document.getElementById("current_action").value = "logout";
@@ -60,7 +61,7 @@
         <div class="container">
             <section id="content">
                 <h2>Monster Fights</h2><br><br><br>
-                <form method="post" action="monsterFights" id="monsterFights" name="monsterFights">
+                <form method="post" action="monsterFight" id="monster fight" >
                     <input type="hidden" id="current monster id" name="current monster id" />
                     <input type="hidden" id="current person id" name="current person id" />
                     <input type="hidden" id="current action" name="current action" />
@@ -81,10 +82,10 @@
                             for(Fight fight: offers){
                                 %>
                             <tr>
-                                <td><input type="submit" onclick="personStats(<%=fight.getChallenger().getId()%>);" value="<%=fight.getChallenger().getName()%>" /></td>
-                                <td><input type="submit" onclick="MonsterStats(<%=fight.getChallMonster().getId()%>);" value="<%=fight.getChallMonster().getName()%>" /></td>
-                                <td><input type="submit" onclick="acceptFight(<%=fight.getId()%>);" value="Accept" /></td>
-                                <td><input type="submit" onclick="declineFight(<%=fight.getId()%>);" value="Decline" /></td>
+                                <td><input type="submit" onclick="personStats(<%=fight.getChallenger()%>);" value="<%=fight.getChallengerName()%>" /></td>
+                                <td><input type="submit" onclick="monsterStats(<%=fight.getChallMonster()%>);" value="<%=fight.getChallMonsterName()%>" /></td>
+                                <td><input type="submit" onclick="acceptFight(<%=fight.getChallenger()%>,<%=fight.getChallMonster()%>);" value="Accept" /></td>
+                                <td><input type="submit" onclick="declineFight('<%=fight.getId()%>');" value="Decline" /></td>
                             </tr>
                             <%}
                         }%>
@@ -105,8 +106,8 @@
                         <% if(challenges != null){
                             for(Fight fight: challenges){%>
                             <tr>
-                                <td><input type="submit" onclick="personStats(<%=fight.getOpponent()%>);" value="<%=fight.getOpponent().getName()%>" /></td>
-                                <td><input type="submit" onclick="MonsterStats(<%=fight.getOppMonster()%>);" value="<%=fight.getOppMonster().getName()%>" /></td>
+                                <td><input type="submit" onclick="personStats(<%=fight.getOpponent()%>);" value="<%=fight.getOpponentName()%>" /></td>
+                                <td><input type="submit" onclick="MonsterStats(<%=fight.getOppMonster()%>);" value="<%=fight.getOppMonsterName()%>" /></td>
                                 <td><input type="submit" onclick="declineFight(<%=fight.getId()%>);" value="Cancel" /></td>
                             </tr>
                             <%}
@@ -122,7 +123,7 @@
                             Health:         <%=df.format(currentMonster.getCurrentHealth())%>/<%=df.format(currentMonster.getBaseHealth())%> <br />
 
                         <%}
-                        else if(session.getAttribute("current person") != null){
+                        if(session.getAttribute("current person") != null){
                             Person currentPerson  = (Person) session.getAttribute("current person");%>
                             Player Name:    <%=currentPerson.getName()%> <br />
                         <%}%>
