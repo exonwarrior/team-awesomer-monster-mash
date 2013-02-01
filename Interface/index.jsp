@@ -5,7 +5,7 @@
 <head>
 <meta content="en-us" http-equiv="Content-Language" />
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>Home</title>
+<title>Login</title>
 
 
 
@@ -40,9 +40,13 @@
 				<br><br><br><br>
 				<p>Welcome to Monster Mash, a new, fun and exciting online game, please start by logging in, if you are not a member then click on the register
 				button just above. Enjoy :)</p>
-				<b><b>
-				<img alt="Monsters" src="monsters.jpg">
+				<br><br>	<br><br>
+				<br><br>	<br><br>
+				
+				<img alt="Monster" src="loginMonster.png">
 	</div>
+	
+			
 				</form>
 		
 	</section>
