@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import database.Monster;
@@ -20,10 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import types.Fight;
+import types.Fight;
 
 /**
  *
- * @author thh21
+ *  This class contains methods which manages connection and 
+ * data exchange between myMonsters.jsp and database.
+ * 
  */
 @WebServlet(name = "MyMonsters", urlPatterns = {"/myMonsters"})
 public class MyMonsterServlet extends HttpServlet {
@@ -88,7 +87,7 @@ public class MyMonsterServlet extends HttpServlet {
          */
         if(currentAction.equals("breed")){
             setBreedOffer(session, request);
-            //request.setParameter("current monster id", )
+
         }
         /*
          * update the selling price
@@ -131,8 +130,14 @@ public class MyMonsterServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
     
+    /**
+     * This method allows user to sell the monster 
+     * for monsters breeding 
+     * @param session , HTTP session
+     * @param request , HTTP servlet request
+     */
     public void setBreedOffer(HttpSession session, HttpServletRequest request){
         monsterDOA = new MonsterDOA();
         Long monsterID = Long.parseLong(request.getParameter("breed id"));
@@ -143,6 +148,11 @@ public class MyMonsterServlet extends HttpServlet {
         currentAction = "changeMonster";
     }
     
+    /**
+     * This method allows user to sell the monster to the other users
+     * @param session , HTTP session
+     * @param request , HTTP servlet request
+     */
     public void setSaleOffer(HttpSession session, HttpServletRequest request){
         monsterDOA = new MonsterDOA();
         Long monsterID = Long.parseLong(request.getParameter("sale id"));
@@ -153,11 +163,22 @@ public class MyMonsterServlet extends HttpServlet {
         currentAction = "changeMonster";
     }
     
+    /**
+     * This method allows to set monster information
+     * @param session , HTTP session
+     * @param id , Long id 
+     */
     public void setCurrentMonster(HttpSession session, Long id){
         monsterDOA = new MonsterDOA();
         session.setAttribute("current monster", monsterDOA.getMonsterById(id));        
     }
     
+    /**
+     * This methods allows user to breed with other monsters.
+     * @param request , HTTP servlet request
+     * @param user , Object Person
+     * @return , request
+     */
     private HttpServletRequest breedMonster(HttpServletRequest request, Person user){
          HttpSession session = request.getSession(false);
         
@@ -170,10 +191,6 @@ public class MyMonsterServlet extends HttpServlet {
          Person seller = personDOA.getPersonByEmail(stud.getOwnerID());
          seller.setMoney(seller.getMoney()+stud.getBreedOffer());
          user.setMoney(user.getMoney() - stud.getBreedOffer());
-         seller.addActivity(user.getName()+" chose to breed their "+
-                 bitch.getName()+" with your "+stud.getName()+". You earned "+
-                 stud.getBreedOffer()+ " credits! Your total amount is now "+
-                 seller.getMoney()+".");
          System.out.println(seller.getActivity());
          
          Monster baby = monsterDOA.breedMonsters(stud, bitch);
@@ -189,6 +206,12 @@ public class MyMonsterServlet extends HttpServlet {
          return request;
      }
     
+    /**
+     * This method allows user to fight with other monsters.
+     * @param request , HTTP request
+     * @param user , Object Person
+     * @return , request
+     */
     private HttpServletRequest fightMonster(HttpServletRequest request, Person user){
         
         HttpSession session = request.getSession(false);

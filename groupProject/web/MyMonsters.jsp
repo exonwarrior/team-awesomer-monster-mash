@@ -4,6 +4,7 @@
     Author     : thh21
 --%>
 
+<%@page import="database.Person"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="database.Monster"%>
@@ -79,7 +80,11 @@
                         <input type="hidden" id="breed id" name="breed id" />
                         <input type="hidden" id="sale id" name="sale id" />
                         <input type="hidden" id="current_action" name="current_action" />
-                        <table name="monster" border="1">
+                       <% Person user = (Person) session.getAttribute("user");%>
+                          
+                                 Your Money: <%user.getMoney();%>
+                                 <br />
+                                 <center><table name="monster" border="1">
                             <% ArrayList<Monster> monsters = (ArrayList<Monster>) session.getAttribute("monsters");%>
                             <%DecimalFormat df = new DecimalFormat("#.##");%>
                             <tr>
@@ -87,16 +92,18 @@
 
                             </tr>
                             <% if (monsters != null) {
+                                
                                     for (Monster monster : monsters) {%>
                             <tr>
                                 <td>
+                                    <br />
                                     <input type="submit" class="button" onclick="changeMonster(<%=monster.getId()%>);" value="<%=monster.getName()%>"  />                           
                                 </td>
 
                             </tr>
                             <%}
                                 }%>
-                        </table>
+                        </table><center/>
                     </div>
                     <div class="monsters">
                         <p name="display monster"><%
@@ -106,11 +113,12 @@
                             Strength:       <%=df.format(currentMonster.getCurrentStrength())%>/<%=df.format(currentMonster.getBaseStrength())%> <br />
                             Defence:        <%=df.format(currentMonster.getCurrentDefence())%>/<%=df.format(currentMonster.getBaseDefence())%> <br />
                             Health:         <%=df.format(currentMonster.getCurrentHealth())%>/<%=df.format(currentMonster.getBaseHealth())%> <br />
+                            <br />
+                            Breed Offer:    <%=currentMonster.getBreedOffer()%>
 
-                            Breed Offer:    <%=currentMonster.getBreedOffer()%> 
                             <input type="text" placeholder="breeding price" name="breed price" />
                             <input type="submit" class="button" name="breed" onclick="breedOffer(<%=currentMonster.getId()%>);" value="breed" /> <br />
-
+                            <br />
                             Sale Offer:     <%=currentMonster.getSaleOffer()%>
                             <input type="text" id="price" placeholder="selling price" name="sale price" />
                             <input type="submit"  class="button" name="sale"  onclick="saleOffer(<%=currentMonster.getId()%>);" value="sale" />
@@ -127,8 +135,6 @@
                     </div>
 
                 </form>
-
-                <textarea rows="10" cols="50"></textarea>
             </section>
         </div>
     </body>

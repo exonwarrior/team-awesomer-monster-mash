@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlets;
 
 import database.Monster;
@@ -17,11 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author szs1
- */
 
+/**
+ * This class contains methods which manages connection and 
+ * data exchange between friends.jsp and database.
+ */
 @WebServlet(name = "friends", urlPatterns = {"/myFriends"})
 public class FriendsServlet extends HttpServlet {
     @EJB PersonDOA personDOA;
@@ -79,28 +76,36 @@ public class FriendsServlet extends HttpServlet {
         currentAction = request.getParameter("current_action");
         forwardUrl = "/friends.jsp";
         
+        //method which sends friend requests
         if(currentAction.equals("send_request")){
             request = this.sendRequest(request, user);
-            
+        
+        //method which accepts received friend requests   
         }else if(currentAction.equals("accept_request")){
             request = this.acceptRequest(request, user);
-            
+          
+         //method that declines reveived friend requests   
         }else if(currentAction.equals("decline_request")){
             request = this.declineRequest(request, user);
-            
+         
+         //method that allows user displaying users monsters   
         }else if(currentAction.equals("get_monster")){
             String friendsEmail = request.getParameter("requestEmail");
             Person friend = personDOA.getPersonByEmail(friendsEmail);
  
             session.setAttribute("friendsMonsters", personDOA.getPersonsMonsters(friend));
-            
+         
+         //method that allows user fight with friends monster   
         }else if(currentAction.equals("challenge_monster")){
-            //Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));
             this.forwardUrl = "/myMonsters.jsp";
             session.setAttribute("friendsMonsterID", request.getParameter("friendsMonsterID"));
             session.setAttribute("current_action", "fight");
+         
+          //method that allows user to buy friends monster
         } else if(currentAction.equals("purchase")){   
             request = buyMonster(request, user);
+            
+          //method that allows user to breed with friends monster 
         } else if(currentAction.equals("breed")){
             this.forwardUrl = "/myMonsters.jsp";
             session.setAttribute("friendsMonsterID", request.getParameter("friendsMonsterID"));
@@ -116,20 +121,22 @@ public class FriendsServlet extends HttpServlet {
         request.getRequestDispatcher(this.forwardUrl).forward(request, response);
     }
     
-                //  response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
-          /*  if(this.check(userEmail)){
-                //personDOA.addFriendRequest((Person)session.getAttribute("user"), personDOA.getPersonByEmail(userEmail));
-                request.setAttribute("message", "Friend request sent.");
-                request.getRequestDispatcher("/friends.jsp").forward(request, response);
-            }else{
-                request.setAttribute("message", "Friend doesn't exist.");
-                request.getRequestDispatcher("/friends.jsp").forward(request, response);
-            }*/
-    
+    /**
+     * Checks if user email already exists in the database
+     * @param userEmail , takes users email as a param  
+     * @return , returns true if found
+     */
     private boolean checkIfExist(String userEmail){
         return personDOA.lookForEmail(userEmail);
     }
 
+    /**
+     * Method that takes user input adds users friend request 
+     * to the list and updates the database
+     * @param request , HTTP request
+     * @param user , Object Person 
+     * @return , request
+     */
     private HttpServletRequest sendRequest(HttpServletRequest request, Person user ){
         String friendsEmail = request.getParameter("requestEmail");
             if(checkIfExist(friendsEmail) && !(user.getEmail().equalsIgnoreCase(friendsEmail))){
@@ -137,12 +144,20 @@ public class FriendsServlet extends HttpServlet {
                 friend.addFriendRequest(user.getEmail());
                 personDOA.addFriendRequest(friend, user.getEmail());
                 request.setAttribute("message", "Friend Request has been successfully sent.");
+                
             }else{
                 request.setAttribute("message", "Friend doesn't exist.");               
             }
             return request;
     }
     
+    /**
+     * Method that takes user input adds users friend request 
+     * to the list and updates the database
+     * @param request , HTTP request
+     * @param user , Object Person
+     * @return , request
+     */
     private HttpServletRequest acceptRequest(HttpServletRequest request, Person user ){
         String friendsEmail = request.getParameter("requestEmail");
             
@@ -154,16 +169,25 @@ public class FriendsServlet extends HttpServlet {
                 personDOA.addFriend(user, friendsEmail);
                 personDOA.deleteFriendRequest(user, friendsEmail);
                 personDOA.addFriend(friend, user.getEmail());
+                
             }else{
                 request.setAttribute("message", "Friend doesn't exist.");               
             }
             return request;
     }
     
+    /**
+     * Method that takes user input deletes users friend request 
+     * from the list and updates the database
+     * @param request , HTTTP request
+     * @param user , Object Person
+     * @return , request
+     */
      private HttpServletRequest declineRequest(HttpServletRequest request, Person user ){
          
          String friendsEmail = request.getParameter("requestEmail");
             user = personDOA.getPersonByEmail(user.getEmail());
+            
             if(personDOA.checkFriendRequestList(user, friendsEmail)){
                 
                 personDOA.deleteFriendRequest(user, friendsEmail);
@@ -175,17 +199,29 @@ public class FriendsServlet extends HttpServlet {
          return request;
      }
      
-     /*private void challengeMonster(HttpSession session, Long id){
-      * //Make me workz!!1!
-      * }*/
+     /**
+      * Method that takes user input sends fight request 
+      * and updates the database
+      * @param request , HTTP request   
+      * @param user , Obejct Person 
+      * @return , request
+      */
      private HttpServletRequest challengeMonster(HttpServletRequest request, Person user){
          HttpSession session = request.getSession(false);
          Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));
          Monster challenged = monsterDOA.getMonsterById(friendsMonsterID);
          Person challengedFriend = personDOA.getPersonByEmail(challenged.getOwnerID());
+         
          return request;
      }
      
+     /**
+      * Method that takes user input sends breed request to the friend 
+      * and updates the database
+      * @param request , HTTPrequest    
+      * @param user , Object Person
+      * @return , request
+      */
      private HttpServletRequest breedMonster(HttpServletRequest request, Person user){
          HttpSession session = request.getSession(false);
          Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));
@@ -194,6 +230,7 @@ public class FriendsServlet extends HttpServlet {
          
          if(user.getMoney()<stud.getBreedOffer()){
              request.setAttribute("error", "Not enough funds! >:(");
+             
          }else{
             seller.setMoney(seller.getMoney()+stud.getBreedOffer());
             Monster baby;
@@ -201,6 +238,13 @@ public class FriendsServlet extends HttpServlet {
          return request;
      }
      
+     /**
+      * Method that takes user input sends buy request to the friend 
+      * and updates the database
+      * @param request , HTTP request   
+      * @param user , Object Person
+      * @return , request
+      */
      private HttpServletRequest buyMonster(HttpServletRequest request, Person user){
          HttpSession session = request.getSession(false);
          Long friendsMonsterID = Long.parseLong(request.getParameter("friendsMonsterID"));
@@ -212,14 +256,8 @@ public class FriendsServlet extends HttpServlet {
          }
          else {
             seller.setMoney(seller.getMoney()+m.getSaleOffer());
-            seller.addActivity(user.getName()+" chose to buy your "+m.getName()
-                    +". You earned "+m.getSaleOffer()+ " credits! Your total is now "+
-                    seller.getMoney());
-            System.out.println(seller.getActivity());
             m.setOwner(user.getEmail());
             user.setMoney(user.getMoney() - m.getSaleOffer());
-            user.addActivity("You bought "+m.getName()+"for "+m.getSaleOffer()+
-                    " credits! Your total is now "+seller.getMoney());
             m.setSaleOffer(0);
             monsterDOA.updateMonstersInfo(m);
             personDOA.updatePersonsInfo(seller);
@@ -232,7 +270,6 @@ public class FriendsServlet extends HttpServlet {
     
     /**
      * Returns a short description of the servlet.
-     *
      * @return a String containing servlet description
      */
     @Override

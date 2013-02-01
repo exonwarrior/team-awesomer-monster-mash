@@ -5,67 +5,99 @@
 package types;
 
 import database.Monster;
+import database.MonsterDOA;
 import database.Person;
+import database.PersonDOA;
 import java.io.Serializable;
 import java.util.UUID;
+import javax.ejb.EJB;
 import javax.persistence.Embeddable;
 
 /**
  *
  * @author thomas
  */
-@Embeddable 
+@Embeddable
 public class Fight implements Serializable {
-    private Person challenger, opponent;
-    private Monster challMonster, OppMonster;
-    private String id;
+    private static final long serialVersionUID = 1L;
+
+    private String id = UUID.randomUUID().toString();
+    private Long challenger;
+    private Long opponent;
+    private Long challMonster;
+    private Long oppMonster;
+    private String challengerName, opponentName, challMonsterName, oppMonsterName;
+
+    public String getChallMonsterName() {
+        return challMonsterName;
+    }
+
+    public String getOppMonsterName() {
+        return oppMonsterName;
+    }
+
+    public String getChallengerName() {
+        return challengerName;
+    }
+
+    public String getOpponentName() {
+        return opponentName;
+    }
 
     public Fight() {
     }
 
     public Fight(Person challenger, Person opponent, Monster challMonster, Monster OppMonster) {
-        this.challenger = challenger;
-        this.opponent = opponent;
-        this.challMonster = challMonster;
-        this.OppMonster = OppMonster;
-        id = UUID.randomUUID().toString();
+        this.challenger = challenger.getId();
+        this.challengerName = challenger.getName();
+        this.challMonster = challMonster.getId();
+        this.challMonsterName = challMonster.getName();
+        this.opponent = opponent.getId();
+        this.opponentName = opponent.getName();
+        this.oppMonster = OppMonster.getId();
+        this.oppMonsterName = OppMonster.getName();
+        
     }
 
     public String getId() {
         return id;
     }
 
-    public Person getChallenger() {
+    public Long getChallenger() {
         return challenger;
     }
 
     public void setChallenger(Person challenger) {
-        this.challenger = challenger;
+        this.challenger = challenger.getId();
+        this.challengerName = challenger.getName();
     }
 
-    public Monster getChallMonster() {
+    public Long getChallMonster() {
         return challMonster;
     }
     
     public void setChallMonster(Monster challMonster) {
-        this.challMonster = challMonster;
+        this.challMonster = challMonster.getId();
+        this.challMonsterName = challMonster.getName();
     }
 
-    public Person getOpponent() {
+    public Long getOpponent() {
         return opponent;
     }
 
     public void setOpponent(Person person) {
-        this.opponent = person;
+        this.opponent = person.getId();
+        this.opponentName = person.getName();
     }
 
-    public Monster getOppMonster() {
-        return OppMonster;
+    public Long getOppMonster() {
+        return oppMonster;
     }
 
     public void setOppMonster(Monster monster) {
-        this.OppMonster = monster;
+        this.oppMonster = monster.getId();
+        this.oppMonsterName = monster.getName();
     }
-    
+
     
 }
