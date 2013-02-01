@@ -83,6 +83,7 @@
                        <% Person user = (Person) session.getAttribute("user");%>
                           
                                  Your Money: <%user.getMoney();%>
+                                 <br />
                                  <center><table name="monster" border="1">
                             <% ArrayList<Monster> monsters = (ArrayList<Monster>) session.getAttribute("monsters");%>
                             <%DecimalFormat df = new DecimalFormat("#.##");%>
@@ -112,11 +113,12 @@
                             Strength:       <%=df.format(currentMonster.getCurrentStrength())%>/<%=df.format(currentMonster.getBaseStrength())%> <br />
                             Defence:        <%=df.format(currentMonster.getCurrentDefence())%>/<%=df.format(currentMonster.getBaseDefence())%> <br />
                             Health:         <%=df.format(currentMonster.getCurrentHealth())%>/<%=df.format(currentMonster.getBaseHealth())%> <br />
+                            <br />
+                            Breed Offer:    <%=currentMonster.getBreedOffer()%>
 
-                            Breed Offer:    <%=currentMonster.getBreedOffer()%> 
                             <input type="text" placeholder="breeding price" name="breed price" />
                             <input type="submit" class="button" name="breed" onclick="breedOffer(<%=currentMonster.getId()%>);" value="breed" /> <br />
-
+                            <br />
                             Sale Offer:     <%=currentMonster.getSaleOffer()%>
                             <input type="text" id="price" placeholder="selling price" name="sale price" />
                             <input type="submit"  class="button" name="sale"  onclick="saleOffer(<%=currentMonster.getId()%>);" value="sale" />

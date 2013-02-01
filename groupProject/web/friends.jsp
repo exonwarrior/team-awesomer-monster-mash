@@ -86,7 +86,8 @@
             <div id="content">
                 <%Person user = (Person) session.getAttribute("user");%>
                 <h1>My Friends</h1> 
-                <p style="position: relative; float:right; font-size: 24px !important; font-weight: bold; margin-bottom: 5px;"><%=user.getName()%></p>
+                <div style="font-size: 24px !important; font-weight: bold;">
+                <%=user.getName()%></div>
 
                 <form method="post" action="myFriends" id="friends form">
                     <input type="hidden" id="current_action" name="current_action" />
