@@ -25,6 +25,7 @@
       <div class="container">
         <section id="content">
             <form method="POST" action="login">
+                <input type="hidden" id="current_action" name="current_action" />
                 <h1>Login</h1>
                 <input type="text" placeholder="Email" required=""  name="email" /> <br><br>
                 <input type="password" placeholder="Password" required="" name="password" id="password" /> <br><br>

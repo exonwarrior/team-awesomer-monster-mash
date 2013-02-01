@@ -35,6 +35,9 @@
                 document.getElementById("current fight id").value = id;
                 document.forms["monsterFights"].submit();
             }
+            function logOut(){
+                document.getElementById("current_action").value = "logout";
+            }
             -->
         </script>
 
@@ -49,7 +52,7 @@
         <ul id="list-nav">
             <li><a href="./myMonsters.jsp">My Monsters</a></li>
             <li><a href="./friends.jsp">Friends</a></li>
-            <li><a href="./login.jsp">Log Out</a></li>
+            <li><a href="./login.jsp" onClick="logOut();">Log Out</a></li>
         </ul>
 
         <hr>

@@ -43,28 +43,32 @@ public class LoginServlet extends HttpServlet {
         String formError =" ";
         
         response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
+        String currentAction = request.getParameter("current_action");
         
-       
-        if(this.check(tempEmail, tempPassword)){
-                   
-            personDOA = new PersonDOA();
-            HttpSession session = request.getSession(true);
-            Person p = personDOA.getPersonByEmail(tempEmail);
-                
-            session.setAttribute("user", p);            
-            session.setAttribute("monsters", personDOA.getPersonsMonsters(p));
-            session.setAttribute("friends", personDOA.getPersonsFriends(p));
-            session.setAttribute("requestList", personDOA.getPersonsFriendRequests(p));
-            session.setAttribute("offers", p.getFightOffers() );
-            session.setAttribute("challenges", p.getFightChallenges() );
-            request.getRequestDispatcher("/myMonsters.jsp").forward(request, response);
-            
-        }
-        else{
-            formError ="Incorrect email or password!";
-            request.setAttribute("message", formError);
-            request.getRequestDispatcher("/login.jsp").forward(request, response); 
-            response.setHeader("Location", "http://localhost:8080/MonsterGame/login.jsp");
+        if(currentAction!=null && currentAction.equals("logout")){
+            request.getSession().invalidate();
+        }else{
+            if(this.check(tempEmail, tempPassword)){
+
+                personDOA = new PersonDOA();
+                HttpSession session = request.getSession(true);
+                Person p = personDOA.getPersonByEmail(tempEmail);
+
+                session.setAttribute("user", p);            
+                session.setAttribute("monsters", personDOA.getPersonsMonsters(p));
+                session.setAttribute("friends", personDOA.getPersonsFriends(p));
+                session.setAttribute("requestList", personDOA.getPersonsFriendRequests(p));
+                session.setAttribute("offers", p.getFightOffers() );
+                session.setAttribute("challenges", p.getFightChallenges() );
+                request.getRequestDispatcher("/myMonsters.jsp").forward(request, response);
+
+            }
+            else{
+                formError ="Incorrect email or password!";
+                request.setAttribute("message", formError);
+                request.getRequestDispatcher("/login.jsp").forward(request, response); 
+                response.setHeader("Location", "http://localhost:8080/MonsterGame/login.jsp");
+            }
         }
         
        

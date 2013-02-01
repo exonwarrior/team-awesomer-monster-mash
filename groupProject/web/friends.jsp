@@ -53,6 +53,9 @@
                     document.getElementById("error").value = null;
                 }
             }
+            function logOut(){
+                document.getElementById("current_action").value = "logout";
+            }
             -->
         </script>
         <div id="header">
@@ -69,7 +72,7 @@
         <ul id="list-nav">            
             <li><a href="./myMonsters.jsp">My Monsters</a></li>
             <li><a href="./monsterFights.jsp">Monster Fights</a></li>
-            <li><a href="./login.jsp">Log Out</a></li>
+            <li><a href="./login.jsp" onClick="logOut();">Log Out</a></li>
         </ul>
         <%Person user = (Person) session.getAttribute("user"); %>
         <h1>My Friends  <%=user.getName() %></h1>

@@ -47,6 +47,9 @@
                 function refresh(){
                     document.forms
                 }
+                function logOut(){
+                    document.getElementById("current_action").value = "logout";
+                }
                 
                 -->
             </script>
@@ -55,7 +58,7 @@
         <ul id="list-nav">            
             <li><a href="./friends.jsp">Friends</a></li>
             <li><a href="./monsterFights.jsp">Monster Fights</a></li>
-            <li><a href="./login.jsp">Log Out</a></li>
+            <li><a href="./login.jsp" onClick="logOut();">Log Out</a></li>
         </ul>
         <h1>Monsters</h1>
         <form method="post" action="myMonsters" id="change_monster">
