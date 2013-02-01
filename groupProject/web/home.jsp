@@ -10,11 +10,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <link rel="stylesheet" href="style.css" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Home</title>
         <div id="header">
             <a href="./home.jsp">
-            <img alt="Monster logo" src="monsterlogo.png">
+                <img alt="Monster logo" src="monsterlogo.png">
             </a>
         </div>
     </head>

@@ -28,7 +28,7 @@
             function acceptFight(person, monster){
                 document.getElementById("current action").value = "fight";
                 document.getElementById("current monster id").value = monster;
-                document.getElementById("current person id").value =  person; 
+                document.getElementById("current person id").value = person;
                 document.forms["monster fight"].submit();
             }
             function declineFight(id){
@@ -41,33 +41,22 @@
             }
             -->
         </script>
-
-        <div id="header">
-            <a href="./home.jsp">
-            <img alt="Monster logo" src="monsterlogo.png">
-            </a>
-        </div>
     </head>
-    
+
     <body>
-        <ul id="list-nav">
-            <li><a href="./myMonsters.jsp">My Monsters</a></li>
-            <li><a href="./friends.jsp">Friends</a></li>
-            <li><a href="./login.jsp" onClick="logOut();">Log Out</a></li>
-        </ul>
-
-        <hr>
-
         <div class="container">
+            <div id="navbar">
+                <jsp:include page="navbar.jsp" />
+            </div>
             <section id="content">
-                <h2>Monster Fights</h2><br><br><br>
-                <form method="post" action="monsterFight" id="monster fight" >
+                <h2>Monster Fights</h2><br /><br /><br />
+                <form method="post" action="monsterFights" id="monster fight">
                     <input type="hidden" id="current monster id" name="current monster id" />
                     <input type="hidden" id="current person id" name="current person id" />
                     <input type="hidden" id="current action" name="current action" />
                     <input type="hidden" id="current fight id" name="current fight id" />
                     <%DecimalFormat df = new DecimalFormat("#.##");%>
-                    <%if(session.getAttribute("offers") != null){%>
+                    <%if (session.getAttribute("offers") != null) {%>
                     <table name="offers" border="1">
                         <% ArrayList<Fight> offers = (ArrayList<Fight>) session.getAttribute("offers");%>
                         <tr>
@@ -78,20 +67,21 @@
                             <th>Challenger's Monster</th>
                             <th>Your Monster</th>
                         </tr>
-                        <% if(offers != null){
-                            for(Fight fight: offers){
-                                %>
-                            <tr>
-                                <td><input type="submit" onclick="personStats(<%=fight.getChallenger()%>);" value="<%=fight.getChallengerName()%>" /></td>
+                        <% if (offers != null) {
+                                for (Fight fight : offers) {
+                        %>
+                        <tr>
+                               <td><input type="submit" onclick="personStats(<%=fight.getChallenger()%>);" value="<%=fight.getChallengerName()%>" /></td>
                                 <td><input type="submit" onclick="monsterStats(<%=fight.getChallMonster()%>);" value="<%=fight.getChallMonsterName()%>" /></td>
                                 <td><input type="submit" onclick="acceptFight(<%=fight.getChallenger()%>,<%=fight.getChallMonster()%>);" value="Accept" /></td>
-                                <td><input type="submit" onclick="declineFight('<%=fight.getId()%>');" value="Decline" /></td>
-                            </tr>
-                            <%}
-                        }%>
+                               <td><input type="submit" onclick="declineFight('<%=fight.getId()%>');" value="Decline" /></td>
+
+                        </tr>
+                        <%}
+                                        }%>
                     </table>
                     <%}%>
-                    <%if(session.getAttribute("challenges") != null){%>
+                    <%if (session.getAttribute("challenges") != null) {%>
                     <table name="challenges" border="1">
                         <% ArrayList<Fight> challenges = (ArrayList<Fight>) session.getAttribute("challenges");%>
                         <tr>
@@ -103,31 +93,31 @@
                             <th>Your Monster</th>
 
                         </tr>
-                        <% if(challenges != null){
-                            for(Fight fight: challenges){%>
-                            <tr>
-                                <td><input type="submit" onclick="personStats(<%=fight.getOpponent()%>);" value="<%=fight.getOpponentName()%>" /></td>
+                        <% if (challenges != null) {
+                                            for (Fight fight : challenges) {%>
+                        <tr>
+                              <td><input type="submit" onclick="personStats(<%=fight.getOpponent()%>);" value="<%=fight.getOpponentName()%>" /></td>
                                 <td><input type="submit" onclick="MonsterStats(<%=fight.getOppMonster()%>);" value="<%=fight.getOppMonsterName()%>" /></td>
-                                <td><input type="submit" onclick="declineFight(<%=fight.getId()%>);" value="Cancel" /></td>
-                            </tr>
-                            <%}
-                        }%>
+
+                            <td><input type="submit" onclick="declineFight(<%=fight.getId()%>);" value="Cancel" /></td>
+                        </tr>
+                        <%}
+                                        }%>
                     </table>
                     <%}%>
                     <p name="display stats"><%
-                        if(session.getAttribute("current monster") != null){
+                        if (session.getAttribute("current monster") != null) {
                             Monster currentMonster = (Monster) session.getAttribute("current monster");%>
-                            Monster Name:   <%=currentMonster.getName()%> <br />
-                            Strength:       <%=df.format(currentMonster.getCurrentStrength())%>/<%=df.format(currentMonster.getBaseStrength())%> <br />
-                            Defence:        <%=df.format(currentMonster.getCurrentDefence())%>/<%=df.format(currentMonster.getBaseDefence())%> <br />
-                            Health:         <%=df.format(currentMonster.getCurrentHealth())%>/<%=df.format(currentMonster.getBaseHealth())%> <br />
+                        Monster Name:   <%=currentMonster.getName()%> <br />
+                        Strength:       <%=df.format(currentMonster.getCurrentStrength())%>/<%=df.format(currentMonster.getBaseStrength())%> <br />
+                        Defence:        <%=df.format(currentMonster.getCurrentDefence())%>/<%=df.format(currentMonster.getBaseDefence())%> <br />
+                        Health:         <%=df.format(currentMonster.getCurrentHealth())%>/<%=df.format(currentMonster.getBaseHealth())%> <br />
 
-                        <%}
-                        if(session.getAttribute("current person") != null){
-                            Person currentPerson  = (Person) session.getAttribute("current person");%>
-                            Player Name:    <%=currentPerson.getName()%> <br />
+                        <%} if(session.getAttribute("current person") != null){
+                                        Person currentPerson = (Person) session.getAttribute("current person");%>
+                        Player Name:    <%=currentPerson.getName()%> <br />
                         <%}%>
-                     </p>
+                    </p>
                 </form>
             </section>
         </div>

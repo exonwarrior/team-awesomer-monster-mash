@@ -13,21 +13,25 @@
         <meta content="en-us" http-equiv="Content-Language" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
         <title>MonsterMash!</title> 
-        <meta http-equiv="refresh" content="0; URL=/MonsterGame/login.jsp">
-        <meta name="keywords" content="automatic redirection">
-        <div id="header">
-            <a href="./home.jsp">
-                <img alt="Monster logo" src="monsterlogo.png">
-            </a>
-            <link rel="icon" href="favicon.ico" />
-        </div>
+        <meta http-equiv="refresh" content="0; URL=/MonsterGame/login.jsp" />
+        <meta name="keywords" content="automatic redirection" />
     </head>
     <body>
-        <p>
-            If your browser doesn't automatically redirect within a few seconds, 
-            you may want to go to 
-            <a href="/MonsterGame/login.jsp">the login page</a> 
-            manually.
-        </p>
+        <div class="container">
+            <div id="header">
+                <a href="./home.jsp">
+                    <img alt="Monster logo" src="monsterlogo.png">
+                </a>
+                <link rel="icon" href="favicon.ico" />
+            </div>
+            <section id ="content">
+                <p>
+                    If your browser does not automatically redirect within a few seconds, 
+                    you may want to go to 
+                    <a href="/MonsterGame/login.jsp">the login page</a> 
+                    manually.
+                </p>
+            </section>
+        </div>
     </body>
 </html>
