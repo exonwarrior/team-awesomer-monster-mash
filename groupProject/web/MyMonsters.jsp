@@ -9,8 +9,9 @@
 <%@page import="database.Monster"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*, servlets.MyMonsterServlet"%>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <link rel="stylesheet" href="style.css" />
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>My Monsters</title>
@@ -19,17 +20,44 @@
                 
                     document.getElementById("current_action").value = "breed";
                     document.getElementById("breed id").value = id;
+                    document.getElementById("current monster id").value =  id;
                     document.forms["monster form"].submit();
                 }
                 
-                function sell(id){
+                function saleOffer(id){
+                    var money = document.getElementById("price").value;
+                    var moneyReg = /([0-9]{1,8})/;
                     
-                    document.getElementById("sell id").value= id;
-                    document.getElementById("current_action").value = "sell";
-                    document.forms["monster form"].submit();
+                    if(!moneyReg.test(money) || money<=0){
+                        alert("Not a valid price!");
+                    }
+                    else {
+                        document.getElementById("sale id").value= id;
+                        document.getElementById("current_action").value = "sale";
+                        document.getElementById("current monster id").value =  id;
+                        document.forms["monster form"].submit();
+                    }
                 }
                 function changeMonster(id){
                     document.getElementById("current_action").value = "changeMonster";
+                    document.getElementById("current monster id").value =  id;                   
+                    document.forms["monster form"].submit();
+                }
+                
+                function refresh(){
+                    document.forms
+                }
+                function logOut(){
+                    document.getElementById("logout").value = "logout";
+                    document.forms["login"].submit();
+                }
+                function breedMyMonster(id){
+                    document.getElementById("current_action").value = "breed_with_monster";
+                    document.getElementById("current monster id").value =  id;                   
+                    document.forms["monster form"].submit();
+                }
+                function fightMyMonster(id){
+                    document.getElementById("current_action").value = "fight_with_monster";
                     document.getElementById("current monster id").value =  id;                   
                     document.forms["monster form"].submit();
                 }
@@ -38,31 +66,42 @@
             </script>
     </head>
     <body>
-        <h1>My Monsters</h1>
+        <ul id="list-nav">            
+            <li><a href="./friends.jsp">Friends</a></li>
+            <li><a href="./monsterFights.jsp">Monster Fights</a></li>
+            <form method="post" action="login" id="login" class="logoutbutton">
+             <input type="hidden" id="logout" name="logout" />
+             <li><input type="button" onClick="logOut();" value="logout" /></li>
+            </form>
+            
+        </ul>
+        <h1>Monsters</h1>
         <form method="post" action="myMonsters" id="change_monster">
-        <input type="hidden" id="current monster id" name="current monster id" />
-        <input type="hidden" id="breed id" name="breed id" />
-        <input type="hidden" id="sell id" name="sell id" />
-        <input type="hidden" id="current_action" name="current_action" />
-        <table name="monster" border="1">
-            <% ArrayList<Monster> monsters = (ArrayList<Monster>)session.getAttribute("monsters"); %>
-            <%DecimalFormat df = new DecimalFormat("#.##");%>
-            <tr>
-                <th>Monster Name</th>
-                
-            </tr>
-            <% if(monsters != null){ 
-                for(Monster monster : monsters){ %>
+            <div class="monsters">
+                <input type="hidden" id="current monster id" name="current monster id" />
+                <input type="hidden" id="breed id" name="breed id" />
+                <input type="hidden" id="sale id" name="sale id" />
+                <input type="hidden" id="current_action" name="current_action" />
+                <table name="monster" border="1">
+                    <% ArrayList<Monster> monsters = (ArrayList<Monster>)session.getAttribute("monsters"); %>
+                    <%DecimalFormat df = new DecimalFormat("#.##");%>
                     <tr>
-                        <td>
-                            <input type="submit" onclick="changeMonster(<%=monster.getId()%>);" value="<%=monster.getName()%>"  />                           
-                        </td>
+                        <th>Monster Name</th>
 
                     </tr>
-                <%}
-              }%>
-        </table>
-       
+                    <% if(monsters != null){ 
+                        for(Monster monster : monsters){ %>
+                            <tr>
+                                <td>
+                                    <input type="submit" class="button" onclick="changeMonster(<%=monster.getId()%>);" value="<%=monster.getName()%>"  />                           
+                                </td>
+
+                            </tr>
+                        <%}
+                      }%>
+                </table>
+            </div>
+        <div class="monsters">
         <p name="display monster"><%
             if(session.getAttribute("current monster") != null){
                 Monster currentMonster = (Monster) session.getAttribute("current monster");%>
@@ -70,20 +109,29 @@
                 Strength:       <%=df.format(currentMonster.getCurrentStrength())%>/<%=df.format(currentMonster.getBaseStrength())%> <br />
                 Defence:        <%=df.format(currentMonster.getCurrentDefence())%>/<%=df.format(currentMonster.getBaseDefence())%> <br />
                 Health:         <%=df.format(currentMonster.getCurrentHealth())%>/<%=df.format(currentMonster.getBaseHealth())%> <br />
-                Breed Offer:    <%=currentMonster.getBreedOffer()%>
                 
+                Breed Offer:    <%=currentMonster.getBreedOffer()%> 
                 <input type="text" placeholder="breeding price" name="breed price" />
-                <input type="submit" name="breed" onclick="breedOffer(<%=currentMonster.getId()%>);" value="breed" />
-                <input type="text" placeholder="selling price" name="sell price" />
-                <input type="submit" name="sell"  onclick="sell(<%=currentMonster.getId()%>);" value="sell" />
+                <input type="submit" class="button" name="breed" onclick="breedOffer(<%=currentMonster.getId()%>);" value="breed" /> <br />
+                
+                Sale Offer:     <%=currentMonster.getSaleOffer()%>
+                <input type="text" id="price" placeholder="selling price" name="sale price" />
+                <input type="submit"  class="button" name="sale"  onclick="saleOffer(<%=currentMonster.getId()%>);" value="sale" />
+                
+                <%if(session.getAttribute("current_action") != null && session.getAttribute("current_action").equals("breed")){%>
+                <input type="submit" class="button" name="breed"  onclick="breedMyMonster(<%=currentMonster.getId()%>);" value="breed with me" />    
+                <%}%>
+                <%if(session.getAttribute("current_action") != null && session.getAttribute("current_action").equals("fight")){%>
+                <input type="submit" class="button" name="fight"  onclick="fightMyMonster(<%=currentMonster.getId()%>);" value="fight with me" />    
+                <%}%>
 
             <%}%>
         </p>
+        </div>
         
-        <input name="buyMonster" onclick="location='newMonster.html'" type="button" value="+ Buy Monsters" />
-        <input name="sellMonsters" type="button" value="Sell Monsters" />
-        <input name="home" onclick="location='home.jsp'" type="button" value="home" style="width: 66px" />
-         </form>
+        </form>
+        
+        <textarea rows="10" cols="50"></textarea>
 
     </body>
 </html>

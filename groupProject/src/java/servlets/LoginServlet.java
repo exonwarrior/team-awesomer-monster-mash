@@ -40,23 +40,36 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String tempEmail = request.getParameter("email");
         String tempPassword = request.getParameter("password");
+        String formError =" ";
         
         response.setStatus(HttpServletResponse.SC_MOVED_TEMPORARILY);
+        String logout = request.getParameter("logout");
         
-       
-        if(this.check(tempEmail, tempPassword)){
-                   
-            personDOA = new PersonDOA();
-            HttpSession session = request.getSession(true);
-            Person p = personDOA.getPersonByEmail(tempEmail);
-                
-            session.setAttribute("user", p);            
-            session.setAttribute("monsters", personDOA.getPersonsMonsters(p));
-            request.getRequestDispatcher("/MyMonsters.jsp").forward(request, response);
-            
-        }
-        else{
-             response.setHeader("Location", "http://localhost:8080/MonsterGame/login.jsp");
+        if(logout!=null && logout.equals("logout")){
+            request.getSession().invalidate();
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
+        }else{
+            if(this.check(tempEmail, tempPassword)){
+
+                personDOA = new PersonDOA();
+                HttpSession session = request.getSession(true);
+                Person p = personDOA.getPersonByEmail(tempEmail);
+
+                session.setAttribute("user", p);            
+                session.setAttribute("monsters", personDOA.getPersonsMonsters(p));
+                session.setAttribute("friends", personDOA.getPersonsFriends(p));
+                session.setAttribute("requestList", personDOA.getPersonsFriendRequests(p));
+                session.setAttribute("offers", p.getFightOffers() );
+                session.setAttribute("challenges", p.getFightChallenges() );
+                request.getRequestDispatcher("/myMonsters.jsp").forward(request, response);
+
+            }
+            else{
+                formError ="Incorrect email or password!";
+                request.setAttribute("message", formError);
+                request.getRequestDispatcher("/login.jsp").forward(request, response); 
+                response.setHeader("Location", "http://localhost:8080/MonsterGame/login.jsp");
+            }
         }
         
        
@@ -74,10 +87,6 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-//        String home = "http://localhost:8080/MonsterGame/home.jsp";
-//        String register = "http://localhost:8080/MonsterGame/pee.jsp";
-//        request.setAttribute("check", answer );
-//        request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
     
     public boolean check(String email, String password){

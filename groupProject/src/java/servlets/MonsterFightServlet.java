@@ -7,23 +7,30 @@ package servlets;
 import database.Monster;
 import database.MonsterDOA;
 import database.Person;
+import database.PersonDOA;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Random;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import types.Fight;
 
 /**
  *
  * @author Dave
  */
+@WebServlet(name = "MonsterFight", urlPatterns = {"/monsterFight"})
 public class MonsterFightServlet extends HttpServlet {
-    @EJB
-    private MonsterDOA monsterDOA;
+    
+    @EJB PersonDOA personDOA;
+    @EJB MonsterDOA monsterDOA;
+    String currentAction;
     
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,22 +41,7 @@ public class MonsterFightServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MonsterFightServlet</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet MonsterFightServlet at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-             */
-        } finally {            
-            out.close();
-        }
+        
     }
     
     protected void doPost() {
@@ -68,11 +60,11 @@ public class MonsterFightServlet extends HttpServlet {
     public void declineFight(Person friend) {
         
     }
-   /*public void fight(long myMonsterID, long friendMonsterID) {
+    public void fight(Fight fight) {
         Monster m1;
         Monster m2;
-        m1 = monsterDOA.getMonsterById(myMonsterID);
-        m2 = monsterDOA.getMonsterById(friendMonsterID);
+        m1 = fight.getOppMonster();
+        m2 = fight.getChallMonster();
 		
 	while((m1.getCurrentHealth()!=0)&&(m2.getCurrentHealth()!=0)){
             Random random = new Random();
@@ -89,15 +81,24 @@ public class MonsterFightServlet extends HttpServlet {
             }
             if((attack1+m1.getCurrentStrength())>m2.getCurrentDefence()){
                 m2.setCurrentHealth(m2.getCurrentHealth()-(m1.getCurrentStrength()/4));
-                System.out.println("Friend monster took a damage! Its health is now "+m2.getCurrentHealth());
+                System.out.println("Friend monster took "+(m2.getCurrentHealth()-(m1.getCurrentStrength()/4))+"damage! Its health is now "+m2.getCurrentHealth());
             }
             if((attack2+m2.getCurrentStrength())>m1.getCurrentDefence()){
                 m1.setCurrentHealth(m1.getCurrentHealth()-(m2.getCurrentStrength()/4));
-                System.out.println("Your monster took a damage! Its health is now "+m1.getCurrentHealth());
+                System.out.println("Your monster took "+(m1.getCurrentHealth()-(m2.getCurrentStrength()/4))+" damage! Its health is now "+m1.getCurrentHealth());
             }
 	}
+        monsterDOA.updateMonstersInfo(m1);
+        monsterDOA.updateMonstersInfo(m2);
+        if(monsterDOA.getMonsterById(m2.getId()).getCurrentHealth()<0){
+            monsterDOA.remove(m2);
+        }        
+        if(monsterDOA.getMonsterById(m1.getId()).getCurrentHealth()<0){
+            monsterDOA.remove(m1);
+        }
         
-    }*/
+    }
+    
     public List<Monster> getMonsterList(Person friend) {
         List<Monster> list = null;
         
@@ -129,6 +130,34 @@ public class MonsterFightServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        personDOA = new PersonDOA();
+        monsterDOA = new MonsterDOA();
+        HttpSession session = request.getSession(false);
+        Person user = (Person) session.getAttribute("user");
+        currentAction  = request.getParameter("current action");
+        Long id;
+        user = personDOA.updateFights(user);
+        
+        if(currentAction.equals("personStats")){
+            id = Long.parseLong(request.getParameter("current person id"));
+            session.setAttribute("current person", personDOA.getPersonByID(id));
+        }
+        else if(currentAction.equals("monsterStats")){
+            id = Long.parseLong(request.getParameter("current monster id"));
+            session.setAttribute("current monster", monsterDOA.getMonsterById(id));
+        }
+        else if(currentAction.equals("fight")){
+            String fightID = (String)  request.getAttribute("current fight id");
+            fight(user.getFightByID(fightID));
+            
+            
+        }
+        
+        user = personDOA.getPersonByID(user.getId());
+        session.setAttribute("user", user);
+        session.setAttribute("offers", user.getFightOffers() );
+        session.setAttribute("challenges", user.getFightChallenges() );
     }
 
     /** 

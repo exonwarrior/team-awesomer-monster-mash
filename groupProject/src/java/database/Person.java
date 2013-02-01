@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import types.Fight;
 
 /**
  *
@@ -26,10 +27,12 @@ public class Person implements Serializable {
     private int money;
     private ArrayList<String> friends;
     private ArrayList<String> friendRequests;
-    private ArrayList<String> monsters;
-    
+    private ArrayList<Fight> fights;
+    //private ArrayList<String> monsters;
+    private ArrayList<String> activity;
     
     public Person(){
+        
     }
 
     public Person(String name, String password, String email) {
@@ -38,12 +41,82 @@ public class Person implements Serializable {
         this.email = email;
         this.friends = new ArrayList<String>();
         this.friendRequests = new ArrayList<String>();
-        this.monsters = new ArrayList<String>();
+        //this.monsters = new ArrayList<String>();
+        this.fights = new ArrayList<Fight>();
+        this.money = 1000;
     }
     
     
+    public ArrayList<Fight> getFightChallenges(){
+        ArrayList<Fight> challenges = new ArrayList<Fight>();
+        
+        if(fights != null) {
+            for(Fight fight: fights){
+                if(fight.getChallenger().getId().equals(this.id)){
+                    challenges.add(fight);
+                }
+            }
+        }
+        return challenges;
+    }
+    
+    public ArrayList<Fight> getFightOffers(){
+        ArrayList<Fight> offers = new ArrayList<Fight>();
+        
+        if(fights != null){
+          for(Fight fight: fights){
+            if(fight.getOpponent().getId().equals(this.id)){
+                offers.add(fight);
+            }
+         }  
+        }
+        
+        
+        return offers;
+    }
+    
+    public ArrayList<Fight> getAllFights(){
+        return this.fights;
+    }
+    
+    public void addFight(Fight fight){
+        this.fights.add(fight);
+    }
+    
+    public void removeFightOffer(Fight fight){
+        this.fights.remove(fight);
+    }
+    
+    public void removeFightOffer(Person opponent, Monster oppMonster){
+        for(Fight fight: this.fights){
+            if(fight.getOppMonster().getId().equals(oppMonster.getId()) 
+                    && fight.getOpponent().getId().equals(opponent.getId())){
+                this.fights.remove(fight);
+            }
+        }
+    }
+    
+    public Fight getFightByID(String id){
+        for(Fight fight: this.fights){
+            if(fight.getId().equals(id)){
+                return fight;
+            }
+        }
+        return null;
+    }
+
+//    public ArrayList<String> setFriendRequests(ArrayList<String> updatedRequests){
+//        this.friendRequests = new ArrayList<String>(updatedRequests);
+//        return friendRequests;
+//    }
     public ArrayList<String> getAllFriendRequests(){
         return friendRequests;
+    }
+    public ArrayList<String> getActivity(){
+        return activity;
+    }
+    public void addActivity(String active){
+        this.activity.add(active);
     }
     public void addFriendRequest(String email){
         this.friendRequests.add(email);
@@ -51,6 +124,10 @@ public class Person implements Serializable {
     public void removeFriendRequest(String email){
         this.friendRequests.remove(email);
     }
+//   public ArrayList<String> setFriends(ArrayList<String> updatedFriends){
+//        this.friends = new ArrayList<String>(updatedFriends);
+//        return friends;
+//    }
     public ArrayList<String> getAllFriends(){
         return friends;
     }
@@ -60,13 +137,13 @@ public class Person implements Serializable {
     public void removeFriend(String email){
         this.friends.remove(email);
     }
-    public ArrayList<String> getAllMonsters(){
+    /*public ArrayList<String> getAllMonsters(){
         return monsters;
     }
     
     public void addMonster(String id ){
         this.monsters.add(id);
-    }
+    }*/
     
     public void setEmail(String email) {
         this.email = email;
@@ -108,6 +185,13 @@ public class Person implements Serializable {
         this.id = id;
     }
 
+    /*public void removeMonster(Monster m){
+     * for(int i = 0; i < monsters.size(); i++){
+     * if(m.getId() == Long.parseLong(monsters.get(i))){
+     * monsters.remove(i);
+     * }
+     * }
+     * }*/
     @Override
     public int hashCode() {
         int hash = 0;

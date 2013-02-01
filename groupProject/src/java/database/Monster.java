@@ -29,6 +29,24 @@ public class Monster implements Serializable {
     private String monsterID;
     private String name, ownerID;
     private int birthDate, lifespan, breedOffer, saleOffer;
+    private double baseStrength, currentStrength, 
+            baseDefence, currentDefence, baseHealth, 
+            currentHealth, price;
+
+    // <editor-fold defaultstate="collapsed" desc="Getters and Setters. Click on the + sign on the left to edit the code.">
+    public void setBirthDate(int birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getLifeSpan(){
+        return lifespan;
+    }
+    public void setLifeSpan(int lifespan){
+        this.lifespan = lifespan;
+    }
 
     public void setBreedOffer(int breedOffer) {
         this.breedOffer = breedOffer;
@@ -45,9 +63,6 @@ public class Monster implements Serializable {
     public int getSaleOffer() {
         return saleOffer;
     }
-    private double baseStrength, currentStrength, 
-            baseDefence, currentDefence, baseHealth, 
-            currentHealth, price;
     
     public String getName() {
         return name;
@@ -55,6 +70,9 @@ public class Monster implements Serializable {
     
     public String getOwnerID() {
         return ownerID;
+    }
+    public void setOwnerID(String ownerID){
+        this.ownerID = ownerID;
     }
     
     public String getMonsterID() {
@@ -71,10 +89,6 @@ public class Monster implements Serializable {
     
     public int getBirthDate(){
         return birthDate;
-    }
-    
-    public int getLifeSpan(){
-        return lifespan;
     }
     
     public double getBaseHealth(){
@@ -122,6 +136,7 @@ public class Monster implements Serializable {
     public void setPrice(double price){
         this.price = price;
     }
+    // </editor-fold>
 
     @Override
     public int hashCode() {
@@ -172,6 +187,7 @@ public class Monster implements Serializable {
          Random random = new Random();
          //this.monsterID = this.id.toString();
          this.birthDate = (int) (System.currentTimeMillis() / 1000L);
+         this.lifespan = 74300;
          this.baseStrength = random.nextDouble();
          if(this.baseStrength<0.51){
              this.baseStrength+=0.5;
@@ -181,8 +197,8 @@ public class Monster implements Serializable {
              this.baseDefence+=0.5;
          }
          this.baseHealth = random.nextDouble();
-         if(this.baseDefence<0.51){
-             this.baseDefence+=0.5;
+         if(this.baseHealth<0.51){
+             this.baseHealth+=0.5;
          }
          this.currentStrength = this.baseStrength;
          this.currentDefence = this.baseDefence;
@@ -195,11 +211,9 @@ public class Monster implements Serializable {
                  +this.baseDefence+"\n"+this.baseHealth);
          return this;
      }
-    
-    /*public Monster breed(Monster myMonster, Monster friendMonster){
-        Monster baby = new Monster();
-        
-        return baby;
-    }*/
+
+    public void setOwner(String email) {
+        this.ownerID = email;
+    }
     
 }

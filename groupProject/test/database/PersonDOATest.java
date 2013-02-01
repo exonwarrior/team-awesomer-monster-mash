@@ -51,7 +51,7 @@ public class PersonDOATest {
         //poa.persist(p);
         
         Person p = poa.getPersonByEmail("thom@bla.com");
-        System.out.print(p.getAllMonsters().get(0).toString());
+  //      System.out.print(p.getAllMonsters().get(0).toString());
     }
 
 }

@@ -65,7 +65,7 @@ public class MonsterDOA {
         return list;
     }
     
-    public boolean doesExit(String name){
+    public boolean doesExist(String name){
         boolean answer = false;
         List<Monster> list = this.getAllMonsters();
         for(Monster m: list){
@@ -95,6 +95,7 @@ public class MonsterDOA {
         return m;
         //return me;
     }
+    
     public Monster getMonsterById(Long id){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb");
         em = emf.createEntityManager();
@@ -123,7 +124,10 @@ public class MonsterDOA {
         
         try{
              em.getTransaction().begin();
-             dbMonster.setBreedOffer(monster.getBreedOffer());          
+             dbMonster.setBreedOffer(monster.getBreedOffer());
+             dbMonster.setSaleOffer(monster.getSaleOffer());
+             dbMonster.setCurrentHealth(monster.getBaseHealth());
+             dbMonster.setOwner(monster.getOwnerID());
              em.getTransaction().commit();
         }
         finally{
@@ -181,7 +185,27 @@ public class MonsterDOA {
                 baby.setBaseHealth(baby.getBaseDefence()+(baby.getBaseDefence()/4));
             }
         }
+        baby.setLifeSpan(73400);
+        baby.setName("Little baby " + baby.getMonsterID());
+        baby.setBirthDate((int) (System.currentTimeMillis() / 1000L));
+        System.out.println("NOW RETURN THE BABY");
         return baby;
+    }
+    
+    public void checkLife(Monster m){
+        m.setLifeSpan((int)(m.getLifeSpan()-((System.currentTimeMillis() / 1000L)-m.getBirthDate())));
+        if(m.getLifeSpan()<0){
+            remove(m);
+        }
+    }
+    
+    public void remove(Monster m){
+        emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb"); 
+        em = emf.createEntityManager();
+        m = em.find(Monster.class, m.getId());
+        em.getTransaction().begin();
+        em.remove(m);
+        em.getTransaction().commit();
     }
 
     // Add business logic below. (Right-click in editor and choose
