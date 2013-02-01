@@ -79,8 +79,8 @@ public class Person implements Serializable {
         return this.fights;
     }
     
-    public void addFightOffer(Person opponent, Monster oppMonster, Monster challMonster){
-        this.fights.add(new Fight(this,opponent, challMonster,oppMonster));
+    public void addFight(Fight fight){
+        this.fights.add(fight);
     }
     
     public void removeFightOffer(Fight fight){

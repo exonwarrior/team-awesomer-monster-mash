@@ -95,6 +95,7 @@ public class MonsterDOA {
         return m;
         //return me;
     }
+    
     public Monster getMonsterById(Long id){
         emf = Persistence.createEntityManagerFactory("$objectdb/db/monster.odb");
         em = emf.createEntityManager();

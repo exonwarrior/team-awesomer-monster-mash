@@ -269,4 +269,20 @@ public class PersonDOA {
         } 
     }
     
+    public void updatePersonsInfo(Person person,Fight fight){
+        emf = Persistence.createEntityManagerFactory("$objectdb/db/person.odb"); 
+        em = emf.createEntityManager();
+        
+        Person dbPerson = em.find(Person.class, person.getId());
+        
+        try{
+             em.getTransaction().begin();
+             dbPerson.addFight(fight);
+             em.getTransaction().commit();
+        }
+        finally{
+             em.close();
+        } 
+    }
+    
 }

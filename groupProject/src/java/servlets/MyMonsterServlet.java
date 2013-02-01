@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import types.Fight;
 
 /**
  *
@@ -99,6 +100,9 @@ public class MyMonsterServlet extends HttpServlet {
         }else if(currentAction.equals("breed_with_monster")){
             
             request = breedMonster(request, user);
+        }else if(currentAction.equals("fight_with_monster")){
+            
+            request = fightMonster(request, user);
         }
         /*
          * Update the current monster
@@ -184,4 +188,29 @@ public class MyMonsterServlet extends HttpServlet {
 
          return request;
      }
+    
+    private HttpServletRequest fightMonster(HttpServletRequest request, Person user){
+        
+        HttpSession session = request.getSession(false);
+        
+         Long friendsMonsterID = Long.parseLong(session.getAttribute("friendsMonsterID").toString());
+         Long currentMonsterID = Long.parseLong(request.getParameter("current monster id"));
+         
+         Monster oppMonster = monsterDOA.getMonsterById(friendsMonsterID);
+         Monster challMonster = monsterDOA.getMonsterById(currentMonsterID);
+         
+         Person opponent = personDOA.getPersonByEmail(oppMonster.getOwnerID());
+         
+         Fight fight = new Fight(user,opponent,challMonster, oppMonster);
+         
+         opponent.addFight(fight);
+         user.addFight(fight);
+         
+         personDOA.updatePersonsInfo(user, fight);
+         personDOA.updatePersonsInfo(opponent, fight);
+         
+         session.setAttribute("current_action", "done fighting");
+         
+        return request;
+    }
 }

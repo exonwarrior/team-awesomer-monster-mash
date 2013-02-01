@@ -56,6 +56,11 @@
                     document.getElementById("current monster id").value =  id;                   
                     document.forms["monster form"].submit();
                 }
+                function fightMyMonster(id){
+                    document.getElementById("current_action").value = "fight_with_monster";
+                    document.getElementById("current monster id").value =  id;                   
+                    document.forms["monster form"].submit();
+                }
                 
                 -->
             </script>
@@ -88,7 +93,7 @@
                         for(Monster monster : monsters){ %>
                             <tr>
                                 <td>
-                                    <input type="submit" onclick="changeMonster(<%=monster.getId()%>);" value="<%=monster.getName()%>"  />                           
+                                    <input type="submit" class="button" onclick="changeMonster(<%=monster.getId()%>);" value="<%=monster.getName()%>"  />                           
                                 </td>
 
                             </tr>
@@ -115,6 +120,9 @@
                 
                 <%if(session.getAttribute("current_action") != null && session.getAttribute("current_action").equals("breed")){%>
                 <input type="submit" class="button" name="breed"  onclick="breedMyMonster(<%=currentMonster.getId()%>);" value="breed with me" />    
+                <%}%>
+                <%if(session.getAttribute("current_action") != null && session.getAttribute("current_action").equals("fight")){%>
+                <input type="submit" class="button" name="fight"  onclick="fightMyMonster(<%=currentMonster.getId()%>);" value="fight with me" />    
                 <%}%>
 
             <%}%>
