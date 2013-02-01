@@ -33,7 +33,7 @@ public class Monster implements Serializable {
             baseDefence, currentDefence, baseHealth, 
             currentHealth, price;
 
-    // <editor-fold defaultstate="collapsed" desc="Getters and Setters. Click on the + sign on the left to edit the code.">
+  
     public void setBirthDate(int birthDate) {
         this.birthDate = birthDate;
     }
@@ -68,6 +68,11 @@ public class Monster implements Serializable {
         return name;
     }
     
+    
+    public void setOwner(String email) {
+        this.ownerID = email;
+    }
+   
     public String getOwnerID() {
         return ownerID;
     }
@@ -161,7 +166,6 @@ public class Monster implements Serializable {
             Logger.getLogger(Monster.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
         return jMonster;
     }
     
@@ -211,9 +215,5 @@ public class Monster implements Serializable {
                  +this.baseDefence+"\n"+this.baseHealth);
          return this;
      }
-
-    public void setOwner(String email) {
-        this.ownerID = email;
-    }
     
 }

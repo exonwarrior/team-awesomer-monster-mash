@@ -19,9 +19,11 @@ import static org.junit.Assert.*;
 public class MonsterTest {
     
     Monster monster = new Monster();
-   
+    Person person;
+    
     @Before
     public void setUp() {
+        person = new Person("name", "password", "email");
     }
     
     /**
@@ -164,7 +166,7 @@ public class MonsterTest {
         monster.setBaseHealth(1.0);
         double expResult = 1.0;
         double result = monster.getBaseHealth();
-        assertEquals(expResult, result);
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -172,12 +174,10 @@ public class MonsterTest {
      */
     @Test
     public void testSetBaseHealth() {
-        System.out.println("setBaseHealth");
-        double health = 0.0;
-        Monster instance = new Monster();
-        instance.setBaseHealth(health);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        monster.setBaseHealth(1.0);
+        double expResult = 1.0;
+        double result = monster.getBaseHealth();
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -185,13 +185,10 @@ public class MonsterTest {
      */
     @Test
     public void testGetCurrentHealth() {
-        System.out.println("getCurrentHealth");
-        Monster instance = new Monster();
-        double expResult = 0.0;
-        double result = instance.getCurrentHealth();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        monster.setCurrentHealth(1.0);
+        double expResult = 1.0;
+        double result = monster.getCurrentHealth();
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -199,12 +196,10 @@ public class MonsterTest {
      */
     @Test
     public void testSetCurrentHealth() {
-        System.out.println("setCurrentHealth");
-        double health = 0.0;
-        Monster instance = new Monster();
-        instance.setCurrentHealth(health);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        monster.setCurrentHealth(1.0);
+        double expResult = 1.0;
+        double result = monster.getCurrentHealth();
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -212,13 +207,10 @@ public class MonsterTest {
      */
     @Test
     public void testGetBaseStrength() {
-        System.out.println("getBaseStrength");
-        Monster instance = new Monster();
-        double expResult = 0.0;
-        double result = instance.getBaseStrength();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        monster.setBaseStrength(1.0);
+        double expResult = 1.0;
+        double result = monster.getBaseStrength();
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -226,12 +218,10 @@ public class MonsterTest {
      */
     @Test
     public void testSetBaseStrength() {
-        System.out.println("setBaseStrength");
-        double strength = 0.0;
-        Monster instance = new Monster();
-        instance.setBaseStrength(strength);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        monster.setBaseStrength(1.0);
+        double expResult = 1.0;
+        double result = monster.getBaseStrength();
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -239,13 +229,10 @@ public class MonsterTest {
      */
     @Test
     public void testGetCurrentStrength() {
-        System.out.println("getCurrentStrength");
-        Monster instance = new Monster();
-        double expResult = 0.0;
-        double result = instance.getCurrentStrength();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       monster.setBaseStrength(1.0);
+        double expResult = 1.0;
+        double result = monster.getBaseStrength();
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -253,12 +240,10 @@ public class MonsterTest {
      */
     @Test
     public void testSetCurrentStrength() {
-        System.out.println("setCurrentStrength");
-        double strength = 0.0;
-        Monster instance = new Monster();
-        instance.setCurrentStrength(strength);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        monster.setBaseStrength(1.0);
+        double expResult = 1.0;
+        double result = monster.getBaseStrength();
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -266,13 +251,10 @@ public class MonsterTest {
      */
     @Test
     public void testGetBaseDefence() {
-        System.out.println("getBaseDefence");
-        Monster instance = new Monster();
-        double expResult = 0.0;
-        double result = instance.getBaseDefence();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        monster.setBaseDefence(1.0);
+        double expResult = 1.0;
+        double result = monster.getBaseDefence();
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -280,12 +262,10 @@ public class MonsterTest {
      */
     @Test
     public void testSetBaseDefence() {
-        System.out.println("setBaseDefence");
-        double defence = 0.0;
-        Monster instance = new Monster();
-        instance.setBaseDefence(defence);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        monster.setBaseDefence(1.0);
+        double expResult = 1.0;
+        double result = monster.getBaseDefence();
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -293,13 +273,10 @@ public class MonsterTest {
      */
     @Test
     public void testGetCurrentDefence() {
-        System.out.println("getCurrentDefence");
-        Monster instance = new Monster();
-        double expResult = 0.0;
-        double result = instance.getCurrentDefence();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        monster.setCurrentDefence(1.0);
+        double expResult = 1.0;
+        double result = monster.getCurrentDefence();
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -307,12 +284,10 @@ public class MonsterTest {
      */
     @Test
     public void testSetCurrentDefence() {
-        System.out.println("setCurrentDefence");
-        double defence = 0.0;
-        Monster instance = new Monster();
-        instance.setCurrentDefence(defence);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        monster.setCurrentDefence(1.0);
+        double expResult = 1.0;
+        double result = monster.getCurrentDefence();
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -320,13 +295,10 @@ public class MonsterTest {
      */
     @Test
     public void testGetPrice() {
-        System.out.println("getPrice");
-        Monster instance = new Monster();
-        double expResult = 0.0;
-        double result = instance.getPrice();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        monster.setPrice(1.0);
+        double expResult = 1.0;
+        double result = monster.getPrice();
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
@@ -334,96 +306,65 @@ public class MonsterTest {
      */
     @Test
     public void testSetPrice() {
-        System.out.println("setPrice");
-        double price = 0.0;
-        Monster instance = new Monster();
-        instance.setPrice(price);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getStats method, of class Monster.
-     */
-    @Test
-    public void testGetStats() {
-        System.out.println("getStats");
-        Monster instance = new Monster();
-        String expResult = "";
-        String result = instance.getStats();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getJSONMonster method, of class Monster.
-     */
-    @Test
-    public void testGetJSONMonster() {
-        System.out.println("getJSONMonster");
-        Monster instance = new Monster();
-        JSONObject expResult = null;
-        JSONObject result = instance.getJSONMonster();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of equals method, of class Monster.
-     */
-    @Test
-    public void testEquals() {
-        System.out.println("equals");
-        Object object = null;
-        Monster instance = new Monster();
-        boolean expResult = false;
-        boolean result = instance.equals(object);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of toString method, of class Monster.
-     */
-    @Test
-    public void testToString() {
-        System.out.println("toString");
-        Monster instance = new Monster();
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        monster.setPrice(1.0);
+        double expResult = 1.0;
+        double result = monster.getPrice();
+        assertEquals(expResult, result, 0.01);
     }
 
     /**
      * Test of generateRandom method, of class Monster.
      */
     @Test
-    public void testGenerateRandom() {
-        System.out.println("generateRandom");
-        Person user = null;
-        Monster instance = new Monster();
-        Monster expResult = null;
-        Monster result = instance.generateRandom(user);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testGenerateRandomNotNull() {
+       Monster temp = monster.generateRandom(person);
+        assertNotNull(temp);
     }
 
+    @Test
+    public void testGenerateRandomStrengthMax() {
+       Monster temp = monster.generateRandom(person);
+       assertTrue(temp.getBaseStrength()<= 1.0);
+    }
+    
+    @Test
+    public void testGenerateRandomStrengthMin() {
+       Monster temp = monster.generateRandom(person);
+       assertTrue(temp.getBaseStrength()>= 0.0);
+    }
+    
+    @Test
+    public void testGenerateRandomDefenceMax() {
+       Monster temp = monster.generateRandom(person);
+       assertTrue(temp.getBaseDefence()<= 1.0);
+    }
+    
+    @Test
+    public void testGenerateRandomDefenceMin() {
+       Monster temp = monster.generateRandom(person);
+       assertTrue(temp.getBaseDefence()>= 0.0);
+    }
+    
+    @Test
+    public void testGenerateRandomHealthMax() {
+       Monster temp = monster.generateRandom(person);
+       assertTrue(temp.getBaseHealth()<= 1.0);
+    }
+    
+    @Test
+    public void testGenerateRandomHealthMin() {
+       Monster temp = monster.generateRandom(person);
+       assertTrue(temp.getBaseHealth()>= 0.0);
+    }
+    
     /**
      * Test of setOwner method, of class Monster.
      */
     @Test
     public void testSetOwner() {
-        System.out.println("setOwner");
-        String email = "";
-        Monster instance = new Monster();
-        instance.setOwner(email);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        monster.setOwner("name");
+        String expResult = "name";
+        String result = monster.getOwnerID();
+        assertEquals(expResult, result);
     }
 }
