@@ -78,6 +78,7 @@ public class FriendsServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         Person user = (Person) session.getAttribute("user");
         currentAction = request.getParameter("current_action");
+        forwardUrl = "/friends.jsp";
         
         if(currentAction.equals("send_request")){
             request = this.sendRequest(request, user);
