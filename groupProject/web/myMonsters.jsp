@@ -4,6 +4,7 @@
     Author     : thh21
 --%>
 
+<%@page import="database.Person"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="database.Monster"%>
@@ -79,6 +80,9 @@
                         <input type="hidden" id="breed id" name="breed id" />
                         <input type="hidden" id="sale id" name="sale id" />
                         <input type="hidden" id="current_action" name="current_action" />
+                       <% Person user = (Person) session.getAttribute("user");%>
+                          
+                                 your Money: <%user.getMoney();%>
                         <table name="monster" border="1">
                             <% ArrayList<Monster> monsters = (ArrayList<Monster>) session.getAttribute("monsters");%>
                             <%DecimalFormat df = new DecimalFormat("#.##");%>
@@ -87,6 +91,7 @@
 
                             </tr>
                             <% if (monsters != null) {
+                                
                                     for (Monster monster : monsters) {%>
                             <tr>
                                 <td>

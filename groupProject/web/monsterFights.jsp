@@ -38,8 +38,9 @@
                 document.forms["monster fight"].submit();
             }
             function logOut(){
-                document.getElementById("current_action").value = "logout";
-            }
+                    document.getElementById("logout").value = "logout";
+                    document.forms["login"].submit();
+                }
             -->
         </script>
     </head>
@@ -121,8 +122,10 @@
                     </p>
                     <p name="fight">
                        <% if(request.getAttribute("fight result") != null){
+                           Person user = (Person) session.getAttribute("user");
                            String message = (String) request.getAttribute("fight result");%>
                                  <%=message%> <br />
+                                 your Money: <%user.getMoney();%> 
                         <%}%>
                     </p>
                 </form>
