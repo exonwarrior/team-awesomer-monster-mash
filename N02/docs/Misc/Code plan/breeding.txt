@@ -1,0 +1,9 @@
+1. Pull up list of monsters of friend, "breedable" monsters being tagged as such
+2. Select friend monster to breed with
+3. Stats sent back to you
+4. MyMonsters.jsp now has "Friends monsters you've selected to breed with"
+5. Select own monster to breed
+6. Create monster baby using stats;
+7. Take averages of stats, one stat remains identical to each parent, 
+	with 10% chance of any stat being identical to higher stat, 10% identical lower stat,
+	5% chance for random mutation - stat is increased/decreased by 25%
