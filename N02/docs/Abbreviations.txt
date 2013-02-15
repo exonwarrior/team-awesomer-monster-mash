@@ -1,0 +1,5 @@
+DS - Design Specification
+FC - Final Compiled
+FR - Final report
+TS - Test Specification
+PP - Project Plan
